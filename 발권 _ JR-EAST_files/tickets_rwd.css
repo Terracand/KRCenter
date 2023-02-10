@@ -1,0 +1,336 @@
+@charset "utf-8";
+
+
+@media screen and (max-width: 640px) {
+
+#contents ul.tabMenu{
+	display:none;
+}
+#contents p.txtRight{
+	margin-top:10px;
+}
+#contents .adobeReader{
+	display:none;
+}
+#txtArea{
+	padding-left:0;
+}
+#contents h3{
+	background-position:left 0.5em;
+}
+#contents h4{
+	background-position:left 0.5em;
+}
+#contents .noteTxtBox h4{
+	background-position:left 0.35em;
+}
+/*----------------------------------------------------------------------
+ imgBoxWrap
+----------------------------------------------------------------------*/
+.imgBoxWrap{
+	text-align:center;
+}
+
+.imgBoxWrap .imgBox{
+	float:none;
+	width:auto;
+	padding-right:0;
+	margin-top:15px;
+}
+
+/*----------------------------------------------------------------------
+ carIcnBox
+----------------------------------------------------------------------*/
+.carIcnBox .btmArw{
+	width:auto;
+	float:none;
+	margin-bottom:15px;
+}
+.carIcnBox .carIcn{
+	width:auto;
+	float:none;
+	text-align:left;
+	padding:10px;
+	border:1px solid #cdcdcd;
+}
+.carIcnBox strong{
+	display:inline-block;
+	padding-bottom:5px;
+}
+.carIcnBox .iconWrap{
+	display:inline-block;
+}
+
+/*----------------------------------------------------------------------
+ imgBox
+----------------------------------------------------------------------*/
+.imgBoxWrap .imgBox .imgBoxTxt{
+	display:inline-block;
+}
+.imgBoxWrap .imgBox .imgBoxTxt img{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/*----------------------------------------------------------------------
+ carTypeBox
+----------------------------------------------------------------------*/
+.carTypeBox{
+	border:none;
+	background-color:#dcebc9;
+	margin-right:-10px;
+	margin-left:-10px;
+}
+.carTypeBox dl{
+	float:none;
+	padding-right:0;
+	width:auto;
+}
+.carTypeBox dl dt{
+	margin-bottom:10px;
+	min-height: inherit !important;
+	background-position:left 0.5em;
+}
+.carTypeBox dl dt.carTypeTtl02,
+.carTypeBox dl dt.carTypeTtl03{
+	background-position:left 0.5em;
+}
+.carTypeBox dl dd{
+	text-align:center;
+}
+
+/*----------------------------------------------------------------------
+ ticketNav
+----------------------------------------------------------------------*/
+#contents .ticketNav{
+	padding:15px 0px 10px 15px;
+	margin-bottom:15px;
+}
+#contents .ticketNav ul{
+	margin-bottom:0;
+}
+#contents .ticketNav ul li{
+	float:none;
+	display:inline-block;
+	margin-bottom:10px;
+	padding-right:15px;
+}
+/*----------------------------------------------------------------------
+ ticketBox
+----------------------------------------------------------------------*/
+#contents .ticketBoxWrap.mt15{
+	margin-top:0;
+}
+#contents .ticketBoxWrap .ticketBox{
+	float:none;
+	margin-right:0;
+	margin-bottom:15px;
+	width:auto;
+	text-align:center;
+}
+#contents .ticketBoxWrap .ticketBox:hover{
+	width:auto;
+}
+#contents .ticketBoxWrap .ticketBoxInner{
+	min-height: inherit !important;
+	padding-top:0;
+	padding-bottom:10px;
+}
+#contents .ticketBoxWrap .ticketBoxInner p{
+	padding:10px 0;
+}
+#contents .ticketBoxWrap .ticketBoxInner p.linkArea{
+	padding:0;
+}
+#contents .ticketBoxWrap .ticketBox h3{
+	display:inline;
+	background-position:left 0.2em;
+	line-height:1.8em;
+	padding-top:0;
+	padding-bottom:0;
+}
+/*----------------------------------------------------------------------
+ purchaseBox
+----------------------------------------------------------------------*/
+.purchaseBox .purchaseBoxImg{
+	text-align:center;
+	width:60%;
+}
+.purchaseBox .purchaseBoxLogo{
+	box-sizing:border-box;
+	padding-right:0;
+	width:40%;
+}
+.purchaseBox .purchaseBoxTxt{
+	float:none;
+	clear:both;
+	width:auto;
+	padding-top:10px;
+}
+/*----------------------------------------------------------------------
+ stationBox
+----------------------------------------------------------------------*/
+.stationBox .stationBoxImg{
+	width:100%;
+	padding-right:0;
+	margin-bottom:15px;
+	text-align:center;
+}
+.stationBox .stationBoxTxt{
+	width:auto;
+}
+.toggleBox .stationBox .stationBoxTxt{
+	float:none;
+}
+.stationBox .stationBoxImgRight{
+	display:none;
+}
+/*----------------------------------------------------------------------
+ ticketCaption
+----------------------------------------------------------------------*/
+#txtArea .ticketCaption{
+	width:auto;
+}
+/*----------------------------------------------------------------------
+ changesBox
+----------------------------------------------------------------------*/
+.changesBox{
+	max-width:300px;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.changesBox dl{
+	float:none;
+	padding-right:0;
+	width:auto;
+	margin-bottom:15px;
+}
+.changesBox dl dt{
+	background-position:left 0.55em;
+}
+
+/*----------------------------------------------------------------------
+ stationBox
+----------------------------------------------------------------------*/
+.stationBox .stationBoxTxtShort{
+	width:auto;
+	padding-right:0;
+	margin-bottom:15px;
+}
+.stationBox .stationBoxImg02{
+	width:auto;
+}
+
+/*----------------------------------------------------------------------
+ blueBox
+----------------------------------------------------------------------*/
+#contents .boxLeft{
+	margin-right:0;
+	width:auto;
+	float:none;
+}
+
+/*----------------------------------------------------------------------
+table.tblType01
+----------------------------------------------------------------------*/
+table.tblType01{
+	font-size:85%;
+}
+
+/* h2 -------------------- */
+	
+/*#contents .categoryBox h2{
+	padding-bottom:11px;
+	min-height:21px;
+	line-height:1em;
+	background:url(/multi/ticket/bg_subtitle_sp.gif) no-repeat left bottom;
+}
+#contents .categoryBox h2:before{
+	content:url(/multi/ticket/bg_subtitle_sp_icon.gif);
+	margin-left:-15px;
+	margin-right:5px;
+}
+#contents p.link{
+	padding-left:17px;
+}
+#contents p.link:before{
+	content:url(/multi/ticket/icon_arw02.png);
+	margin-left:-17px;
+	margin-right:4px;
+	vertical-align:middle;
+}
+#contents p.link a{
+	background:none;
+	padding-left:0;
+}*/
+
+
+}
+
+
+
+/*  === 2020.06 add === ticketmovie */
+
+
+@media screen and (max-width: 949px)
+.ticketmovie .inner {
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media screen and (max-width: 640px)
+.ticketmovie .inner {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media screen and (max-width:949px) {
+	/* movie */
+	.ticketmovie .movieBox {
+		width: 48%;
+		margin-right: 4%;
+	}
+	.ticketmovie .movieListSg .movieSgTxt {
+		width: 48%;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	/* movie */
+	.ticketmovie {
+		padding-top: 0;
+		padding-bottom: 40px;
+	}
+	.ticketmovie .txt {
+		margin-top: 40px;
+		text-align: left;
+	}
+	.ticketmovie .movieBox {
+		width: 100%;
+		margin-right:0;
+	}
+	#contents .ticketmovie .movieList h3 {
+		font-size: 125%;
+		min-height: 0;
+	}
+	.ticketmovie .movieList dl dt {
+		font-size: 125%;
+	}
+	.ticketmovie .movieBox {
+		margin-top: 15px;
+	}
+	/*
+	.ticketmovie .movieBox:nth-child(2n){
+		margin-top: 30px;
+	}
+	*/
+	.ticketmovie .movieListSg .movieBox {
+		float: none;
+	}
+	.ticketmovie .movieListSg .movieSgTxt {
+		width: auto;
+		margin-right:0;
+	}
+}

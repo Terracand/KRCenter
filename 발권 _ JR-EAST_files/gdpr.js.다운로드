@@ -1,0 +1,505 @@
+//------------------------------------------------------------------------------
+// add GDPR
+//------------------------------------------------------------------------------
+
+/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader;
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+		registeredInModuleLoader = true;
+	}
+	if (typeof exports === 'object') {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function decode (s) {
+		return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
+	}
+
+	function init (converter) {
+		function api() {}
+
+		function set (key, value, attributes) {
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			attributes = extend({
+				path: '/'
+			}, api.defaults, attributes);
+
+			if (typeof attributes.expires === 'number') {
+				attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
+			}
+
+			// We're using "expires" because "max-age" is not supported by IE
+			attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+			try {
+				var result = JSON.stringify(value);
+				if (/^[\{\[]/.test(result)) {
+					value = result;
+				}
+			} catch (e) {}
+
+			value = converter.write ?
+				converter.write(value, key) :
+				encodeURIComponent(String(value))
+					.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+
+			key = encodeURIComponent(String(key))
+				.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
+				.replace(/[\(\)]/g, escape);
+
+			var stringifiedAttributes = '';
+			for (var attributeName in attributes) {
+				if (!attributes[attributeName]) {
+					continue;
+				}
+				stringifiedAttributes += '; ' + attributeName;
+				if (attributes[attributeName] === true) {
+					continue;
+				}
+
+				// Considers RFC 6265 section 5.2:
+				// ...
+				// 3.  If the remaining unparsed-attributes contains a %x3B (";")
+				//     character:
+				// Consume the characters of the unparsed-attributes up to,
+				// not including, the first %x3B (";") character.
+				// ...
+				stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+			}
+
+			return (document.cookie = key + '=' + value + stringifiedAttributes);
+		}
+
+		function get (key, json) {
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			var jar = {};
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all.
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = decode(parts[0]);
+					cookie = (converter.read || converter)(cookie, name) ||
+						decode(cookie);
+
+					if (json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					jar[name] = cookie;
+
+					if (key === name) {
+						break;
+					}
+				} catch (e) {}
+			}
+
+			return key ? jar[key] : jar;
+		}
+
+		api.set = set;
+		api.get = function (key) {
+			return get(key, false /* read as raw */);
+		};
+		api.getJSON = function (key) {
+			return get(key, true /* read as json */);
+		};
+		api.remove = function (key, attributes) {
+			set(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.defaults = {};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+//js-cookieプラグインここまで
+
+
+function gdpr() {
+	//ディレクトリの取得
+	var loc = location.pathname;
+	var dir = loc.split('/');
+	var lastDir = dir[dir.length - 2];
+	var multilingualSite = dir[1] === 'e' || dir[1] === 'kr' || dir[1] === 'sc' || dir[1] === 'tc' || dir[1] === 'th' || dir[1] === 'multi';
+	
+	//【英語】cookie同意バー
+	var gdCkHtmlE = (function() {/*<div id="gdprBox" class="gdprBoxE">
+		<p class="gdprDescription">
+		This website uses cookies to improve your browsing experience.<span class="gdprBeforeBreak"> Please click &#34;I agree&#34; to allow cookies so that you can fully enjoy all the features of this website.</span><span class="gdprBeforeBreak"> For more information, please see the <a href="/e/policy/index.html" class="gdprLink">Privacy Policy</a> and <a href="/e/cookiepolicy/index.html" class="gdprLink">Cookie Policy</a>.</span></p>
+		<div class="gdprButtonArea">
+			<span class="gdprButton gdprButton-NoEffect"><input id="gdprYes" type="button" name="gdCkYes" value="I agree"></span>
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+	
+	//【韓国語】cookie同意バー
+	var gdCkHtmlK = (function() {/*<div id="gdprBox" class="gdprBoxK">
+		<p class="gdprDescription">
+		이 웹사이트에서는 웹사이트에서의 경험을 향상시키기 위해 쿠키를 이용하고 있습니다. 이 웹사이트의 모든 기능을 이용하시려면 “동의” 버튼을 클릭하신 후 쿠키를 활성화하셔야 합니다. 자세한 내용은 <a href="/e/policy/index.html" class="gdprLink">개인정보보호</a> 정책 및 <a href="/e/cookiepolicy/index.html" class="gdprLink">쿠키 정책</a>을 확인하십시오.</p>
+		<div class="gdprButtonArea">
+			<input id="gdprYes" type="button" name="gdCkYes" value="동의함">
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+	
+	//【簡体語】cookie同意バー
+	var gdCkHtmlS = (function() {/*<div id="gdprBox" class="gdprBoxS">
+		<p class="gdprDescription">
+		本网站使用Cookie以改善用户体验。请点击“我同意”按钮以启用Cookie方可使用本网站的所有功能。详细信息请查看<a href="/e/policy/index.html" class="gdprLink">隐私保护</a>及<a href="/e/cookiepolicy/index.html" class="gdprLink">Cookie安全策略</a>。
+		</p>
+		<div class="gdprButtonArea">
+			<input id="gdprYes" type="button" name="gdCkYes" value="同意">
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+	
+	//【繁体語】cookie同意バー
+	var gdCkHtmlT = (function() {/*<div id="gdprBox" class="gdprBoxT">
+		<p class="gdprDescription">
+		本網站使用Cookie以改善用戶體驗。請點選「我同意」按鈕以啟用Cookie方可使用本網站的所有功能。欲了解更多訊息，請確認<a href="/e/policy/index.html" class="gdprLink">隱私保護</a>及<a href="/e/cookiepolicy/index.html" class="gdprLink">Cookie安全策略</a>。
+</p>
+		<div class="gdprButtonArea">
+			<input id="gdprYes" type="button" name="gdCkYes" value="同意">
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+
+	//【タイ語】cookie同意バー
+	var gdCkHtmlTH = (function() {/*<div id="gdprBox" class="gdprBoxT">
+		<p class="gdprDescription">
+		เว็บไซต์นี้ใช้คุกกี้เพื่อเสริมประสบการณ์การใช้งานบนเว็บไซต์ หากท่านต้องการใช้งานทุกฟังก์ชันในเว็บไซต์นี้ จำเป็นต้องกดปุ่ม “ยอมรับ” เพื่อเปิดใช้งานคุกกี้ สำหรับรายละเอียดโปรดดู<a href="/e/policy/index.html" class="gdprLink">นโยบายความเป็นส่วนตัว</a>และ<a href="/e/cookiepolicy/index.html" class="gdprLink">นโยบายการใช้คุกกี้</a></p>
+		<div class="gdprButtonArea">
+			<input id="gdprYes" type="button" name="gdCkYes" value="ยอมรับ">
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+
+	//【パス】cookie同意バー
+	var gdCkHtmlJ = (function() {/*<div id="gdprBox" class="gdprBoxJ">
+		<p class="gdprDescription">このウェブサイトでは、ウェブサイトでの体験を向上させるためにクッキーを使用しています。このウェブサイトのすべての機能をご利用いただくには、「同意する」ボタンをクリックいただき、クッキーを有効にする必要があります。詳しくは、<a href="/e/policy/index.html" class="gdprLink">プライバシーポリシー</a>と<a href="/e/cookiepolicy/index.html" class="gdprLink">クッキーポリシー</a>をご確認ください。</p>
+		<div class="gdprButtonArea">
+			<span class="gdprButton gdprButton-NoEffect"><input id="gdprYes" type="button" name="gdCkYes" value="同意する"></span>
+		</div>
+	</div>*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].replace(/\n|\r/g, "");
+
+	function addGdpr(gdCkHtml, cookieName) {
+		var gdprWrapperElm = document.createElement('div');
+		gdprWrapperElm.setAttribute('id', 'gdprWrapper');
+		gdprWrapperElm.innerHTML = gdCkHtml;
+		
+		var parentElm = document.body;
+		
+		//cookie「同意」「非同意」を押していない場合、cookie同意バーを表示
+		var ckGdpr = Cookies.get(cookieName);
+		if(ckGdpr === undefined) {
+			parentElm.insertBefore(gdprWrapperElm, parentElm.firstChild);
+			
+			//gdprWrapperElm構築後に高さを取得
+			var gdprHeight = 0;
+			(function(self) {
+				window.setTimeout(function(self) {
+					gdprHeight = gdprWrapperElm.offsetHeight + 'px';
+					parentElm.style.paddingTop = gdprHeight;
+				}, 0);
+			})(this);
+		}
+		
+		//cookie「同意」を押している場合、その旨をcookieに格納、同意バーを非表示
+		var gdprYesElm = document.getElementById('gdprYes');
+		// jreast.co.jp用
+		if(gdprYesElm) {
+			gdprYesElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 1, {expires: 365, domain: '.jreast.co.jp', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		}
+/*		// jrprv.jrnets.co.jp用
+		if(gdprYesElm) {
+			gdprYesElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 1, {expires: 365, domain: 'jrprv.jrnets.co.jp', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		} */
+/*		// localhost用
+		if(gdprYesElm) {
+			gdprYesElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 1, {expires: 365, domain: 'localhost', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		} */
+
+		//cookie「非同意」を押している場合、その旨をcookieに格納、同意バーを非表示
+		var gdprNoElm = document.getElementById('gdprNo');
+		// jreast.co.jp用
+		if(gdprNoElm) {
+			gdprNoElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 0, {expires: 365, domain: '.jreast.co.jp', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		}
+/*		// jrprv.jrnets.co.jp用
+		if(gdprNoElm) {
+			gdprNoElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 0, {expires: 365, domain: 'jrprv.jrnets.co.jp', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		}*/
+/*		// localhost用
+		if(gdprNoElm) {
+			gdprNoElm.addEventListener('click', function(){
+				Cookies.set(cookieName, 0, {expires: 365, domain: 'localhost', path: '/'});
+				var gdprBoxElm = document.getElementById('gdprBox');
+				gdprBoxElm.parentNode.removeChild(gdprBoxElm);
+				parentElm.style.paddingTop = '0px';
+			}, false);
+		}*/
+		
+		console.log(cookieName + ': ' + Cookies.get(cookieName));
+	}
+	
+	//多言語サイト
+	if(multilingualSite === true) {
+		switch(dir[1]) {
+			//英語
+			case 'e': 
+				addGdpr(gdCkHtmlE, 'jreGdE');
+				break;
+				
+			//韓国語
+			case 'kr': 
+				addGdpr(gdCkHtmlK, 'jreGdK');
+				break;
+				
+			//簡体語
+			case 'sc': 
+				addGdpr(gdCkHtmlS, 'jreGdS');
+				break;
+				
+			//繁体語
+			case 'tc': 
+				addGdpr(gdCkHtmlT, 'jreGdT');
+				break;
+				
+			//タイ語の場合はmultiと同じ
+			case 'th': 
+				addGdpr(gdCkHtmlTH, 'jreGdJ');
+				break;
+				
+			//日本語（パス）
+			case 'multi': 
+				addGdpr(gdCkHtmlJ, 'jreGdJ');
+				break;
+		}
+	}
+	
+	//2階層目のディレクトリが'trainvert'
+	else if(dir[2] === 'trainvert') {
+		//最後のディレクトリが'translation'
+		if(lastDir === 'translation') {
+			addGdpr(gdCkHtmlE, 'jreGdE');
+		}
+		
+		else {
+			switch(dir[4]) {
+				//英語
+				case 'en': 
+					addGdpr(gdCkHtmlE, 'jreGdE');
+					break;
+					
+				//韓国語
+				case 'ko': 
+					addGdpr(gdCkHtmlK, 'jreGdK');
+					break;
+					
+				//簡体語
+				case 'ch_1': 
+					addGdpr(gdCkHtmlS, 'jreGdS');
+					break;
+					
+				//繁体語
+				case 'ch_2': 
+					addGdpr(gdCkHtmlT, 'jreGdT');
+					break;
+					
+				//日本語（パス）
+				case 'multi_2': 
+					addGdpr(gdCkHtmlJ, 'jreGdJ');
+					break;
+			}
+		}
+	}
+	
+	//1階層目のディレクトリが'granclass'かつ2階層目のディレクトリが'en'
+	else if(dir[1] === 'granclass' &&
+			dir[2] === 'en') {
+		
+		//英語
+		//説明文の改行調整
+		gdCkHtmlE = gdCkHtmlE.replace(/<span class="gdprBeforeBreak">/g, '<br><span class="gdprBeforeBreak">');
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+	
+	//1階層目のディレクトリが'shiki-shima'かつ2階層目のディレクトリが'en'
+	else if(dir[1] === 'shiki-shima' &&
+			dir[2] === 'en') {
+		
+		//英語
+		//説明文の改行調整
+		gdCkHtmlE = gdCkHtmlE.replace(/<span class="gdprBeforeBreak">/g, '<br><span class="gdprBeforeBreak">');
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+	
+	//1階層目のディレクトリが'tokyomovinground'かつ2階層目のディレクトリが'english'
+	else if(dir[1] === 'tokyomovinground' &&
+			dir[2] === 'english') {
+		//英語
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+
+	//1階層目のディレクトリが'akita'かつ2階層目のディレクトリが'zekkei'かつ3階層目のディレクトリが'en'
+	else if(dir[1] === 'akita' &&
+			dir[2] === 'zekkei' &&
+			dir[3] === 'en') {
+		//英語（WeデジPT秋田）
+		//説明文の改行調整
+		gdCkHtmlE = gdCkHtmlE.replace(/<span class="gdprBeforeBreak">/g, '<br><span class="gdprBeforeBreak">');
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+
+	//1階層目のディレクトリが'saphir'かつ2階層目のディレクトリが'en'
+	else if(dir[1] === 'saphir' &&
+			dir[2] === 'en') {
+		//英語（サフィール）
+		//説明文の改行調整
+		gdCkHtmlE = gdCkHtmlE.replace(/<span class="gdprBeforeBreak">/g, '<br><span class="gdprBeforeBreak">');
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+
+	//新潟支社：しゅぽっぽページ
+	else if(dir[1] === 'niigata' &&　dir[2] === 'shupoppo' &&　dir[3] === 'english') {
+		//英語（しゅぽっぽページ）
+		//説明文の改行調整
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+
+	//JR東日本乗り方名人
+	else if(dir[1] === 'manner-quiz') {
+		//説明文の改行調整
+		if(dir[2] === "zh-cn"){
+			addGdpr(gdCkHtmlS, 'jreGdS');
+		}else if(dir[2] === "zh-tw"){
+			addGdpr(gdCkHtmlT, 'jreGdT');
+		}else{
+			addGdpr(gdCkHtmlE, 'jreGdE');
+		}
+		const j_html = '<p class="gdprDescription">このウェブサイトでは、ウェブサイトでの体験を向上させるためにクッキーを使用しています。このウェブサイトのすべての機能をご利用いただくには、「同意する」ボタンをクリックいただき、クッキーを有効にする必要があります。詳しくは、<a href="/site/privacy.html" class="gdprLink">プライバシーポリシー</a>と<a href="/site/rules.html#aboutCookie" class="gdprLink">クッキーポリシー</a>をご確認ください</p>';
+		let dgprDescElm = document.querySelector("#gdprBox .gdprDescription");
+		if(dgprDescElm){
+			document.querySelector("#gdprBox .gdprDescription").insertAdjacentHTML("afterend" , j_html);
+		}
+	}
+
+	//仙台支社 SOUTHERN TOHOKU TOURIST INFORMATION GUIDE
+	else if(dir[1] === 'sendai') {
+		//説明文の改行調整
+		if(dir[2] === "r_h_association"){
+			addGdpr(gdCkHtmlE, 'jreGdE');
+		}
+	}
+
+	//秋田県南エリア各駅からの観光おすすめコース
+	else if(loc === '/akita/course/en.html') {
+		addGdpr(gdCkHtmlE, 'jreGdE');
+	}
+
+	//富士回遊GDPR対応
+	//1階層目のディレクトリが'hachioji'　かつ　2階層目のディレクトリが'fuji_excursion'
+	else if(dir[1] === 'hachioji' && dir[2] === 'fuji_excursion') {
+		switch(dir[3]) {//3階層目のディレクトリ
+			//英語
+			case 'en': 
+				addGdpr(gdCkHtmlE, 'jreGdE');
+				break;
+				
+			//韓国語
+			case 'kr': 
+				addGdpr(gdCkHtmlK, 'jreGdK');
+				break;
+				
+			//簡体語
+			case 'cn': 
+				addGdpr(gdCkHtmlS, 'jreGdS');
+				break;
+				
+			//繁体語
+			case 'tw': 
+				addGdpr(gdCkHtmlT, 'jreGdT');
+				break;
+		}
+	}
+
+}
+
+
+
+
+
