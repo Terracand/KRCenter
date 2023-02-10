@@ -1,0 +1,73 @@
+$(function() {
+	console.log("What's New JS script loaded...")
+	var locale = "";
+	var topText ="";
+});
+
+function parseNews(data, numNews, showYear) {
+	var newsitems = data['newsitems'];
+	var yearcounter = new Date(data['newsitems'][0]['date']).getFullYear();
+	//var yearcounter = new Date().getFullYear();
+	moment.locale(locale);
+
+	for (i = 0, len = (typeof numNews !== 'undefined') ? numNews : newsitems.length; i < len; i++ ) {
+		var item = newsitems[i];
+		var date = new Date(item['date']);
+
+		var day = date.getDate();
+		var month = date.getMonth();
+		var year = date.getFullYear();
+
+		var newsheader = "<span class='" + item['category'] + "'>" + item['title'] + "</span>" + moment(date).format('ll');
+		var newscontent = "<dd class='" + item['icon'] + "'>" + item['content'] + "</dd>";
+
+		if ( (date.getFullYear() == yearcounter) && showYear == true) {
+			if ( yearcounter != new Date().getFullYear() ) {
+				$(".whatsnewContent li dl").append("<p class='pagetop'><a href='#pagetop'>" + topText + "</a></p>")
+			}
+			$(".whatsnewContent li dl").append("<h2 id='" + yearcounter + "-anchor'>" + yearcounter + "</h2");
+			yearcounter--;
+		}
+
+		$(".whatsnewContent li dl").append("<dt>" + newsheader + "</dt>" + newscontent);
+	}
+}
+
+function parseNotices(data, numNotices) {
+	var	noticesitems = data['noticesitems'];
+
+	for (i = 0, len = (typeof numNotices !== 'undefined') ? numNotices : noticesitems.length; i < len; i++ ) {
+		var item = noticesitems[i];
+		var noticecontent = item['content'];
+		$(".newsList").append("<li>" + noticecontent + "</li>");
+	}
+}
+
+function readJSON( filename, showYear, numNews, numNotices ) {
+	locale = filename.split("/").pop(-1).split("_")[0];
+	localize(locale);
+	console.log("Current locale set to: "+locale);
+	$.getJSON( filename, function( data ) {
+		parseNews(data, numNews, showYear);
+		parseNotices(data, numNotices);
+	});
+}
+
+function localize(locale){
+	switch(locale) {
+		case "en":
+			topText = "Page Top";
+			break;
+		case "ko":
+			topText = "Top";
+			break;
+		case "zh-tw":
+			topText = "首頁";
+			break;
+		case "zh-cn":
+			topText = "页面顶部"
+			break;
+		default:
+			topText = "";
+	}
+}

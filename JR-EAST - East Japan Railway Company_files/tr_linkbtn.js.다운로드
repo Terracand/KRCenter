@@ -1,0 +1,16 @@
+window.addEventListener('DOMContentLoaded' , function(){
+const trLinkHTML = (function () {/*
+    <aside class="fixed-bnr">
+        <ul>
+            <li> <a href="https://www.eki-net.com/jreast-train-reservation/Top/Index" target="_blank">
+                <figure><img src="/multi/common/img/logo_ekinet_en.png" alt=""></figure>
+                <p>JR-EAST Train Reservation</p>
+                </a>
+            </li>
+        </ul>
+    </aside>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+document.body.insertAdjacentHTML('beforeend', trLinkHTML);
+
+});
