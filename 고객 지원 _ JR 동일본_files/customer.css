@@ -1,0 +1,1603 @@
+@charset "utf-8";
+
+/*----------------------------------------------------------------------
+    IMPORT
+----------------------------------------------------------------------*/
+
+@import "common.css";
+@import "contents.css";
+
+/*----------------------------------------------------------------------
+    title
+----------------------------------------------------------------------*/
+
+#contents .titleBox h1{
+	margin-bottom: 15px;
+}
+
+#contents .titleBox .leadBox p.title{
+	margin-bottom:10px;
+	color:#087E0B;
+	font-size:127%;
+	font-weight:bold;
+}
+
+#contents #customerSupport.titleBox .leadBox{
+	width:930px;
+	padding-top:7px;
+}
+
+#contents #customerSupport.titleBox .leadBox .txtBox{
+	float:left;
+	width:600px;
+	width: 64.30868167202572%;/* rwd */
+}
+
+#contents #customerSupport.titleBox .leadBox .txtBox p{
+	margin-bottom:15px;
+}
+
+#contents #customerSupport.titleBox .leadBox p.img{
+	float:right;
+	width:310px;
+	padding-top:0;
+}
+#contents #customerSupport.titleBox .leadBox{
+	width:930px;
+}
+#contents #customerSupport.titleBox .leadBox .img02{
+	float:right;
+	text-align:right;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#contents #customerSupport.titleBox .leadBox .img02 {
+		width: 33.33333333333333%;
+	}
+	#contents #customerSupport.titleBox .leadBox .img02 img {
+		width: 100%;
+		height: auto;
+	}
+	#contents #customerSupport.titleBox .leadBox .img02 img[src*="img/renew/accesibility_img_lead.gif"] {
+		max-width: 287px;
+	}
+}
+
+
+/* margin -------------------- */
+
+.mt10{
+	margin-top:10px;
+}
+
+.pl20{
+	padding-left:20px;
+}
+
+
+/*----------------------------------------------------------------------
+    JR East Travel Service Center
+----------------------------------------------------------------------*/
+
+/* business hours -------------------- */
+
+#customer .businessHours{
+	width:930px;
+	width: auto;/* rwd */
+}
+
+#customer .businessHours .txtBox{
+	float:left;
+	width:610px;
+	width: calc(100% - 320px);/* rwd */
+}
+
+#customer .businessHours .txtBox dl dt{
+	font-weight:bold;
+}
+
+#customer .businessHours .txtBox dl dd{
+	margin-bottom:10px;
+}
+
+#customer .businessHours p.img{
+	float:right;
+	width:280px;
+}
+
+
+/* credit card -------------------- */
+
+#customer .creditCard{
+	width:930px;
+	width: auto;/* rwd */
+}
+
+#customer .creditCard p.txt{
+	float:left;
+	width:360px;
+	width: 38.70967741935484%;/* rwd */
+}
+
+#customer .creditCard p.img{
+	float:right;
+	width:525px;
+	width: 56.45161290322581%;/* rwd */
+}
+#customer .creditCard p.img img {/* rwd */
+	width: 100%;
+	height: auto;
+}
+
+
+/* support -------------------- */
+#customer .supportBox{
+	position:relative;
+	width:931px;
+	width: auto;/* rwd */
+	margin-top:11px;
+	background:url(../../../e/customer_support/img/renew/bg_csbox_rp.gif) repeat-y;
+	background-size: contain;/* rwd */
+	margin-bottom:15px;
+}
+
+#customer .supportBox h3,
+#customer .supportBox_sgl h3{
+	padding:3px 0 3px 12px;
+	background:url(../../../e/customer_support/img/renew/bg_green.gif) repeat-y right top;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+}
+
+#customer .supportBox h3.ttlIcn,
+#customer .supportBox_sgl h3.ttlIcn {
+	padding:3px 0 3px 5px;
+}
+
+#customer .supportBox h3 a{
+	text-decoration:none;
+	color:#fff;
+}
+
+#customer .supportBox.second{
+	margin-top:15px;
+}
+
+#customer .supportBoxInner{
+	width:931px;
+	width: auto;/* rwd */
+	background:url(../../../e/customer_support/img/renew/bg_csbox_tp.gif) no-repeat;
+	background-size: contain;/* rwd */
+}
+
+#customer .supportBoxBg{
+	padding:6px 8px 17px 7px;
+	background:url(../../../e/customer_support/img/renew/bg_csbox_bt.gif) no-repeat left bottom;
+	background-size: contain;/* rwd */
+}
+
+#customer .supportBox .boxLeft,
+#customer .supportBox_sgl .boxLeft {
+	float:left;
+	width:443px;
+	width: 48.25708061002179%;/* rwd */
+}
+
+#customer .supportBox .boxRight{
+	float:right;
+	width:443px;
+	width: 48.25708061002179%;/* rwd */
+}
+
+#customer .supportBox p{
+	margin:10px 12px 0;
+}
+
+#customer .supportBox p.high{
+	margin:10px 12px 10px;
+}
+
+#customer .supportBox img{
+	float:right;
+	margin:10px 15px 10px 10px;
+}
+@media screen and (min-width: 641px){
+	#customer .supportBox img[src*="img/renew/sc_img_location01.jpg"],
+	#customer .supportBox img[src*="img/renew/sc_img_location02.jpg"] {
+		width: calc(100% - 25px);
+		height: auto;
+	}
+}
+
+#customer .supportBox img.icn,
+#customer .supportBox_sgl img.icn {
+	float:left;
+	margin:0;
+	padding-right:6px;
+}
+
+#customer .supportBox .detail{
+	margin-left:10px;
+	text-align:left;
+	padding-left:15px;
+	background:url(../../../img/multi/icon_arw02.png) no-repeat 0 3px;
+}
+
+#customer .supportBox .boxRight .detail{
+	padding-left:15px;
+}
+
+
+#customer .supportBox .detail.newwin,
+#customer .supportBox_sgl .detail.newwin{
+	background:url(../../../img/multi/icon_link01.gif) no-repeat 0 3px;
+}
+
+#customer .supportBox .img_product_box{
+	float:right;
+	width:210px;
+	width: 47.40406320541761%;/* rwd */
+}
+@media screen and (min-width: 641px){
+	#customer .supportBox .img_product_box img {/* rwd */
+		width: calc(100% - 27px);
+		height: auto;
+}
+	#customer .supportBox img[src*="img/renew/img_credit_atm.gif"] {/* rwd */
+		width: calc(100% - 25px);
+		height: auto;
+	}
+	#customer .supportBox .img_product_box img[src*="img/renew/wifi.jpg"] {/* rwd */
+		width: auto;
+		height: auto;
+	}
+}
+
+#customer .supportBox .txtBox_size{
+	width:210px;
+}
+
+/* Image Position Left */
+#customer .supportBox.imgLeft img{
+	float:left;
+	margin:10px 10px 10px 15px;
+}
+
+#customer .supportBox.imgLeft .detail{
+	position:absolute;
+	left:18px;
+	width:420px;
+	margin:0;
+	text-align:right;
+	bottom:15px;
+	padding:0;
+	background:url(../../../img/multi/icon_arw02.png) no-repeat 320px 3px;
+}
+
+#customer .supportBox .boxRight.imgLeft .detail{
+	left:490px;
+	padding:0;
+}
+
+/* support Box Single-------------------- */
+
+#customer .supportBox_sgl{
+	padding:6px;
+	background:#E8F5D9;
+	width:446px;
+	margin-bottom:15px;
+}
+
+@media screen and (min-width: 641px){/* rwd */
+	#customer .supportBox + .supportBox_sgl{
+		width: 47.80278670953912%;
+		max-width: 446px;
+	}
+}
+
+#customer .supportBox_sgl .supportBoxInner{
+	background:none;
+	width:446px;
+	width: auto;/* rwd */
+}
+
+#customer .supportBox_sgl .supportBoxBg{
+	border:1px solid #C1EFB1;
+	background:#FFFFFF;
+	padding:0 0 17px 0;
+	width:443px;
+	width: auto;/* rwd */
+}
+#customer .supportBox_sgl .supportBoxBg .boxLeft,
+#customer .supportBox_sgl .supportBoxBg .boxLeft_bg.boxLeft_bg03 {/* rwd */
+	width: 100%;
+	margin-right: 0;
+}
+
+#customer .supportBox_sgl h3{
+	padding:3px 0 3px 7px;
+	background:url(../../../e/customer_support/img/renew/bg_green.gif) repeat-y right top;
+	color:#FFFFFF;
+	font-size:120%;
+	font-weight:bold;
+}
+
+#customer .supportBox_sgl p{
+	margin:10px 12px 0;
+}
+
+#customer .supportBox_sgl img{
+	float:right;
+	margin:10px 15px 10px 10px;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer .supportBox_sgl .img_product_box img{
+		width: 41.21621621621622%;
+		height: auto;
+	}
+}
+
+#customer .supportBox_sgl .detail{
+	background:url(../../../img/multi/icon_arw02.png) no-repeat 0 3px;
+	padding:0 0 0 18px;
+	margin-top:8px;
+}
+
+/* Image Position Left */
+#customer .supportBox_sgl.imgLeft img{
+	float:left;
+	margin:10px 10px 10px 15px;
+}
+
+/* support Box Single02-------------------- */
+
+#customer .supportBox_sgl02{
+	padding:6px;
+	background:#E8F5D9;
+	width:443px;
+}
+
+#customer .supportBox_sgl02 .supportBoxInner{
+	background:none;
+	width:443px;
+}
+
+#customer .supportBox_sgl02 .supportBoxBg{
+	border:1px solid #C1EFB1;
+	background:#FFFFFF;
+	padding:0 0 5px 0;
+	width:443px;
+}
+
+#customer .supportBox_sgl02 h3{
+	padding:3px 0 3px 7px;
+	background:url(../../../e/customer_support/img/renew/bg_green.gif) repeat-y;
+	color:#FFFFFF;
+	font-size:120%;
+	font-weight:bold;
+}
+
+#customer .supportBox_sgl02 p{
+	margin:10px 12px 0;
+}
+
+#customer .supportBox_sgl02 img{
+	float:right;
+	margin:10px 15px 10px 10px;
+}
+
+#customer .supportBox_sgl02 .detail{
+	background:url(../../../img/multi/icon_arw02.png) no-repeat 0 3px;
+	padding:0 0 0 18px;
+	margin-top:8px;
+}
+
+/* Image Position Left */
+#customer .supportBox_sgl02.imgLeft img{
+	float:left;
+	margin:10px 10px 10px 15px;
+}
+
+
+
+/*----------------------------------------------------------------------
+    JR East Information Center
+----------------------------------------------------------------------*/
+
+/* table -------------------- */
+
+#customer .infoTbl{
+	width:933px;
+	background:#F6F6F6;
+	font-size:110%;
+}
+@media screen and (min-width: 640px) and (max-width: 950px){
+	#customer .infoTbl {
+		width: 100%;
+	}
+}
+
+#customer .infoTbl th,
+#customer .infoTbl td{
+	padding:7px 30px;
+	border:1px solid #FFFFFF;
+	text-align:center;
+}
+
+#customer .infoTbl th{
+	background:#DCEBC9;
+	color:#225728;
+	font-size:117%;
+	font-weight:bold;
+}
+
+#customer .infoTbl a{
+	font-weight:bold;
+}
+#customer .infoTbl a:link{color:#333333; text-decoration:underline;}
+#customer .infoTbl a:visited{color:#333333; text-decoration:underline;}
+#customer .infoTbl a:hover{color:#ff0000; text-decoration:none;}
+#customer .infoTbl a:active{color:#ff6600; text-decoration:none;}
+
+#customer p.notes{
+	margin:10px 0 20px;
+}
+
+
+/* pdf -------------------- */
+
+#customer .pdfBox{
+	width:933px;
+	width: auto;/* rwd */
+	padding:12px 0 10px;
+	background:#E2F2CE;
+	text-align:center;
+}
+
+#customer .pdfBox p{
+	display:inline;
+	margin:0 18px;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer .pdfBox p{
+		display: inline-block;
+		margin: 0 1.929260450160772%;
+		width: 32.15434083601286%;
+	}
+	#customer .pdfBox p img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+/* available -------------------- */
+
+#customer .available{
+	/*width:900px;
+	margin:0 0 0 20px;*/
+}
+
+#customer .available p.img{
+	float:right;
+	width:310px;
+}
+
+#customer .available p.txt{
+	float:left;
+	width:600px;
+	margin-top:10px;
+}
+
+@media screen and (min-width: 641px){/* rwd */
+	#customer .available p.img{
+		width: 33.33333333333333%;
+	}
+	#customer .available p.img img{
+		width: 100%;
+		height: auto;
+	}
+	#customer .available p.txt{
+		width: 64.51612903225806%;
+	}
+}
+
+
+/*----------------------------------------------------------------------
+    JR East Travel Service Center
+----------------------------------------------------------------------*/
+
+/* tel -------------------- */
+
+#customer p.tel{
+	margin-left:20px;
+	color:#CC0000;
+	font-size:255%;
+	font-weight:bold;
+}
+
+
+/* info service -------------------- */
+
+#customer .infoService{	
+	width:933px;
+	width: auto;/* rwd */
+}
+
+#customer .infoService .txtBox{
+	float:left;	
+	width:630px;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer .infoService .txtBox{
+		width: 67.52411575562701%;
+	}
+}
+
+#customer .infoService .txtBox ul{
+	margin-left:20px;
+	padding:15px 0 20px;
+}
+
+#customer .infoService .txtBox ul li{
+	padding-left:16px;
+	background:url(../../../e/customer_support/img/renew/infoline_icon_list.gif) no-repeat 0 .7em;
+}
+
+#customer .infoService .txtBox p.bold{
+	font-weight:bold;
+}
+
+#customer .infoService p.img{
+	float:right;	
+	width:280px;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer .infoService p.img{
+		width: 30.010718113612%;
+	}
+	#customer .infoService p.img img{
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+/* info link -------------------- */
+
+#customer .infolineLink{
+	width:933px;
+	width: auto;/* rwd */
+	padding:2px 0 14px;
+	background:#E3F3FB;
+}
+
+#customer .infolineLink p{
+	margin:12px 0 0 54px;
+}
+
+
+/* links -------------------- */
+
+#customer #contents .linksBox{
+	background:none;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer #contents .linksBox .bnr img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+/*----------------------------------------------------------------------
+    JR East Information Center Haneda
+----------------------------------------------------------------------*/
+
+.haneda #contents .titleBox .leadBox{
+	width:930px;
+}
+
+.haneda #contents .titleBox .leadBox p{
+	margin-bottom:10px;
+}
+
+.haneda #contents .titleBox{
+	margin-bottom:20px;
+}
+
+@media screen and (min-width: 641px){/* rwd */
+	#customer .monorail_jr{
+		background:url(../../../e/customer_support/img/renew/sc_img_haneda07.gif) no-repeat calc(50% + 10px) 50%;
+	}
+}
+#customer .monorail_jr dl{
+	float:left;
+	width: 46.42105263157895%;/* rwd */
+	text-align:center;
+}
+
+#customer .monorail_jr dl.right{
+	float:right;
+}
+
+#customer .monorail_jr .left{
+	width:460px;
+	width: 46.42105263157895%;/* rwd */
+	padding:0 20px 10px 20px;
+/*	background:url(../../../e/customer_support/img/renew/sc_img_haneda07.gif) no-repeat 473px 105px;*//* rwd */
+}
+
+#customer .monorail_jr dt {
+	height:42px;
+}
+
+#customer .monorail_jr dd {
+	float:left;
+	margin-right:13px;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer .monorail_jr dd {
+		margin-right: 2.947845804988662%;
+		width: 48.52607709750567%;
+		max-width: 214px;
+	}
+}
+#customer .monorail_jr dd:nth-of-type(2) {
+	margin-right: 0;
+}
+
+#customer .monorail_jr dd img{
+	border:6px solid #F0F0F0;
+	padding:1px;
+	width: calc(100% - 14px);/* rwd */
+	height: auto;/* rwd */
+	background:#fff;
+}
+
+#customer .monorail_jr dd.last{
+	margin-right:0;
+	float:right;
+}
+
+#customer .monorail_jr p.link01{
+	margin:10px 0 0 15px;
+	clear:both;
+}
+
+#customer .monorail_jr dd.txt{
+	width:440px;
+	width: 100%;/* rwd */
+	max-width: none;/* rwd */
+}
+
+
+/*----------------------------------------------------------------------
+    Station Maps
+----------------------------------------------------------------------*/
+
+#customer ul.alphabetList{
+	width:676px;
+	width: 72.45444801714898%;/* rwd */
+	margin-left:135px;
+	margin-right: auto;/* rwd */
+	margin-left: auto;/* rwd */
+	padding:0 0 12px;
+}
+
+#customer ul.alphabetList li{
+	float:left;
+	width:52px;
+	margin-bottom:10px;
+}
+
+#customer .stationMaps{
+	width:888px;
+	width: 95.17684887459807%;/* rwd */
+	margin:14px auto 0;
+	padding:0 0 10px;
+}
+
+#customer .stationMaps h3{
+	margin:0 0 3px 10px;
+	color:#225728;
+	font-size:136%;
+	font-weight:bold;
+}
+
+#customer .stationMaps .listBox{
+	padding:9px 8px 12px;
+	border-top:2px solid #C1E393;
+	border-bottom:2px solid #C1E393;
+}
+
+#customer .stationMaps .listBox ul{
+	width:872px;
+	width: auto;/* rwd */
+}
+#customer .stationMaps .listBox ul.line{
+	margin-bottom:9px;
+	padding-bottom:13px;
+	background:url(../../../e/stations/img/renew/bg_line_dash.gif) repeat-x left bottom;
+}
+
+#customer .stationMaps .listBox ul li{
+	float:left;
+	width:200px;
+	width: calc((100% - 72px) / 4);/* rwd */
+	padding-left:18px;
+	background:url(../../../img/multi/icon_link01.png) no-repeat 0 3px;
+}
+
+/*----------------------------------------------------------------------
+    Accessibility
+----------------------------------------------------------------------*/
+/* pagelink -------------------- */
+
+#customer .pageLink{
+	width:933px;/* rwd */
+	width: auto;
+	margin:0 0 22px 17px;
+	padding-bottom:10px;
+	background:url(../../../img/multi/line_dot01.gif) repeat-x left bottom;
+}
+
+#customer .pageLink ul{
+	padding:5px 0 0 12px;
+	background:url(../../../img/multi/line_dot01.gif) repeat-x;
+	line-height:2.0;
+}
+
+#customer .pageLink ul li{
+	display:inline;
+	display: inline-block;/* rwd */
+	margin-right:20px;
+	padding-left:15px;
+	background:url(../../../img/multi/icon_arw05.png) no-repeat 0 60%;
+}
+
+
+/* textBox ---------------------*/
+#customer #contents .imageBox .txtBox{
+	width:680px;
+	float: left;
+}
+#customer #contents .imageBox .imgRight{
+	float: right;
+	width: 200px;
+	padding-right: 20px;
+	text-align: center;
+}
+@media screen and (min-width: 641px){/* rwd */
+	#customer #contents .imageBox .txtBox{
+		width: 72.88317256162915%;
+	}
+	#customer #contents .imageBox .imgRight{
+		width: 21.43622722400857%;
+		padding-right: 2.143622722400857%;
+	}
+	#customer #contents .imageBox .imgRight img {
+		width: 100%;
+		height: auto;
+	}
+	#customer #contents .imageBox .imgRight img[src*="img/renew/accesibility_img_wheelchairs.gif"] {
+		max-width: 150px;
+	}
+}
+
+
+#customer #contents .imageBox p.notes{
+	margin:10px 0 5px;
+}
+
+/* h4 -------------------- */
+
+#customer .categoryBox .block{
+	margin:7px 0 15px 0;
+}
+
+#customer .categoryBox .block.bg{
+	padding:5px 5px 5px 10px;
+	background:#E6EFD8;
+}
+
+#customer .categoryBox .block h4{
+	margin-bottom:3px;
+	color:#225728;
+	font-size:110%;
+	font-weight:bold;
+}
+
+#customer .categoryBox .block .mb{
+	margin-bottom:10px;
+}
+
+#customer .linksBoxline{
+	width:933px;
+	width: auto;/* rwd */
+	padding:17px 0 0;
+	background:url(../../../img/multi/line_dot02.gif) repeat-x;
+}
+
+/*----------------------------------------------------------------------
+    JR East Information Center Tokyo
+----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
+    page_navi
+----------------------------------------------------------------------*/
+
+.station .page_navi {
+	overflow: hidden;
+	height: 42px;
+	width: 950px;
+	padding-top:10px;
+}
+.station .page_navi ul {
+	height: 42px;
+	padding:0px 7px 0 8px;
+}
+
+.station .page_navi li {
+	float: left;
+	width: 226px;
+	height: 42px;
+	padding-right:4px;
+}
+
+.station .page_navi li.narita {
+	padding-right:0;
+}
+
+.station .page_navi li a {
+	display: block;
+	width: 226px;
+	height: 42px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	text-indent: -9999px;
+	outline: none;
+}
+
+.station .page_navi ul li a:hover, #customer .page_navi ul li.current a {
+	background-position: 0 100%;
+}
+.station .page_navi ul li.tokyo a {
+	background-image: url("../../customer_support/img/renew/pnavi_tokyo.jpg");
+}
+.station .page_navi ul li.shinjuku a {
+	background-image: url("../../customer_support/img/renew/pnavi_shinjuku.jpg");
+}
+.station .page_navi ul li.narita a {
+	background-image: url("../../customer_support/img/renew/pnavi_narita.jpg");
+}
+.station .page_navi ul li.haneda a {
+	background-image: url("../../customer_support/img/renew/pnavi_haneda.jpg");
+}
+
+/*----------------------------------------------------------------------
+    leadBox追加
+----------------------------------------------------------------------*/
+.station .titleBox .bk{
+	background:url(../../../e/customer_support/img/renew/bg_section.jpg) 0 0 no-repeat;}
+.station .titleBox .bk .leadBox p.title{padding-top:10px;}	
+
+/*----------------------------------------------------------------------
+    Box部分追加
+----------------------------------------------------------------------*/
+
+#contents .boxLeft_bg,
+#contents .boxRight_bg,
+#contents .boxLeft_bg01,
+#contents .boxRight_bg02,
+#contents .boxRight_bg02-2,
+#contents .boxLeft_bg03,
+#contents .boxRight_bg04{
+	width:443px;
+	width: 48.25708061002179%;/* rwd */
+	margin:0 4px 0 0;
+	float:left;
+}
+
+#contents .boxRight_bg,
+#contents .boxRight_bg02,
+#contents .boxRight_bg02-2,
+#contents .boxRight_bg04{
+	width:443px;
+	width: 48.25708061002179%;/* rwd */
+	margin:0 0 0 4px;
+	float:left;
+}
+
+
+#customer .supportBox .boxRight_bg,
+#customer .supportBox .boxRight_bg01,
+#customer .supportBox .boxRight_bg02,
+#customer .supportBox .boxRight_bg02-2,
+#customer .supportBox .boxRight_bg03,
+#customer .supportBox .boxRight_bg04{
+	float:right;
+	width:443px;
+	width: 48.25708061002179%;/* rwd */
+}
+
+/*20160218 追記・変更*/
+#customer .supportBox .boxLeft_bg h3,
+#customer .supportBox .boxRight_bg h3{
+	padding:3px 0 0 30px;
+	background:url(../../customer_support/img/renew/bg_green_bg_a.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+#customer .supportBox .boxLeft_bg01 h3{
+	padding:3px 0 0 30px;
+	background:url(../../customer_support/img/renew/bg_green_bg_a.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+
+#customer .supportBox .boxRight_bg02 h3{
+	padding:3px 0 0 30px;
+	background:url(../../customer_support/img/renew/bg_green_bg_b.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+
+#customer .supportBox .boxRight_bg02-2 h3{
+	padding:3px 0 0 55px;
+	background:url(../../customer_support/img/renew/bg_green_bg_b.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+
+
+#customer .supportBox .boxLeft_bg03 h3,
+#customer .supportBox_sgl .boxLeft_bg03 h3{
+	padding:3px 0 0 30px;
+	background:url(../../customer_support/img/renew/bg_green_bg_c.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+
+#customer .supportBox .boxRight_bg04 h3{
+	padding:3px 0 0 30px;
+	background:url(../../customer_support/img/renew/bg_green_bg_d.gif) no-repeat right bottom;
+	font-size:120%;
+	font-weight:bold;
+	color:#fff;
+	min-height:37px;	
+}
+
+#customer .supportBox .supportBoxInner .boxLeft_bg05 h3{
+	background:url(../../customer_support/img/renew/bg_green_bg_a_en.gif) no-repeat right bottom;
+}
+
+#customer .supportBox .supportBoxInner .boxRight_bg06 h3{
+	background:url(../../customer_support/img/renew/bg_green_bg_b_en.gif) no-repeat right bottom;
+}
+
+#customer .supportBox .boxRight_bg h3:before,
+#customer .supportBox .boxLeft_bg01 h3:before,
+#customer .supportBox .boxLeft_bg01 h3:before,
+#customer .supportBox .boxRight_bg02 h3:before,
+#customer .supportBox .boxRight_bg02-2 h3:before,
+#customer .supportBox .supportBoxInner .boxLeft_bg05 h3:before,
+#customer .supportBox .boxLeft_bg03 h3:before,
+#customer .supportBox_sgl .boxLeft_bg03 h3:before,
+#customer .supportBox .boxRight_bg04 h3:before{
+	vertical-align: middle;
+	margin:1px 5px 0 -25px;
+	display:inline-block;
+}
+
+#customer .supportBox .boxRight_bg02-2 h3:before{
+	vertical-align: middle;
+	margin:1px 5px 0 -46px;
+	display:inline-block;
+}
+
+
+#customer .supportBox .boxRight_bg h3:before,
+#customer .supportBox .boxLeft_bg01 h3:before,
+#customer .supportBox .boxLeft_bg01 h3:before,
+#customer .supportBox .supportBoxInner .boxLeft_bg05 h3:before{
+	content:url(../../customer_support/img/renew/icn_green_bg_a.gif);
+}
+
+#customer .supportBox .boxRight_bg02 h3:before,
+#customer .supportBox .supportBoxInner .boxRight_bg06 h3:before{
+	content:url(../../customer_support/img/renew/icn_green_bg_b.gif);
+}
+
+#customer .supportBox .boxRight_bg02-2 h3:before{
+	content:url(../../customer_support/img/renew/icn_green_bg_b-e.gif);
+}
+
+
+#customer .supportBox .boxLeft_bg03 h3:before,
+#customer .supportBox_sgl .boxLeft_bg03 h3:before{
+	content:url(../../customer_support/img/renew/icn_green_bg_c.gif);
+}
+
+#customer .supportBox .boxRight_bg04 h3:before{
+	content:url(../../customer_support/img/renew/icn_green_bg_d.gif);
+}
+/*///20160218*/
+
+.station .boxLeft_bg ul.list01,
+.station .boxRight_bg ul.list01,
+.station .boxLeft_bg01 ul.list01,
+.station .boxRight_bg02 ul.list01,
+.station .boxRight_bg02-2 ul.list01,
+.station .boxLeft_bg03 ul.list01,
+.station .boxRight_bg04 ul.list01,
+.station .boxLeft ul.list01{
+	padding-left:20px;
+}
+.station .boxLeft_bg03 ul.sublist02 li{
+	background:url(../../../img/multi/icon_list01.png) no-repeat 0 6px;
+	margin:5px 0 0px 40px;
+	padding-left:10px;
+}
+
+.station .box_info{padding-top:10px;}
+
+
+
+/*----------------------------------------------------------------------*/
+#customer .InboundTravelCounter {
+	width:100%;
+	overflow:hidden;
+}
+
+#customer .InboundTravelCounter h3 {
+	font-weight:bold;
+	margin-bottom:1em;
+}
+
+#customer .InboundTravelCounter_left {
+	float:left;
+	width:333px;
+	width: 35.69131832797428%;/* rwd */
+}
+
+#customer .InboundTravelCounter_center {
+	float:left;
+	width:180px;
+	width: 19.29260450160772%;/* rwd */
+	margin-left:20px;
+	margin-left: 2.143622722400857%;/* rwd */
+}
+
+#customer .InboundTravelCounter_right {
+	float:left;
+	width:380px;
+	width: 40.72883172561629%;/* rwd */
+	margin-left:20px;
+	margin-left: 2.143622722400857%;/* rwd */
+}
+
+#customer .InboundTravelCounter_center img,
+#customer .InboundTravelCounter_right img {
+	width: 100%;
+	height: auto;
+}
+
+
+/*----------------------------------------------------------------------
+    その他追加
+----------------------------------------------------------------------*/
+.station .categoryBox .link01{
+    clear: both;
+    margin: 10px 0 0 15px;
+}
+.station .link01_station{
+	margin-top:10px;
+	text-indent:-5px;
+	padding-left:20px;
+	background:url(../../../img/multi/icon_link01.gif) no-repeat 0 3px;
+}
+#customer .supportBox img.wifi{
+	float:right;
+	margin:10px 15px 0px 10px;
+}
+#customer .supportBox img.wifi2{
+	float:right;
+	margin:5px 15px 0px 10px;
+}
+
+#customer .supportBox .boxRight_bg02-2 .txtBox_size .newwin_end img,
+#customer .supportBox .boxRight_bg06 .txtBox_size .newwin_end img,
+#customer .supportBox .boxLeft .txtBox_size .newwin_end img{
+	float:none;
+	margin: 3px 0 0 5px;
+}
+
+
+/* support Box Single_wide-------------------- */
+
+#customer .supportBox_sgl_wide{
+	padding:6px;
+	background:#E8F5D9;
+	/*width:636px;*/
+	width:920px;
+	width: auto;/* rwd */
+}
+
+#customer .supportBox_sgl_wide .supportBoxInner{
+	background:none;
+	/*width:636px;*/
+	width:920px;
+	width: auto;/* rwd */
+}
+
+#customer .supportBox_sgl_wide .supportBoxBg{
+	border:1px solid #C1EFB1;
+	background:#FFFFFF;
+	padding:0 0 5px 0;
+	/*width:633px;*/
+	width:917px;
+	width: auto;/* rwd */
+}
+#customer .supportBox_sgl_wide .supportBoxBg img {/* rwd */
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+}
+
+#customer .supportBox_sgl_wide h3{
+	padding:3px 0 3px 7px;
+	background:url(../../../e/customer_support/img/renew/bg_green_wide.gif) repeat-y right top;
+	color:#FFFFFF;
+	font-size:120%;
+	font-weight:bold;
+}
+
+#customer .supportBox_sgl_wide .supportBoxBg img.left{padding:10px 0px 10px 15px;
+float:left; padding-right: 10px;/* rwd */}
+#customer .supportBox_sgl_wide .supportBoxBg img.right{padding:10px 16px 10px 12px;
+float:left;}
+
+/* double content-------------------- */
+
+@media screen and (min-width: 641px){/* rwd */
+    .dblCont{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+    .dblCont_item{
+        width: 46.5%;
+    }
+}
+
+.dblCont_item_noteTxt{
+    margin-bottom: 15px;
+    color: red;
+}
+.dblCont_item_nextMap{
+    text-align: center!important;
+}
+.dblCont_item_nextMap img{
+    width: auto!important;
+}
+
+
+/* facebook-------------------- */
+#contents .special .columnWrap .columnBox .columnDetails_facebook{
+	clear:left;
+    height: 22px;
+    overflow: hidden;
+    width: 140px;
+	float:right;
+	margin-top:5px;
+	vertical-align:bottom;
+}
+
+
+#contents .special .columnWrap .columnBox .columnDetails_facebooks p{
+    height: 22px;
+    width: 140px;
+}
+
+
+#contents .special .columnWrap .columnBox .columnDetails_facebook p a{
+    background-image: url("../../customer_support/img/renew/btn_details_facebook.gif");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: block;
+    height: 22px;
+    outline: medium none;
+    text-indent: -9999px;
+    width: 140px;
+	font-size:11px;
+}
+
+/* page navi -------------------- */
+
+#contents .customerNav{
+	background:url(../../../e/ticket/img/renew/img/bg_nav.gif);
+	padding:22px 25px;
+	border:1px solid #75B674;
+}
+
+#contents .customerNav ul{
+	margin-bottom:25px;
+}
+
+#contents .customerNav ul.bottom{
+	margin-bottom:0;
+}
+
+#contents .customerNav ul li{ 
+	float:left;
+	padding-right:25px;
+}
+
+#contents .customerNav ul li a{
+	padding-left:16px;
+	background:url(../../../img/multi/icon_arw02.png) no-repeat left center;
+}
+
+/* 202111 page navi */
+#customer_link_list_kr .customerNav{
+	padding:22px 0 0 25px;
+}
+
+#customer_link_list_kr .customerNav ul{
+	margin:0;
+}
+
+#customer_link_list_kr .customerNav ul li{ 
+	float:left;
+	padding:0 25px 15px 0;
+}
+
+/*----------------------------------------------------------------------
+    Customer Support Top JR EAST Travel Service Center(Map)
+----------------------------------------------------------------------*/
+#customer .csPc {display: block;}
+#customer .csSp {display: none;}
+
+#customer .mapBox h3 {
+    color: #009100;
+    border-bottom: 3px solid #009100;
+    font-size: 180%;
+    font-weight: bold;
+    font-family: Arial, "sans-serif";
+    margin: 2rem 0 0;
+}
+
+#customer .tscMapArea {
+	position: relative;
+}
+
+#customer .kantoMap {
+	margin-top: 1rem;
+}
+
+#customer .easternJapanMap {
+	margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+
+#customer .tscMapArea .tscMapPc img,
+#customer .tscMapArea .tscMapSp img{
+	width: 100%;
+}
+
+#customer .kantoMap ul li a,
+#customer .easternJapanMap ul li a{
+	position: absolute;
+	display: block;
+	background-size: contain !important;/* rwd */
+	text-indent: -9999px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/*kantoMap*/
+
+#customer .kantoMap ul li.tokyo a {
+	top: calc((444 / 1112) * 100%);
+	left: calc((1064 / 1866) * 100%);
+	width: calc((200 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_tokyo.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.tokyo a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_tokyo_on.png) no-repeat left top;
+}
+
+
+#customer .kantoMap ul li.shinjuku a {
+	top: calc((430 / 1112) * 100%);
+	left: calc((412 / 1866) * 100%);
+	width: calc((236 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_shinjuku.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.shinjuku a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_shinjuku_on.png) no-repeat left top;
+}
+
+
+#customer .kantoMap ul li.ikebukuro a {
+	top: calc((268 / 1112) * 100%);
+	left: calc((468 / 1866) * 100%);
+	width: calc((296 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_ikebukuro.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.ikebukuro a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_ikebukuro_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.narita a {
+	top: calc((430 / 1112) * 100%);
+	left: calc((1502 / 1866) * 100%);
+	width: calc((308 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_narita.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.narita a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_narita_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.haneda a {
+	top: calc((800 / 1112) * 100%);
+	left: calc((1210 / 1866) * 100%);
+	width: calc((308 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_haneda.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.haneda a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_haneda_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.shibuya a {
+	top: calc((560 / 1112) * 100%);
+	left: calc((427 / 1866) * 100%);
+	width: calc((240 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_shibuya.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.shibuya a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_shibuya_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.shinagawa a {
+	top: calc((692 / 1112) * 100%);
+	left: calc((755 / 1866) * 100%);
+	width: calc((262 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_shinagawa.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.shinagawa a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_shinagawa_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.ueno a {
+	top: calc((294 / 1112) * 100%);
+	left: calc((990 / 1866) * 100%);
+	width: calc((234 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_ueno.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.ueno a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_ueno_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.hamamatsucho a {
+	top: calc((580 / 1112) * 100%);
+	left: calc((1026 / 1866) * 100%);
+	width: calc((296 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_hamamatsucho.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.hamamatsucho a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_hamamatsucho_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.kawasaki a {
+	top: calc((868 / 1112) * 100%);
+	left: calc((677 / 1866) * 100%);
+	width: calc((262 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_kawasaki.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.kawasaki a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_kawasaki_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.tachikawa a {
+	top: calc((430 / 1112) * 100%);
+	left: calc((39 / 1866) * 100%);
+	width: calc((270 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_tachikawa.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.tachikawa a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_tachikawa_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.omiya a {
+	top: calc((45 / 1112) * 100%);
+	left: calc((425 / 1866) * 100%);
+	width: calc((242 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_omiya.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.omiya a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_omiya_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.kashiwa a {
+	top: calc((292 / 1112) * 100%);
+	left: calc((1635 / 1866) * 100%);
+	width: calc((228 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_kashiwa.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.kashiwa a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_kashiwa_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.funabashi a {
+	top: calc((528 / 1112) * 100%);
+	left: calc((1368 / 1866) * 100%);
+	width: calc((258 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_funabashi.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.funabashi a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_funabashi_on.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.yokohama a {
+	top: calc((868 / 1112) * 100%);
+	left: calc((306 / 1866) * 100%);
+	width: calc((276 / 1866) * 100%);
+	height: calc((64 / 1112) * 100%);
+	background: url(../../customer_support/img/renew/btn_kanto_yokohama.png) no-repeat left top;
+}
+
+#customer .kantoMap ul li.yokohama a:hover {
+	background: url(../../customer_support/img/renew/btn_kanto_yokohama_on.png) no-repeat left top;
+}
+
+/*easternJapanMap*/
+
+#customer .easternJapanMap ul li.akita a {
+	top: calc((244 / 1172) * 100%);
+	left: calc((678 / 1866) * 100%);
+	width: calc((272 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_akita.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.akita a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_akita_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.sendai a {
+	top: calc((620 / 1172) * 100%);
+	left: calc((1113 / 1866) * 100%);
+	width: calc((276 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_sendai.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.sendai a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_sendai_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.fukushima a {
+	top: calc((749 / 1172) * 100%);
+	left: calc((1109 / 1866) * 100%);
+	width: calc((324 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_fukushima.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.fukushima a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_fukushima_on.png) no-repeat left top;
+}
+
+
+#customer .easternJapanMap ul li.nagano a {
+	top: calc((624 / 1172) * 100%);
+	left: calc((447 / 1866) * 100%);
+	width: calc((270 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_nagano.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.nagano a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_nagano_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.yamagata a {
+	top: calc((366 / 1172) * 100%);
+	left: calc((621 / 1866) * 100%);
+	width: calc((316 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_yamagata.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.yamagata a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_yamagata_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.morioka a {
+	top: calc((456 / 1172) * 100%);
+	left: calc((1208 / 1866) * 100%);
+	width: calc((308 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_morioka.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.morioka a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_morioka_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.aomori a {
+	top: calc((84 / 1172) * 100%);
+	left: calc((664 / 1866) * 100%);
+	width: calc((316 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_aomori.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.aomori a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_aomori_on.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.niigata a {
+	top: calc((490 / 1172) * 100%);
+	left: calc((583 / 1866) * 100%);
+	width: calc((276 / 1866) * 100%);
+	height: calc((90 / 1172) * 100%);
+	background: url(../../customer_support/img/renew/btn_eastern_japan_niigata.png) no-repeat left top;
+}
+
+#customer .easternJapanMap ul li.niigata a:hover {
+	background: url(../../customer_support/img/renew/btn_eastern_japan_niigata_on.png) no-repeat left top;
+}
+
+
+
+/* 2018.01 rwd add */
+#contents .titleBox img[src*="img/renew/logo_monorail01.gif"],
+#contents .titleBox img[src*="img/renew/logo_jr01.gif"] {
+	width: auto;
+	height: auto;
+}
+#contents .titleBox .leadBox {
+	width: auto !important;
+	max-width: none !important;
+}
+

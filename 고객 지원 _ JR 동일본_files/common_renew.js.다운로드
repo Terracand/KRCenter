@@ -1,0 +1,195 @@
+//スマホグローバルナビ プルダウン
+$(function() {
+	//オーバーレイ作成
+	$('#wrap').prepend('<div class="overlay"></div>');
+	//ナビをクリックしたら
+	$('.hmenu').click(function(){
+	   $(this).toggleClass('close');
+	   $('.pulldown').toggle();
+	   $('.overlay').toggle();
+		   if ($('.pulldown').css('display') == 'block'){
+				$('html').css('height','100%');
+				$('body').css('height','100%');
+				$('#wrap').css('height','100%');
+		   }
+		   else {
+				$('html').css('height','auto');
+				$('body').css('height','auto');
+				$('#wrap').css('height','auto');
+			}
+   	});
+	//サブメニューをクリックしたら
+	$('.pulldown .navi').click(function(){
+	   $(this).toggleClass("active").next().slideToggle(500);
+   	});
+   //オーバーレイをクリックしたら
+    $('.overlay').click(function() {
+	  $('.pulldown').hide();
+	  $(this).hide();
+	  $('.hmenu').removeClass('close');
+	  $('html').css('height','auto');
+	  $('body').css('height','auto');
+	  $('#wrap').css('height','auto');
+  	});
+   //プルダウンメニュー内閉じるボタンをクリックしたら
+   $('.close').click(function() {
+      //$('.pulldown').slideUp();
+	  $('.pulldown').hide();
+	  $('.overlay').hide();
+	  $('.hmenu').removeClass('close');
+	  $('html').css('height','auto');
+	  $('body').css('height','auto');
+	  $('#wrap').css('height','100%');
+  	});
+	//言語切り替えボタンをクリックしたら
+   $('.spLang').click(function() {
+	  $('.pulldown').hide();
+	  $('.overlay').hide();
+	  $('.hmenu').removeClass('close');
+	  $('html').css('height','auto');
+	  $('body').css('height','auto');
+	  $('#wrap').css('height','100%');
+  	});
+	//言語切り替えボタン内閉じるボタンをクリックしたら
+	$('.langPulldown .close').click(function() {
+	  $('#wrap').css('height','100%');
+  	});
+	// スマホサイズではなくなった時はメニューを非表示にする
+	$(window).bind('resize', function(){
+		try{
+			if(!window.matchMedia('(max-width: 640px)').matches){
+				$('.pulldown, .overlay, .langPulldown').hide();
+			}
+		}catch(e){
+			$('.pulldown, .overlay, .langPulldown').hide();
+		}
+	});
+	$(window).bind('resize', function(){
+		try{
+			if(!window.matchMedia('(min-width: 641px)').matches){
+				$('.hmenu').removeClass('close');
+			}
+		}catch(e){
+			$('.hmenu').removeClass('close');
+		}
+	});
+});
+
+
+//スマホ言語切り替え
+$(function() {
+	//ナビをクリックしたら
+	$('.spLang').click(function(){
+	   $(this).toggleClass('close');
+	   $('.langPulldown').slideToggle(500, 'swing');
+   	});
+   //閉じるボタンをクリックしたら
+   $('.langPulldown .close').click(function() {
+	  $('.langPulldown').slideUp();
+  	});
+	//グロナビをクリックしたら
+	$('.hmenu').click(function(){
+	   $('.langPulldown').hide();
+   	});
+});
+
+
+//パネル
+$(function() {  
+	//panelBox01
+	$('#menu li#menuPass a').click(function(){
+		$('.panelArea .panelBoxFP').show();
+		$('.panelArea .panelBoxRM').hide();
+		$('.panelArea .panelBoxCS').hide();
+		$('.panelArea .panelBoxFD').hide();
+		$('.panelArea .panelBoxIR').hide();
+		$('.panelArea .panelBoxAU').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxFP .close').click(function(){
+				$('.panelArea .panelBoxFP').hide();
+				$('#menu li#menuPass a').removeClass('active');
+			});	
+	});
+	
+	//panelBox02
+	$('#menu li#menuRoute a').click(function(){
+		$('.panelArea .panelBoxRM').show();
+		$('.panelArea .panelBoxFP').hide();
+		$('.panelArea .panelBoxCS').hide();
+		$('.panelArea .panelBoxFD').hide();
+		$('.panelArea .panelBoxIR').hide();
+		$('.panelArea .panelBoxAU').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxRM .close').click(function(){
+				$('.panelArea .panelBoxRM').hide();
+				$('#menu li#menuRoute a').removeClass('active');
+			});
+	});
+	
+	//panelBox03
+	$('#menu li#menuCustomer a').click(function(){
+		$('.panelArea .panelBoxCS').show();
+		$('.panelArea .panelBoxFP').hide();
+		$('.panelArea .panelBoxRM').hide();
+		$('.panelArea .panelBoxFD').hide();
+		$('.panelArea .panelBoxIR').hide();
+		$('.panelArea .panelBoxAU').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxCS .close').click(function(){
+				$('.panelArea .panelBoxCS').hide();
+				$('#menu li#menuCustomer a').removeClass('active');
+			});
+	});
+	
+	//panelBox04
+	$('#menu li#menuDestinations a').click(function(){
+		$('.panelArea .panelBoxFD').show();
+		$('.panelArea .panelBoxFP').hide();
+		$('.panelArea .panelBoxRM').hide();
+		$('.panelArea .panelBoxCS').hide();
+		$('.panelArea .panelBoxIR').hide();
+		$('.panelArea .panelBoxAU').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxFD .close').click(function(){
+				$('.panelArea .panelBoxFD').hide();
+				$('#menu li#menuDestinations a').removeClass('active');
+			});
+	});
+	
+	//panelBox05
+	$('#menu li#menuInvestor a').click(function(){
+		$('.panelArea .panelBoxIR').show();
+		$('.panelArea .panelBoxFP').hide();
+		$('.panelArea .panelBoxRM').hide();
+		$('.panelArea .panelBoxCS').hide();
+		$('.panelArea .panelBoxFD').hide();
+		$('.panelArea .panelBoxAU').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxIR .close').click(function(){
+				$('.panelArea .panelBoxIR').hide();
+				$('#menu li#menuInvestor a').removeClass('active');
+			});
+	});
+	
+	//panelBox06
+	$('#menu li#menuAboutus a').click(function(){
+		$('.panelArea .panelBoxAU').show();
+		$('.panelArea .panelBoxFP').hide();
+		$('.panelArea .panelBoxRM').hide();
+		$('.panelArea .panelBoxCS').hide();
+		$('.panelArea .panelBoxFD').hide();
+		$('.panelArea .panelBoxIR').hide();
+		$('#menu li a').removeClass('active');
+			$('.panelArea .panelBoxAU .close').click(function(){
+				$('.panelArea .panelBoxAU').hide();
+				$('#menu li#menuAboutus a').removeClass('active');
+			});
+	});
+
+	
+	$('#menu li a').click(function(){
+		$(this).toggleClass('active');
+   	});  
+  
+});
+

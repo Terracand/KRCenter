@@ -1,0 +1,43 @@
+// customer_support category globalmenu_sp
+
+var gnavi_sp_text =
+'<div class="sp_menu">'+
+'<ul>'+
+'<li><a href="/kr/customer_support/index.html">고객 지원</a></li>'+
+'<li class="close"><a href="#">JR 동일본 여행 서비스 센터</a>'+
+'<ul>'+
+'<li><a href="/kr/customer_support/service_center_tokyo.html">도쿄역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_hamamatsucho.html">하마마츠초역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_haneda.html">하네다</a></li>'+
+'<li><a href="/kr/customer_support/service_center_shinagawa.html">시나가와역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_shibuya.html">시부야역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_shinjuku.html">신주쿠역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_ikebukuro.html">이케부쿠로역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_ueno.html">우에노역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_kashiwa.html">가시와역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_yokohama.html">요코하마역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_kawasaki.html">가와사키역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_tachikawa.html">다치카와역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_omiya.html">오미야역</a></li>'+
+'<li><a href="/kr/customer_support/service_center.html">나리타</a></li>'+
+'<li><a href="/multi/customer_support/service_center_funabashi.html">후나바시역</a></li>'+
+'<li><a href="/kr/customer_support/service_center_sendai.html">센다이역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_fukushima.html">후쿠시마역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_yamagata.html">야마가타역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_morioka.html">모리오카역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_aomori.html">아오모리역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_akita.html">아키타역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_niigata.html">니가타역</a></li>'+
+'<li><a href="/multi/customer_support/service_center_nagano.html">나가노역</a></li>'+
+'</ul>'+
+'</li>'+
+'<li><a href="/kr/customer_support/information_center.html">JR 동일본 정보 센터</a></li>'+
+'<li><a href="/kr/customer_support/infoline.html">JR 동일본 전화 서비스</a></li>'+
+'<li><a href="/kr/stations/index.html">주요 정차역 안내</a></li>'+
+'<li><a href="/kr/customer_support/accessibility.html">배리어 프리 정보</a></li>'+
+'</ul>'+
+'<p class="menu_close"><a href="#">&times; Close</a></p>'+
+'</div>';
+
+var gnavi_sp_text_id = document.getElementById('gnavi_sp');
+gnavi_sp_text_id.insertAdjacentHTML('afterbegin',gnavi_sp_text);

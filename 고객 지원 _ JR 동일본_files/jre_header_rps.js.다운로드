@@ -1,0 +1,360 @@
+//------------------------------------------------------------------------------
+var ActivePath = '';
+var ActiveIndex = -1;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// add meta viewport
+//------------------------------------------------------------------------------
+
+$(function(){
+	$('<meta>').attr('name', 'viewport').attr('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0').appendTo('head');
+});
+
+
+//------------------------------------------------------------------------------
+// add GDPR
+//------------------------------------------------------------------------------
+//外部ファイルを読み込む関数
+function appendExternal(url, callback) {
+	document.addEventListener('DOMContentLoaded', function() {
+		var fileName = url.match('.+/(.+?)([\?#;].*)?$')[1];
+		var extension = fileName.split('.');
+		
+		//jsを読み込む場合
+		if(extension[extension.length - 1].toLowerCase() === 'js') {
+			var element = document.createElement('script');
+			element.src = url;
+			var added = document.body;
+		}
+		
+		//cssを読み込む場合
+		else if(extension[extension.length - 1].toLowerCase() === 'css') {
+			var element = document.createElement('link');
+			element.href = url;
+			element.rel = 'stylesheet';
+			element.type = 'text/css';
+			var added = document.head;
+		}
+		
+		//コールバック
+		element.onload = function() {
+			callback();
+		}
+		
+		//js or cssを追加
+		added.appendChild(element);
+	}, false);
+}
+
+//GDPR用jsを読み込み
+appendExternal('/material/js/gdpr.js', function() {
+	//'/material/js/gdpr.js'内の関数を実行
+	gdpr();
+});
+
+//GDPR用cssを読み込み
+appendExternal('/kr/css/renew/gdpr.css', function() {;});
+
+
+//------------------------------------------------------------------------------
+// under renewal code
+//------------------------------------------------------------------------------
+function check_new_old(){
+    var menuList = new Array();
+    var self_url	= window.location.href;
+	//[--MenuList--BEGIN]
+    //Top
+	menuList.push( '/e/' );
+	menuList.push( '/e/index.html' );
+	//Timetalbes
+	menuList.push( '/e/timetables/index.html' );
+	//Fares&Pages
+	menuList.push( '/e/pass/index.html');
+	menuList.push( '/e/eastpass_sp/index.html');
+	menuList.push( '/e/eastpass/index.html');
+	menuList.push( '/e/suica-nex/index.html');
+	menuList.push( '/e/pass/tokunai_pass.html');
+	menuList.push( '/e/pass/tokyo_free.html');
+	menuList.push( '/e/pass/yokohama_minatomirai.html');
+	menuList.push( '/e/pass/kamakura_enoshima.html');
+	menuList.push( '/e/pass/nikko_kinugawa.html');
+	menuList.push( '/e/pass/holiday_pass.html');
+	menuList.push( '/e/pass/weekend_pass.html');
+	menuList.push( '/e/pass/twoday_pass.html');
+	menuList.push( '/e/pass/seishun18.html');
+	menuList.push( '/e/pass/suica.html');
+	menuList.push( '/e/ticket/index.html');
+	menuList.push( '/e/ticket/types.html');
+	menuList.push( '/e/ticket/purchase.html');
+	menuList.push( '/e/ticket/changes');
+	menuList.push( '/e/ticket/accidents.html');
+	menuList.push( '/e/ticket/examining.html');
+	menuList.push( '/e/charge/index.asp');
+	//Route & Maps
+	menuList.push( '/e/routemaps/index.html');
+	menuList.push( '/e/nex/index.html');
+	menuList.push( '/e/nex/tickets.html');
+	menuList.push( '/e/nex/suica_nex.html');
+	menuList.push( '/e/nex/seating.html');
+	menuList.push( '/e/nex/facilities.html');
+	menuList.push( '/e/nex/narita.html');
+	menuList.push( '/e/nex/service_center.html');
+	menuList.push( '/e/routemaps/tohokushinkansen.html');
+	menuList.push( '/e/routemaps/akitashinkansen.html');
+	menuList.push( '/e/routemaps/yamagatashinkansen.html');
+	menuList.push( '/e/routemaps/joetsushinkansen.html');
+	menuList.push( '/e/routemaps/naganoshinkansen.html');
+	menuList.push( '/e/routemaps/cassiopeia_hokutosei.html');
+	menuList.push( '/e/routemaps/hitachi.html');
+	menuList.push( '/e/routemaps/azusa_kaiji.html');
+	menuList.push( '/e/routemaps/nikko_kinugawa.html');
+	menuList.push( '/e/routemaps/superviewodoriko.html');
+	menuList.push( '/e/routemaps/sazanami_wakashio.html');
+	menuList.push( '/e/routemaps/kusatsu_minakami.html');
+	menuList.push( '/e/routemaps/hakucho_tsugaru.html');
+	menuList.push( '/e/routemaps/inaho_kamoshika.html');
+	menuList.push( '/e/routemaps/resortshirakami.html');
+	menuList.push( '/e/routemaps/slbanetsumonogatari.html');
+	menuList.push( '/e/routemaps/kirakirauetsu.html');
+	//Featured Destinations
+	menuList.push( '/e/destinations/index.html');
+	menuList.push( '/e/destinations/nikko_kinugawa.html');
+	menuList.push( '/e/destinations/fuji.html');
+	menuList.push( '/e/destinations/sendai_matsushima.html');
+	menuList.push( '/e/destinations/aizu.html');
+	menuList.push( '/e/destinations/hiraizumi.html');
+	menuList.push( '/e/destinations/kusatsu_minakami.html');
+	menuList.push( '/e/destinations/karuizawa.html');
+	menuList.push( '/e/destinations/izu.html');
+	menuList.push( '/e/destinations/yokohama.html');
+	menuList.push( '/e/destinations/shirakamisanchi.html');
+	menuList.push( '/e/destinations/niigata_sado.html');
+	menuList.push( '/e/destinations/gala.html');
+	//Customer Support
+	menuList.push( '/e/customer_support/index.html');
+	menuList.push( '/e/customer_support/service_center.html');
+	menuList.push( '/e/customer_support/information_center.html');
+	menuList.push( '/e/customer_support/infoline.html');
+	menuList.push( '/e/stations/index.html');
+	menuList.push( '/e/customer_support/accesibility.html');
+	//Investor Relations
+	menuList.push( '/e/investor/index.html');
+	//About Us
+	menuList.push( '/e/aboutus/index.html');
+	//[--MenuList--END]
+    for( n = 0; n < menuList.length; n ++ ){
+        if( self_url.match( menuList[n] + '$' ) ) return true;
+    }
+    return false;
+}
+
+//function jre_header_renew(path, key_index) {
+function jre_header(path, key_index) {
+
+	var href = location.pathname;
+	href = href.replace('/kr','');
+
+	//PCヘッダ
+	document.write('<p class="skipLink"><a href="#contents">네비게이션 건너뛰기</a></p>');
+	document.write('<!-- PC Header -->');
+	document.write('<div id="header" class="rwdPc">');
+  	document.write('<div class="rwdInner clearfix">');
+	document.write('<p class="logo"><a href="/kr/index.html"><img src="/kr/img/renew/common/logo.gif" alt="동일본여객철도주식회사"/></a></p>');
+	document.write('<div class="utility">');
+	document.write('<ul class="lang">');
+	document.write('<li><a href="/index.html">日本語</a></li>');
+	document.write('<li><a href="/e/index.html">English</a></li>');
+	document.write('<li><a href="/tc/index.html">繁體中文</a></li>');
+	document.write('<li><a href="/sc/index.html">簡体中文</a></li>');
+	document.write('</ul>');
+
+	document.write('<!-- searchBox -->');
+	document.write('<div id="srchBox" class="watermark">');
+	document.write('<form id="srch">');
+	document.write('<p id="srchForm">');
+	document.write('<input type="text" name="p" value="" id="srchInput" class="textArea">');
+	document.write('<input type="image" src="/e/img/renew/common/btn-search.png" width="30" height="26" alt="검색" id="srchBtn"');
+	document.write('</p>');
+	document.write('</form>');
+	document.write('</div><!-- /srchBox -->');
+	document.write('<!-- /searchBox -->');
+
+	document.write('</div><!--/ utility -->');
+	document.write('</div><!-- /rwdInner -->');
+	document.write('</div><!-- /header -->');
+	document.write('<!-- PC Header -->');
+
+	//スマホヘッダ
+	document.write('<!-- SP Header -->');
+	document.write('<div id="spHeader" class="rwdSp clearfix">');
+	document.write('<p class="logo"><a href="/kr/index.html"><img src="/e/img/renew/common/logo_sp.png" alt="동일본여객철도주식회사"/></a></p>');
+	document.write('<p class="hmenu">메뉴</p>');
+	document.write('<p class="spLang">한국어</p>');
+	document.write('</div>');
+	document.write('<!-- /SP Header -->');
+
+	//スマホ言語切り替え
+	document.write('<!-- SP langPulldown -->');
+	document.write('<ul class="langPulldown rwdSp">');
+	//document.write('<li><a href="'+ href +'">日本語</a></li>');
+	document.write('<li><a href="/e'+ href +'">English</a></li>');
+	document.write('<li><a href="/tc'+ href +'">繁體中文</a></li>');
+	document.write('<li><a href="/sc'+ href +'">簡体中文</a></li>');
+	document.write('<li class="close">닫기</li>');
+	document.write('</ul>');
+	document.write('<!-- /SP langPulldown -->');
+
+	document.writeln('<link rel="stylesheet" type="text/css" href="/kr/css/renew/common.css" />');
+	document.writeln('<link rel="stylesheet" type="text/css" href="/kr/css/renew/common_rwd.css" media="screen,print" />');
+ 	document.writeln('<link rel="stylesheet" type="text/css" href="/kr/css/renew/print.css" media="print" />');
+	document.writeln('<script src="/kr/js/renew/gnavi_rps.js" type="text/javascript" language="javascript"></script>');
+	document.writeln('<script src="/e/js/renew/common_renew.js" type="text/javascript" language="javascript"></script>');
+	document.write('<script src="/js/multi/rollover.js" type="text/javascript" language="javascript"></script>');
+
+
+    ActivePath = path;
+    if( key_index == undefined ) {
+        ActiveIndex = -1;
+        return;
+    }
+
+    switch( key_index.toLowerCase() ){
+        case 'pass':
+        case 'using':
+            ActiveIndex = 1;
+            break;
+        case 'routemaps':
+            ActiveIndex = 2;
+            break;
+        case 'customer_support':
+            ActiveIndex = 3;
+            break;
+        case 'destinations':
+            ActiveIndex = 4;
+            break;
+        case 'investor':
+            ActiveIndex = 5;
+            break;
+        case 'aboutus':
+            ActiveIndex = 6;
+            break;
+        default:
+            ActiveIndex = -1;
+            break;
+    }
+
+}
+
+
+
+//------------------------------------------------------------------------------
+// add mobile language link
+//------------------------------------------------------------------------------
+
+$(function(){
+	// fix language btn size
+	var logoH = $('#header p.logo').height() - 5 ;
+	$('#header p.sel_lang').width(logoH * 2.583);
+	$('#header p.sel_lang img').width(logoH * 2.583);
+	$('#header p.sel_lang img').height(logoH);
+
+	// fix language panel
+	var href = location.pathname;
+	href = href.replace('/kr','');
+	var bodyW = $('body').width();
+	if( bodyW < 641 ){
+		var btnH = $('#header p.sel_lang').outerHeight(true);
+		$('#header ul').css({'top':btnH });
+		// href fix
+		$('#header ul li:eq(0) a').attr('href',href);
+		$('#header ul li:eq(1) a').attr('href','/e'+ href);
+		$('#header ul li:eq(2) a').attr('href','/tc'+ href);
+		$('#header ul li:eq(3) a').attr('href','/sc'+ href);
+	} else {
+		// href fix
+		$('#header ul li:eq(0) a').attr('href','/index.html');
+		$('#header ul li:eq(1) a').attr('href','/e/index.html');
+		$('#header ul li:eq(2) a').attr('href','/tc/index.html');
+		$('#header ul li:eq(3) a').attr('href','/sc/index.html');
+	}
+	$(window).resize(function(){
+		bodyW = $('body').width();
+		if( bodyW < 641 ){
+			btnH = $('#header p.sel_lang').outerHeight(true);
+			$('#header ul').css({'top':btnH, 'display':'none' });
+			$('#header ul').removeClass('on');
+			// fix language btn size
+			logoH = $('#header p.logo').height()  - 5;
+			$('#header p.sel_lang').width(logoH * 2.583);
+			$('#header p.sel_lang img').width(logoH * 2.583);
+			$('#header p.sel_lang img').height(logoH);
+			// href fix
+			$('#header ul li:eq(0) a').attr('href',href);
+			$('#header ul li:eq(1) a').attr('href','/e'+ href);
+			$('#header ul li:eq(2) a').attr('href','/tc'+ href);
+			$('#header ul li:eq(3) a').attr('href','/sc'+ href);
+		} else {
+			$('#header ul').removeClass('on');
+			$('#header ul').css({'top':0, 'display':'block'});
+			// href fix
+			$('#header ul li:eq(0) a').attr('href','/index.html');
+			$('#header ul li:eq(1) a').attr('href','/e/index.html');
+			$('#header ul li:eq(2) a').attr('href','/tc/index.html');
+			$('#header ul li:eq(3) a').attr('href','/sc/index.html');
+		}
+	});
+
+	// language btn click action
+	$('#header p.sel_lang').bind('click',function(){
+		if( $('#header ul').hasClass('on') ){
+			$('#header ul').slideUp(500,'swing').removeClass('on');
+		} else {
+			$('#header ul').slideDown(500,'swing').addClass('on');
+		}
+	});
+
+	// close btn click action
+	$('#header ul li.close a').bind('click',function(){
+		$('#header ul').slideUp(500,'swing').removeClass('on');
+	});
+
+});
+
+
+//------------------------------------------------------------------------------
+// site search
+//------------------------------------------------------------------------------
+$(function(){
+
+	var url = location.href;
+	
+	/* search button click */
+	$('#srchBtn').click(function(){
+		var inputKeyword = $(this).prev().val();
+		var refURL = location.protocol +'//'+ location.hostname + location.pathname;
+		var searchParam = '?ie=u&lang=ko&ref='+ refURL +'&kw='+ inputKeyword +'&page=1';
+		if( url.indexOf('www.jreast.co.jp') > -1 ){
+			location.href = '/kr/sitesearch/index.html'+ searchParam;
+		} else {
+			location.href = 'https://www.jreast.co.jp/kr/sitesearch/index.html'+ searchParam;
+		}
+		return false;
+	});
+
+	/* search button EnterKey */
+	$('#srch .textArea').keypress(function(e){
+		if( e.which == 13 ){
+			var inputKeyword = $(this).val();
+			var refURL = location.protocol +'//'+ location.hostname + location.pathname;
+			var searchParam = '?ie=u&lang=ko&ref='+ refURL +'&kw='+ inputKeyword +'&page=1';
+			if( url.indexOf('www.jreast.co.jp') > -1 ){
+				location.href = '/kr/sitesearch/index.html'+ searchParam;
+			} else {
+				location.href = 'https://www.jreast.co.jp/kr/sitesearch/index.html'+ searchParam;
+			}
+			return false;
+		}
+	});
+});
+

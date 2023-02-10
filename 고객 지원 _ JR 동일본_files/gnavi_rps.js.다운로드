@@ -1,0 +1,563 @@
+//PCグローバルナビ
+document.write('<!-- PC GlobalNavi -->');
+document.write('<div id="menu" class="rwdPc">');
+document.write('<ul class="clearfix">');
+document.write('<li id="menuPass"><a href="javascript:void(0)"><img src="/kr/img/renew/common/menu01.png" alt="요금 및 각종 패스" class="manuover" /></a></li>');
+document.write('<li id="menuRoute"><a href="javascript:void(0)"><img src="/kr/img/renew/common/menu02.png" alt="열차 정보" class="manuover" /></a></li>');
+document.write('<li id="menuCustomer"><a href="javascript:void(0)"><img src="/kr/img/renew/common/menu03.png" alt="고객 지원" class="manuover" /></a></li>');
+document.write('<li id="menuDestinations"><a href="javascript:void(0)"><img src="/kr/img/renew/common/menu04.png" alt="노선별 여행정보" class="manuover" /></a></li>');
+document.write('</ul>');
+document.write('</div><!-- /menu -->');
+document.write('<!-- PC GlobalNavi -->');
+
+//PCパネル
+document.write('<div class="rwdInner">');
+document.write('<!-- PC Panel Area -->');
+document.write('<div class="panelArea rwdPc">');
+
+// Fares & Passes
+document.write('<!-- Panel Fares & Passes -->');
+document.write('<div class="panelBoxFP">');
+document.write('<h2 class="link"><a href="/multi/pass/?src=gnavi" title="요금 및 각종 패스">요금 및 각종 패스</a><span class="close">닫기</span></h2>');
+document.write('<div class="panelWrap clearfix">');
+document.write('<ul class="featuredPass clearfix">');
+//document.write('<li><a href="/multi/pass/welcomerailpass.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_jewrp2020_off.png" alt="JR EAST Welcome Rail Pass 2020"/></a></li>');
+document.write('<li><a href="/multi/pass/eastpass_t.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_jept_off.png" alt="JR 동일본 패스 (도호쿠 지역)"/></a></li>');
+document.write('<li><a href="/multi/pass/eastpass_n.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_jepn_off.png" alt="JR 동일본 패스 (나가노·니가타 지역)"/></a></li>');
+document.write('<li><a href="/multi/pass/tokyowidepass.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_jtwp_off.png" alt="JR 도쿄 와이드 패스"/></a></li>');
+document.write('<li><a href="/multi/pass/tohokuhokkaido.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_tshrp_off.png" alt="JR 도호쿠・미나미홋카이도 레일 패스"/></a></li>');
+document.write('<li><a href="/multi/pass/easthokkaido.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_hrp_off.png" alt="JR동일본・미나미홋카이도 레일 패스"/></a></li>');
+document.write('<li><a href="/multi/pass/hokurikuarch.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_hokuriku_off.png" alt="호쿠리쿠 아치 패스"/></a></li>');
+document.write('<li><a href="/multi/pass/nex.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_nex_off.png" alt="N&#39;EX 도쿄 왕복 티켓"/></a></li>');
+document.write('<li><a href="/multi/pass/tokyo_free.html?src=gnavi"><img src="/kr/img/renew/common/panel_img_fp_tokyofree_off.png" alt="도쿄 1일 승차권(東京フリーきっぷ)"/></a></li>');
+document.write('</ul>');
+document.write('<ul class="otherPass clearfix">');
+document.write('<li><a href="/multi/pass/nonbiri_pass.html?src=gnavi" title="논비리 홀리데이 Suica 패스">논비리 홀리데이 Suica 패스</a></li>');
+document.write('<li><a href="/multi/pass/tokunai_pass.html?src=gnavi" title="도쿄 시내 패스(도쿠나이 패스)">도쿄 시내 패스(도쿠나이 패스)</a></li>');
+document.write('<li><a href="/multi/pass/yokohama_minatomirai.html?src=gnavi" title="요코하마·미나토미라이 패스">요코하마·미나토미라이 패스</a></li>');
+//document.write('<li><a href="/kr/pass/kamakura_enoshima.html?src=gnavi" title="가마쿠라・에노시마 패스">가마쿠라・에노시마 패스</a></li>');
+document.write('<li><a href="/multi/pass/seishun18.html?src=gnavi" title="청춘18티켓">청춘18티켓</a></li>');
+document.write('<li><a href="http://sendaitravelpass.jp/1day/kr/" title="SENDAI AREA PASS (새로운 창이 열립니다.)" target="_blank" class="openwin01">SENDAI AREA PASS</a></li>');
+document.write('<li><a href="http://www.japanrailpass.net/kr/" title="재팬 레일 패스 (새로운 창이 열립니다.)" target="_blank" class="openwin01">재팬 레일 패스</a></li>');
+document.write('</ul>');
+document.write('<div class="suica">');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/multi/welcomesuica/?src=gnavi" title="Welcome Suica/Suica"><h5>Welcome Suica/Suica</h5></a></li>');
+document.write('<li><a href="/multi/ticket/?src=gnavi" title="발권"><h5>발권</h5></a></li>');
+document.write('<li class="emoney"><a href="/kr/suicamoney/?src=gnavi" title="Suica e-머니">Suica e-머니</a></li>');
+document.write('</ul>');
+document.write('</div><!-- /suica -->');
+document.write('</div><!-- /panelWrap -->');
+document.write('<p class="btnClose close">닫기</p>');
+document.write('</div><!-- /panelBoxFP -->');
+document.write('<!-- /Panel Fares & Passes -->');
+
+//Route Maps
+document.write('<!-- Panel Route Maps -->');
+document.write('<div class="panelBoxRM">');
+document.write('<h2 class="link"><a href="/multi/traininformation/?src=gnavi" title="열차 정보">열차 정보</a><span class="close">닫기</span></h2>');
+document.write('<div class="traininfo">');
+document.write('<div class="panelWrap clearfix">');
+document.write('<div class="panelNex">');
+document.write('<h3>나리타 익스프레스</h3>');
+document.write('<dl class="clearfix">');
+document.write('<dt><a href="/multi/nex/?src=gnavi"><img src="/kr/img/renew/common/panel_img_rm_nex_off.png" alt="나리타 익스프레스"/></a></dt>');
+document.write('<dd>');
+document.write('<ul>');
+document.write('<li><a href="/multi/nex/?src=gnavi" title="N&#39;EX 소개">N&#39;EX 소개</a></li>');
+document.write('<li><a href="/multi/nex/tickets/?src=gnavi" title="티켓">티켓</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('</div><!-- /panelNex -->');
+document.write('<div class="panelShinkansen">');
+document.write('<h3>신칸센</h3>');
+document.write('<dl class="clearfix">');
+document.write('<dt><img src="/kr/img/renew/common/panel_img_rm_shinkansen.png" alt="신칸센"/></dt>');
+document.write('<dd>');
+document.write('<ul>');	
+document.write('<li><a href="/kr/routemaps/tohokushinkansen.html?src=gnavi" title="도호쿠 신칸센">도호쿠 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/akitashinkansen.html?src=gnavi" title="아키타 신칸센">아키타 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/yamagatashinkansen.html?src=gnavi" title="야마가타 신칸센">야마가타 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/joetsushinkansen.html?src=gnavi" title="조에츠 신칸센">조에츠 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/hokurikushinkansen.html?src=gnavi" title="호쿠리쿠 신칸센">호쿠리쿠 신칸센</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('</div><!-- /panelShinkansen -->');
+document.write('</div><!-- /panelWrap -->');
+document.write('<div class="panelJoyful panelWrap">');
+document.write('<h3>타서 즐거운 열차</h3>');
+document.write('<dl class="clearfix">');
+document.write('<dt><a href="/multi/joyful/?src=gnavi"><img src="/kr/img/renew/common/panel_img_rm_joyful_off.png" alt="타서 즐거운 열차"/></a></dt>');
+document.write('<dd>');
+document.write('<ul>');
+document.write('<li><a href="/kr/joyful/bbbase.html?src=gnavi" title="B.B.BASE">B.B.BASE</a></li>');
+document.write('<li><a href="/kr/joyful/fruitea.html?src=gnavi" title="후르티아 후쿠시마">후르티아 후쿠시마</a></li>');
+//document.write('<li><a href="/kr/joyful/genbi.html?src=gnavi" title="GENBI SHINKANSEN">GENBI SHINKANSEN</a></li>');
+document.write('<li><a href="/kr/joyful/highrail1375.html?src=gnavi" title="HIGH RAIL 1375">HIGH RAIL 1375</a></li>');
+//document.write('<li><a href="/kr/joyful/iroha.html?src=gnavi" title="Iroha">Iroha</a></li>');
+//document.write('<li><a href="/kr/joyful/izucraile.html?src=gnavi" title="IZU CRAILE">IZU CRAILE</a></li>');
+document.write('<li><a href="/kr/joyful/kairi.html?src=gnavi" title="가이리">가이리</a></li>');
+document.write('<li><a href="/kr/joyful/shukura.html?src=gnavi" title="코시노 Shu*Kura">코시노 Shu*Kura</a></li>');
+document.write('<li><a href="/kr/joyful/oykot.html?src=gnavi" title="Oykot">오이콧토</a></li>');
+document.write('<li><a href="/kr/joyful/pokemon.html?src=gnavi" title="POK&Eacute;MON with YOU 트레인">POK&Eacute;MON with YOU 트레인</a></li>');
+document.write('<li><a href="/kr/joyful/asunaro.html?src=gnavi" title="리조트 아스나로">리조트 아스나로</a></li>');
+//document.write('<li><a href="/kr/joyful/minori.html?src=gnavi" title="리조트 미노리">리조트 미노리</a></li>');
+document.write('<li><a href="/kr/joyful/shirakami.html?src=gnavi" title="리조트 시라카미">리조트 시라카미</a></li>');
+document.write('<li><a href="/kr/joyful/resortfuru.html?src=gnavi" title="리조트뷰 후루사토">리조트뷰 후루사토</a></li>');
+document.write('<li><a href="/kr/joyful/c57.html?src=gnavi" title="SL 반에츠 모노가타리">SL 반에츠 모노가타리</a></li>');
+document.write('<li><a href="/kr/joyful/galaxysl.html?src=gnavi" title="SL 은하">SL 은하</a></li>');
+document.write('<li><a href="/kr/joyful/slgunma.html?src=gnavi" title="SL 군마">SL 군마</a></li>');
+document.write('<li><a href="/kr/joyful/tohoku.html?src=gnavi" title="TOHOKU EMOTION">TOHOKU EMOTION</a></li>');
+//document.write('<li><a href="/kr/joyful/toreiyu.html?src=gnavi" title="신칸센&#39;Toreiyu Tsubasa&#39;호">신칸센&#39;Toreiyu Tsubasa&#39;호</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('</div><!-- /panelWrap -->');
+document.write('<div class="panelOthertrains panelWrap">');
+document.write('<h3>특급 / 기타</h3>');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/kr/routemaps/hitachi.html?src=gnavi" title="히타치・도키와">히타치・도키와</a></li>');
+document.write('<li><a href="/kr/routemaps/azusa_kaiji.html?src=gnavi" title="아즈사・카이지・FUJI EXCURSION">아즈사・카이지・FUJI EXCURSION</a></li>');
+document.write('<li><a href="/kr/routemaps/nikko_kinugawa.html?src=gnavi" title="닛코・키누가와">닛코・키누가와</a></li>');
+//document.write('<li><a href="/kr/routemaps/superviewodoriko.html?src=gnavi" title="슈퍼뷰 오도리코">슈퍼뷰 오도리코</a></li>');
+document.write('<li><a href="/multi/traininformation/saphir/?src=gnavi" title="SAPHIR오도리코">SAPHIR오도리코</a></li>');
+document.write('<li><a href="/multi/traininformation/odoriko/?src=gnavi" title="오도리코">오도리코</a></li>');
+document.write('<li><a href="/kr/routemaps/sazanami_wakashio.html?src=gnavi" title="사자나미・와카시오">사자나미・와카시오</a></li>');
+//document.write('<li><a href="/kr/routemaps/kusatsu_minakami.html?src=gnavi" title="쿠사츠・미나카미">쿠사츠・미나카미</a></li>');
+//document.write('<li><a href="/kr/routemaps/hakucho_tsugaru.html?src=gnavi" title="하쿠초・츠가루">하쿠초・츠가루</a></li>');
+document.write('<li><a href="/kr/routemaps/inaho_kamoshika.html?src=gnavi" title="이나호">이나호</a></li>');
+//document.write('<li><a href="/kr/joyful/umineko.html?src=gnavi" title="리조트 우미네코">리조트 우미네코</a></li>');
+//document.write('<li><a href="/kr/joyful/zipangu.html?src=gnavi" title="지팡구">지팡구</a></li>');
+document.write('</ul>');
+document.write('</div><!-- /panelWrap -->');
+document.write('</div><!-- /traininfo -->');
+document.write('<p class="btnClose close">닫기</p>');
+document.write('</div><!-- /panelBoxRM -->');
+document.write('<!-- /Panel Route Maps -->');
+
+//Customer Support
+document.write('<!-- Panel Customer Support -->');
+document.write('<div class="panelBoxCS">');
+document.write('<h2 class="link"><a href="/kr/customer_support/index.html?src=gnavi" title="고객 지원">고객 지원</a><span class="close">닫기</span></h2>');
+document.write('<div class="panelWrap clearfix">');
+document.write('<div class="panelLeft">');
+document.write('<h3>JR 동일본 여행 서비스 센터</h3>');
+document.write('<ul>');
+document.write('<li><a href="/kr/customer_support/service_center_tokyo.html?src=gnavi" title="도쿄역">도쿄역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_hamamatsucho.html?src=gnavi" title="하마마츠초역">하마마츠초역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_haneda.html?src=gnavi" title="하네다">하네다</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shinagawa.html?src=gnavi" title="시나가와역">시나가와역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shibuya.html?src=gnavi" title="시부야역">시부야역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shinjuku.html?src=gnavi" title="신주쿠역">신주쿠역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_ikebukuro.html?src=gnavi" title="이케부쿠로역">이케부쿠로역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_ueno.html?src=gnavi" title="우에노역">우에노역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_kashiwa.html?src=gnavi" title="가시와역">가시와역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_yokohama.html?src=gnavi" title="요코하마역">요코하마역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_kawasaki.html?src=gnavi" title="가와사키역">가와사키역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_tachikawa.html?src=gnavi" title="다치카와역">다치카와역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_omiya.html?src=gnavi" title="오미야역">오미야역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center.html?src=gnavi" title="나리타">나리타</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_funabashi.html?src=gnavi" title="후나바시역">후나바시역</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_sendai.html?src=gnavi" title="센다이역">센다이역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_fukushima.html?src=gnavi" title="후쿠시마역">후쿠시마역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_yamagata.html?src=gnavi" title="야마가타역">야마가타역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_morioka.html?src=gnavi" title="모리오카역">모리오카역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_aomori.html?src=gnavi" title="아오모리역">아오모리역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_akita.html?src=gnavi" title="아키타역">아키타역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_niigata.html?src=gnavi" title="니가타역">니가타역</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_nagano.html?src=gnavi" title="나가노역">나가노역</a></li>');
+document.write('</ul>');
+document.write('</div><!-- /panelLeft -->');
+document.write('<div class="panelRight">');
+document.write('<h3>기타</h3>');
+document.write('<ul>');
+document.write('<li><a href="/kr/customer_support/information_center.html?src=gnavi" title="JR 동일본 정보 센터">JR 동일본 정보 센터</a></li>');
+document.write('<li><a href="/kr/customer_support/infoline.html?src=gnavi" title="JR 동일본 전화 서비스">JR 동일본 전화 서비스</a></li>');
+document.write('<li><a href="/kr/stations/index.html?src=gnavi" title="주요 정차역 안내">주요 정차역 안내</a></li>');
+document.write('<li><a href="/kr/customer_support/accessibility.html?src=gnavi" title="배리어 프리 정보">배리어 프리 정보</a></li>');
+document.write('</ul>');
+document.write('</div><!-- /panelRight -->');
+document.write('</div><!-- /panelWrap -->');
+document.write('<p class="btnClose close">닫기</p>');
+document.write('</div><!-- /panelBoxCS -->');
+document.write('<!-- /Panel Customer Support -->');
+document.write('<!-- Panel Featured Destinations -->');
+document.write('<div class="panelBoxFD">');
+document.write('<h2 class="link"><a href="/multi/destinations/?src=gnavi" title="노선별 여행정보">노선별 여행정보</a><span class="close">닫기</span></h2>');
+document.write('<div class="bydestination panelWrap">');
+document.write('<h3>목적지 선택</h3>');
+document.write('<dl>');
+document.write('<dt>도호쿠 지역</dt>');
+document.write('<dd>');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/multi/destinations/aomori/?src=gnavi" title="아오모리">아오모리</a></li>');
+document.write('<li><a href="/multi/destinations/akita/?src=gnavi" title="아키타">아키타</a></li>');
+document.write('<li><a href="/multi/destinations/iwate/?src=gnavi" title="이와테(히라이즈미)">이와테(히라이즈미)</a></li>');
+document.write('<li><a href="/multi/destinations/yamagata/?src=gnavi" title="야마가타">야마가타</a></li>');
+document.write('<li><a href="/multi/destinations/miyagi/?src=gnavi" title="미야기(센다이/마츠시마)">미야기(센다이/마츠시마)</a></li>');
+document.write('<li><a href="/multi/destinations/fukushima/?src=gnavi" title="후쿠시마">후쿠시마</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('<dl>');
+document.write('<dt>조신에츠 지역</dt>');
+document.write('<dd>');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/multi/destinations/niigata_sado.html?src=gnavi" title="니가타・사도">니가타・사도</a></li>');
+document.write('<li><a href="/multi/shinshu/index.html?src=gnavi" title="나가노(신슈)">나가노(신슈)</a></li>');
+document.write('<li><a href="/multi/destinations/gala.html?src=gnavi" title="GALA 유자와">GALA 유자와</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('<dl>');
+document.write('<dt>간토 지역</dt>');
+document.write('<dd>');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/multi/destinations/tokyo/?src=gnavi" title="도쿄">도쿄</a></li>');
+document.write('<li><a href="/multi/destinations/nikko_kinugawa.html?src=gnavi" title="닛코・키누가와">닛코・키누가와</a></li>');
+document.write('<li><a href="/multi/destinations/izu.html?src=gnavi" title="이즈">이즈</a></li>');
+document.write('<li><a href="/multi/fuji/about.html?src=gnavi" title="후지산에 대하여">후지산에 대하여</a></li>');
+document.write('<li><a href="/multi/destinations/yamanashi.html?src=gnavi" title="야마나시(고후)">야마나시(고후)</a></li>');
+document.write('<li><a href="/multi/destinations/yokohama.html?src=gnavi" title="요코하마">요코하마</a></li>');
+document.write('<li><a href="/multi/destinations/gunma/?src=gnavi" title="군마(쿠사츠/미나카미)">군마(쿠사츠/미나카미)</a></li>');
+document.write('<li><a href="/multi/destinations/nasukogen.html?src=gnavi" title="나스고원">나스고원</a></li>');
+document.write('<li><a href="/multi/destinations/saitama.html?src=gnavi" title="사이타마(오미야)">사이타마(오미야)</a></li>');
+document.write('<li><a href="/multi/destinations/ibaraki.html?src=gnavi" title="이바라키">이바라키</a></li>');
+document.write('<li><a href="/multi/destinations/chiba.html?src=gnavi" title="지바(나리타/보소)">지바(나리타/보소)</a></li>');
+document.write('</ul>');
+document.write('</dd>');
+document.write('</dl>');
+document.write('</div><!-- /panelWrap -->');
+document.write('<div class="bycategory panelWrap">');
+document.write('<h3>테마 선택</h3>');
+document.write('<ul class="clearfix">');
+document.write('<li><a href="/multi/season/spring/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_spring_off.jpg" alt="봄-벚꽃・꽃놀이를 즐기다"/></a></li>');
+document.write('<li><a href="/multi/season/summer_hanabi/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_fireworks_off.jpg" alt="여름-불꽃놀이 특집"/></a></li>');	
+document.write('<li><a href="/multi/season/summer/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_festivals_off.jpg" alt="여름-여름 축제 특집"/></a></li>');
+document.write('<li><a href="/multi/season/autumn/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_autumn_off.jpg" alt="가을-단풍 특집"/></a></li>');
+document.write('<li><a href="/multi/season/winter/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_winter_off.jpg" alt="겨울-스키장에서 즐기세요!"/></a></li>');
+document.write('<li><a href="/multi/onsen/?src=gnavi"><img src="/kr/destinations/img/renew/index/img_thumbnail_hotspring_off.jpg" alt="온천"/></a></li>');
+document.write('<li><a href="/multi/destinations/#a01"><img src="/kr/destinations/img/renew/index/img_thumbnail_shorttrips_off.jpg" alt="도쿄에서의 단기 여행"/></a></li>');
+document.write('</ul>');
+document.write('</div><!--/ bycategory -->');
+document.write('<p class="btnClose close">닫기</p>');
+document.write('</div><!-- /panelBoxFD -->');
+document.write('<!-- /Panel Featured Destinations -->');
+document.write('</div><!-- /panelArea -->');
+document.write('<!-- /PC Panel Area -->');
+document.write('</div><!-- /rwdInner -->');
+
+//SPグローバルナビ
+document.write('<!-- SP GlobalNavi -->');
+document.write('<div class="pulldown rwdSp">');
+
+document.write('<!-- searchBox -->');
+document.write('<h3><span>검색</span></h3>');
+document.write('<ul class="spGnSrBox">');
+document.write('<li>');
+document.write('<p id="srchFormSp">');
+document.write('<input type="text" name="p" value="" id="srchInputSp" class="textArea">');
+document.write('<input type="image" src="/e/img/renew/common/btn-search.png" width="30" height="26" alt="검색" id="srchBtnSp"');
+document.write('</p>');
+document.write('</li>');
+document.write('</ul>');
+document.write('<!-- // searchBox -->');
+
+document.write('<h3><span>편리한 메뉴</span></h3>');
+document.write('<ul>');
+document.write('<li><a href="https://www.eki-net.com/jreast-train-reservation/Top/Index" class="openwin" target="_blank" title="JR 동일본 열차 예약">JR 동일본 열차 예약</a></li>');
+//document.write('<li><a href="http://www.eastjapanrail.com/#/home" class="openwin" target="_blank" title="E 티켓(교환증 구입)">E 티켓(교환증 구입)</a></li>');
+//document.write('<li><a href="https://www.eki-net.com/pc/jreast-shinkansen-reservation/English/wb/common/timetable/index.html?src=spmenu" class="openwin" target="_blank" title="시간표 (영문 전용)">시간표 (영문 전용)</a></li>');
+document.write('</ul>');
+document.write('<h3><span>컨텐츠 메뉴</span></h3>');
+document.write('<ul>');
+document.write('<li><a href="/kr/?src=spmenu" title="홈">홈</a></li>');
+document.write('<li><a href="#" class="navi" title="요금 및 각종 패스">요금 및 각종 패스</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/pass/?src=spmenu" title="요금 및 각종 패스">요금 및 각종 패스</a></li>');
+//document.write('<li><a href="/multi/pass/welcomerailpass.html?src=spmenu" title="JR EAST Welcome Rail Pass 2020">JR EAST Welcome Rail Pass 2020</a></li>');
+document.write('<li><a href="/multi/pass/eastpass_t.html?src=spmenu" title="JR 동일본 패스 (도호쿠 지역)">JR 동일본 패스 (도호쿠 지역)</a></li>');
+document.write('<li><a href="/multi/pass/eastpass_n.html?src=spmenu" title="JR 동일본 패스 (나가노·니가타 지역)">JR 동일본 패스 (나가노·니가타 지역)</a></li>');
+document.write('<li><a href="/multi/pass/tokyowidepass.html?src=spmenu" title="JR 도쿄 와이드 패스">JR 도쿄 와이드 패스</a></li>');
+document.write('<li><a href="/multi/pass/tohokuhokkaido.html?src=spmenu" title="JR 도호쿠∙미나미홋카이도 레일 패스">JR 도호쿠・미나미홋카이도 레일 패스</a></li>');
+document.write('<li><a href="/multi/pass/easthokkaido.html?src=spmenu" title="JR동일본・미나미홋카이도 레일 패스">JR동일본・미나미홋카이도 레일 패스</a></li>');
+document.write('<li><a href="/multi/pass/hokurikuarch.html?src=spmenu" title="호쿠리쿠 아치 패스">호쿠리쿠 아치 패스</a></li>');
+document.write('<li><a href="/multi/pass/nex.html?src=spmenu" title="N&#39;EX 도쿄 왕복 티켓">N&#39;EX 도쿄 왕복 티켓</a></li>');
+document.write('<li><a href="/multi/pass/nonbiri_pass.html?src=gnavi" title="논비리 홀리데이 Suica 패스">논비리 홀리데이 Suica 패스</a></li>');
+document.write('<li><a href="/multi/pass/tokunai_pass.html?src=spmenu" title="도쿄 시내 패스(도쿠나이 패스)">도쿄 시내 패스(도쿠나이 패스)</a></li>');
+document.write('<li><a href="/multi/pass/yokohama_minatomirai.html?src=spmenu" title="요코하마·미나토미라이 패스">요코하마·미나토미라이 패스</a></li>');
+//document.write('<li><a href="/kr/pass/kamakura_enoshima.html?src=spmenu" class="pcsite" title="가마쿠라・에노시마 패스">가마쿠라・에노시마 패스</a></li>');
+document.write('<li><a href="/multi/pass/tokyo_free.html?src=spmenu" title="도쿄 1일 승차권(東京フリーきっぷ)">도쿄 1일 승차권(東京フリーきっぷ)</a></li>');
+document.write('<li><a href="/multi/pass/seishun18.html?src=spmenu" title="청춘18티켓">청춘18티켓</a></li>');
+document.write('<li><a href="http://sendaitravelpass.jp/1day/kr/" title="SENDAI AREA PASS (새로운 창이 열립니다.)" target="_blank" class="openwin">SENDAI AREA PASS</a></li>');
+document.write('<li><a href="http://www.japanrailpass.net/kr/" title="재팬 레일 패스 (새로운 창이 열립니다.)" target="_blank" class="openwin">재팬 레일 패스</a></li>');
+document.write('<li class="subnaviLabel"><a href="/multi/welcomesuica/?src=spmenu" title="Welcome Suica/Suica">Welcome Suica/Suica</a></li>');
+document.write('<li><a href="/kr/suicamoney/?src=spmenu" class="pcsite" title="Suica e-머니">Suica e-머니</a></li>');
+//document.write('<li class="subnaviLabel"><a href="/kr/ticket/index.html" class="pcsite" title="Ticketing">Ticketing</a></li>');
+document.write('<li class="subnaviLabel"><a href="/kr/../e/charge/index.html?src=spmenu" title="요금 및 추가 요금 (영문 전용)">요금 및 추가 요금 (영문 전용)</a></li>');
+document.write('</ul></li>');
+document.write('<li><a href="#" class="navi">열차 정보</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/traininformation/?src=spmenu" title="열차 정보">열차 정보</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="나리타 익스프레스">나리타 익스프레스</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/nex/?src=spmenu" title="나리타 익스프레스">나리타 익스프레스</a></li>');
+document.write('<li><a href="/multi/nex/?src=spmenu" title="N&#39;EX 소개">N&#39;EX 소개</a></li>');
+document.write('<li><a href="/multi/nex/tickets/?src=spmenu" title="티켓">티켓</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="신칸센">신칸센</a>');
+document.write('<ul class="subnavi">');
+document.write('<li><a href="/kr/routemaps/tohokushinkansen.html?src=spmenu" title="도호쿠 신칸센">도호쿠 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/akitashinkansen.html?src=spmenu" title="아키타 신칸센">아키타 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/yamagatashinkansen.html?src=spmenu" title="야마가타 신칸센">야마가타 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/joetsushinkansen.html?src=spmenu" title="조에츠 신칸센">조에츠 신칸센</a></li>');
+document.write('<li><a href="/kr/routemaps/hokurikushinkansen.html?src=spmenu" title="호쿠리쿠 신칸센">호쿠리쿠 신칸센</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="타서 즐거운 열차">타서 즐거운 열차</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/joyful/index.html?src=spmenu" title="타서 즐거운 열차">타서 즐거운 열차</a></li>');
+document.write('<li><a href="/kr/joyful/bbbase.html?src=spmenu" title="B.B.BASE">B.B.BASE</a></li>');
+document.write('<li><a href="/kr/joyful/fruitea.html?src=spmenu" title="후르티아 후쿠시마">후르티아 후쿠시마</a></li>');
+//document.write('<li><a href="/kr/joyful/genbi.html?src=spmenu" title="GENBI SHINKANSEN">GENBI SHINKANSEN</a></li>');
+document.write('<li><a href="/kr/joyful/highrail1375.html?src=spmenu" title="HIGH RAIL 1375">HIGH RAIL 1375</a></li>');
+//document.write('<li><a href="/kr/joyful/iroha.html?src=spmenu" title="Iroha">Iroha</a></li>');
+//document.write('<li><a href="/kr/joyful/izucraile.html?src=spmenu" title="IZU CRAILE">IZU CRAILE</a></li>');
+document.write('<li><a href="/kr/joyful/kairi.html?src=spmenu" title="가이리">가이리</a></li>');
+document.write('<li><a href="/kr/joyful/shukura.html?src=spmenu" title="코시노 Shu*Kura">코시노 Shu*Kura</a></li>');
+document.write('<li><a href="/kr/joyful/oykot.html?src=spmenu" title="Oykot">오이콧토</a></li>');
+document.write('<li><a href="/kr/joyful/pokemon.html?src=spmenu" title="POK&Eacute;MON with YOU 트레인">POK&Eacute;MON with YOU 트레인</a></li>');
+document.write('<li><a href="/kr/joyful/asunaro.html?src=spmenu" title="리조트 아스나로">리조트 아스나로</a></li>');
+//document.write('<li><a href="/kr/joyful/minori.html?src=spmenu" title="리조트 미노리">리조트 미노리</a></li>');
+document.write('<li><a href="/kr/joyful/shirakami.html?src=spmenu" title="리조트 시라카미">리조트 시라카미</a></li>');
+document.write('<li><a href="/kr/joyful/resortfuru.html?src=spmenu" title="리조트뷰 후루사토">리조트뷰 후루사토</a></li>');
+document.write('<li><a href="/kr/joyful/c57.html?src=spmenu" title="SL 반에츠 모노가타리">SL 반에츠 모노가타리</a></li>');
+document.write('<li><a href="/kr/joyful/galaxysl.html?src=spmenu" title="SL 은하">SL 은하</a></li>');
+document.write('<li><a href="/kr/joyful/slgunma.html?src=spmenu" title="SL 군마">SL 군마</a></li>');
+document.write('<li><a href="/kr/joyful/tohoku.html?src=spmenu" title="TOHOKU EMOTION">TOHOKU EMOTION</a></li>');
+//document.write('<li><a href="/kr/joyful/toreiyu.html?src=spmenu" title="신칸센&#39;Toreiyu Tsubasa&#39;호">신칸센&#39;Toreiyu Tsubasa&#39;호</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="특급 / 기타">특급 / 기타</a>');
+document.write('<ul class="subnavi">');
+document.write('<li><a href="/kr/routemaps/hitachi.html?src=spmenu" title="히타치・도키와">히타치・도키와</a></li>');
+document.write('<li><a href="/kr/routemaps/azusa_kaiji.html?src=spmenu" title="아즈사・카이지・FUJI EXCURSION">아즈사・카이지・FUJI EXCURSION</a></li>');
+document.write('<li><a href="/kr/routemaps/nikko_kinugawa.html?src=spmenu" title="닛코・키누가와">닛코・키누가와</a></li>');
+//document.write('<li><a href="/kr/routemaps/superviewodoriko.html?src=spmenu" title="슈퍼뷰 오도리코">슈퍼뷰 오도리코</a></li>');
+document.write('<li><a href="/multi/traininformation/saphir/?src=spmenu" title="SAPHIR오도리코">SAPHIR오도리코</a></li>');
+document.write('<li><a href="/multi/traininformation/odoriko/?src=spmenu" title="오도리코">오도리코</a></li>');
+document.write('<li><a href="/kr/routemaps/sazanami_wakashio.html?src=spmenu" title="사자나미・와카시오">사자나미・와카시오</a></li>');
+//document.write('<li><a href="/kr/routemaps/kusatsu_minakami.html?src=spmenu" title="쿠사츠・미나카미">쿠사츠・미나카미</a></li>');
+//document.write('<li><a href="/kr/routemaps/hakucho_tsugaru.html?src=spmenu" title="하쿠초・츠가루">하쿠초・츠가루</a></li>');
+document.write('<li><a href="/kr/routemaps/inaho_kamoshika.html?src=spmenu" title="이나호">이나호</a></li>');
+//document.write('<li><a href="/kr/joyful/umineko.html?src=spmenu" title="리조트 우미네코">리조트 우미네코</a></li>');
+//document.write('<li><a href="/kr/joyful/zipangu.html?src=spmenu" title="지팡구">지팡구</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="고객 지원">고객 지원</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/kr/customer_support/index.html?src=spmenu" title="고객 지원">고객 지원</a></li>');
+document.write('<li class="subnaviLabel"><span class="subnaviTitle">JR 동일본 여행 서비스 센터</span>');
+document.write('<li><a href="/kr/customer_support/service_center_tokyo.html?src=spmenu" title="JR 동일본 여행 서비스 센터(도쿄역)">JR 동일본 여행 서비스 센터(도쿄역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_hamamatsucho.html?src=spmenu" title="JR 동일본 여행 서비스 센터(하마마츠초역)">JR 동일본 여행 서비스 센터(하마마츠초역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_haneda.html?src=spmenu" title="JR 동일본 여행 서비스 센터(하네다)">JR 동일본 여행 서비스 센터(하네다)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shinagawa.html?src=spmenu" title="JR 동일본 여행 서비스 센터(시나가와역)">JR 동일본 여행 서비스 센터(시나가와역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shibuya.html?src=spmenu" title="JR 동일본 여행 서비스 센터(시부야역)">JR 동일본 여행 서비스 센터(시부야역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_shinjuku.html?src=spmenu" title="JR 동일본 여행 서비스 센터(신주쿠역)">JR 동일본 여행 서비스 센터(신주쿠역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_ikebukuro.html?src=spmenu" title="JR 동일본 여행 서비스 센터(이케부쿠로역)">JR 동일본 여행 서비스 센터(이케부쿠로역)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_ueno.html?src=spmenu" title="JR 동일본 여행 서비스 센터(우에노역)">JR 동일본 여행 서비스 센터(우에노역)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_kashiwa.html?src=spmenu" title="JR 동일본 여행 서비스 센터(가시와)">JR 동일본 여행 서비스 센터(가시와)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_yokohama.html?src=spmenu" title="JR 동일본 여행 서비스 센터(요코하마)">JR 동일본 여행 서비스 센터(요코하마)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_kawasaki.html?src=spmenu" title="JR 동일본 여행 서비스 센터(가와사키)">JR 동일본 여행 서비스 센터(가와사키)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_tachikawa.html?src=spmenu" title="JR 동일본 여행 서비스 센터(다치카와)">JR 동일본 여행 서비스 센터(다치카와)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_omiya.html?src=spmenu" title="JR 동일본 여행 서비스 센터(오미야)">JR 동일본 여행 서비스 센터(오미야)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center.html?src=spmenu" title="JR 동일본 여행 서비스 센터(나리타)">JR 동일본 여행 서비스 센터(나리타)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_funabashi.html?src=spmenu" title="JR 동일본 여행 서비스 센터(후나바시)">JR 동일본 여행 서비스 센터(후나바시)</a></li>');
+document.write('<li><a href="/kr/customer_support/service_center_sendai.html?src=spmenu" title="JR 동일본 여행 서비스 센터(센다이역)">JR 동일본 여행 서비스 센터(센다이역)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_fukushima.html?src=spmenu" title="JR 동일본 여행 서비스 센터(후쿠시마)">JR 동일본 여행 서비스 센터(후쿠시마)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_yamagata.html?src=spmenu" title="JR 동일본 여행 서비스 센터(야마가타)">JR 동일본 여행 서비스 센터(야마가타)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_morioka.html?src=spmenu" title="JR 동일본 여행 서비스 센터(모리오카)">JR 동일본 여행 서비스 센터(모리오카)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_aomori.html?src=spmenu" title="JR 동일본 여행 서비스 센터(아오모리)">JR 동일본 여행 서비스 센터(아오모리)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_akita.html?src=spmenu" title="JR 동일본 여행 서비스 센터(아키타)">JR 동일본 여행 서비스 센터(아키타)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_niigata.html?src=spmenu" title="JR 동일본 여행 서비스 센터(니가타)">JR 동일본 여행 서비스 센터(니가타)</a></li>');
+document.write('<li><a href="/multi/customer_support/service_center_nagano.html?src=spmenu" title="JR 동일본 여행 서비스 센터(나가노)">JR 동일본 여행 서비스 센터(나가노)</a></li>');
+document.write('<li class="subnaviLabel"><span class="subnaviTitle">기타</span>');
+document.write('<li><a href="/kr/customer_support/information_center.html?src=spmenu" title="JR 동일본 정보 센터">JR 동일본 정보 센터</a></li>');
+document.write('<li><a href="/kr/customer_support/infoline.html?src=spmenu" title="JR 동일본 전화 서비스">JR 동일본 전화 서비스</a></li>');
+document.write('<li><a href="/kr/stations/index.html?src=spmenu" title="주요 정차역 안내">주요 정차역 안내</a></li>');
+document.write('<li><a href="/kr/customer_support/accessibility.html?src=spmenu" title="배리어 프리 정보">배리어 프리 정보</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="발권">발권</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/ticket/?src=spmenu" title="발권">발권</a></li>');
+document.write('<li><a href="/multi/ticket/types.html?src=spmenu" title="승차권 종류">승차권 종류</a></li>');
+document.write('<li><a href="/multi/ticket/purchase.html?src=spmenu" title="승차권 구입 방법">승차권 구입 방법</a></li>');
+document.write('<li><a href="/multi/ticket/examining.html?src=spmenu" title="승차권 보기">승차권 보기</a></li>');
+document.write('<li><a href="/multi/ticket/changes.html?src=spmenu" title="승차권 변경・환불">승차권 변경・환불</a></li>');
+document.write('<li><a href="/multi/ticket/station.html?src=spmenu" title="역에서">역에서</a></li>');
+document.write('<li><a href="/kr/ticket/reservation.html?src=spmenu" title="JR 동일본 열차 예약">JR 동일본 열차 예약</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('<li><a href="#" class="navi" title="노선별 여행정보">노선별 여행정보</a>');
+document.write('<ul class="subnavi">');
+document.write('<li class="subnaviLabel"><a href="/multi/destinations/" title="노선별 여행정보">노선별 여행정보</a></li>');
+document.write('<li class="subnaviLabel"><span class="subnaviTitle">목적지 선택</span></li>');
+document.write('<li><a href="/multi/destinations/aomori/" title="아오모리">아오모리</a></li>');
+document.write('<li><a href="/multi/destinations/akita/" title="아키타">아키타</a></li>');
+document.write('<li><a href="/multi/destinations/iwate/" title="이와테(히라이즈미)">이와테(히라이즈미)</a></li>');
+document.write('<li><a href="/multi/destinations/yamagata/" title="야마가타">야마가타</a></li>');
+document.write('<li><a href="/multi/destinations/miyagi/" title="미야기(센다이/마츠시마)">미야기(센다이/마츠시마)</a></li>');
+document.write('<li><a href="/multi/destinations/fukushima/" title="후쿠시마">후쿠시마</a></li>');
+document.write('<li><a href="/multi/destinations/niigata_sado.html" title="니가타・사도">니가타・사도</a></li>');
+document.write('<li><a href="/multi/shinshu/index.html" title="나가노(신슈)">나가노(신슈)</a></li>');
+document.write('<li><a href="/multi/destinations/gala.html" title="GALA 유자와">GALA 유자와</a></li>');
+document.write('<li><a href="/multi/destinations/tokyo/index.html" title="도쿄">도쿄</a></li>');
+document.write('<li><a href="/multi/destinations/nikko_kinugawa.html" title="닛코・키누가와">닛코・키누가와</a></li>');
+document.write('<li><a href="/multi/destinations/izu.html" title="이즈">이즈</a></li>');
+document.write('<li><a href="/multi/fuji/about.html" title="후지산에 대하여">후지산에 대하여</a></li>');
+document.write('<li><a href="/multi/destinations/yamanashi.html" title="야마나시(고후)">야마나시(고후)</a></li>');
+document.write('<li><a href="/multi/destinations/yokohama.html" title="요코하마">요코하마</a></li>');
+document.write('<li><a href="/multi/destinations/gunma/index.html" title="군마(쿠사츠/미나카미)">군마(쿠사츠/미나카미)</a></li>');
+document.write('<li><a href="/multi/destinations/nasukogen.html" title="나스고원">나스고원</a></li>');
+document.write('<li><a href="/multi/destinations/saitama.html" title="사이타마(오미야)">사이타마(오미야)</a></li>');
+document.write('<li><a href="/multi/destinations/ibaraki.html" title="이바라키">이바라키</a></li>');
+document.write('<li><a href="/multi/destinations/chiba.html" title="지바(나리타/보소)">지바(나리타/보소)</a></li>');
+document.write('<li class="subnaviLabel"><span class="subnaviTitle">카테고리별</span></li>');
+document.write('<li><a href="/multi/season/spring/" title="벚꽃">벚꽃</a></li>');
+document.write('<li><a href="/multi/season/summer_hanabi/" title="불꽃 놀이">불꽃 놀이</a></li>');
+document.write('<li><a href="/multi/season/summer/" title="여름 축제">여름 축제</a></li>');
+document.write('<li><a href="/multi/season/autumn/" title="단풍">단풍</a></li>');
+document.write('<li><a href="/multi/season/winter/" title="스키 특집">스키 특집</a></li>');
+document.write('<li><a href="/multi/onsen/" title="온천">온천</a></li>');
+document.write('</ul>');
+document.write('</li>');
+document.write('</ul>');
+document.write('<div class="closeWrap">');
+document.write('<p class="close">닫기</p>');
+document.write('</div>');
+document.write('</div><!-- /pulldown -->');
+document.write('<!-- /SP GlobalNavi -->');
+
+// ActiveIndex Debug
+console.log("ActiveIndex: "+ActiveIndex)
+
+var image_url	= '/kr/img/renew/common/';
+
+var menuItem	= new Array();
+menuItem[1]	= '#menuPass';
+menuItem[2]	= '#menuRoute';
+menuItem[3]	= '#menuCustomer';
+menuItem[4]	= '#menuDestinations';
+menuItem[5]	= '#menuInvestor';
+menuItem[6]	= '#menuAboutus';
+
+function ShowActiveMenu(){
+	if( ActiveIndex >= 0 ){
+	    var ele = $( menuItem[ActiveIndex] + ' > a > img' );
+	    ele.attr( 'src',
+	        image_url + 'menu0' + (ActiveIndex) + '_active.png'
+	    );
+	}	
+}
+
+function HideAllMenu( menuName ){
+	var menuList = new Array(7);
+	for( n = 1; n <= 6; n ++ ){
+		var ele = $( menuItem[n] + ' > a > img' );
+		ele.attr( 'src', image_url + 'menu0' + (n) + '.png');
+	}
+	ShowActiveMenu();
+}
+
+function ViewMenu( menuName ){
+	HideAllMenu( menuName );
+	var ele = $( menuItem[menuName] + ' > a > img' );
+    var tmp = image_url + 'menu0' + (menuName) + '_active.png';
+	ele.attr( 'src', tmp );
+}
+
+function OverMenu( menuName ){
+	if (!$( menuItem[menuName] + ' > a' ).hasClass('active')){
+		var ele = $( menuItem[menuName] + ' > a > img' );
+	    var tmp = image_url + 'menu0' + (menuName) + '_on.png';
+	    if (ActiveIndex != menuName)
+			ele.attr( 'src', tmp );
+	}
+}
+
+function OutMenu( menuName ){
+	if (!$( menuItem[menuName] + ' > a' ).hasClass('active')){
+		var ele = $( menuItem[menuName] + ' > a > img' );
+	    var tmp = image_url + 'menu0' + (menuName) + '.png';
+	    if (ActiveIndex != menuName)
+	    	ele.attr( 'src', tmp );
+	}
+}
+
+$("#menuPass").mouseover(function(){ OverMenu(1); });
+$("#menuRoute").mouseover(function(){ OverMenu(2); });
+$("#menuCustomer").mouseover(function(){ OverMenu(3); });
+$("#menuDestinations").mouseover(function(){ OverMenu(4); });
+$("#menuInvestor").mouseover(function(){ OverMenu(5); });
+$("#menuAboutus").mouseover(function(){ OverMenu(6); });
+
+$("#menuPass").mouseout(function(){ OutMenu(1); });
+$("#menuRoute").mouseout(function(){ OutMenu(2); });
+$("#menuCustomer").mouseout(function(){ OutMenu(3); });
+$("#menuDestinations").mouseout(function(){ OutMenu(4); });
+$("#menuInvestor").mouseout(function(){ OutMenu(5); });
+$("#menuAboutus").mouseout(function(){ OutMenu(6); });
+
+$("#menuPass").click(function(){ ViewMenu(1); });
+$("#menuRoute").click(function(){ ViewMenu(2); });
+$("#menuCustomer").click(function(){ ViewMenu(3); });
+$("#menuDestinations").click(function(){ ViewMenu(4); });
+$("#menuInvestor").click(function(){ ViewMenu(5); });
+$("#menuAboutus").click(function(){ ViewMenu(6); });
+$(".close").click(function(){HideAllMenu();})
+
+ShowActiveMenu();
+
+
+//------------------------------------------------------------------------------
+// site search
+//------------------------------------------------------------------------------
+$(function(){
+
+	var url = location.href;
+	
+	/* search button click */
+	$('#srchBtnSp').click(function(){
+		var inputKeyword = $(this).prev().val();
+		var refURL = location.protocol +'//'+ location.hostname + location.pathname;
+		var searchParam = '?ie=u&lang=ko&ref='+ refURL +'&kw='+ inputKeyword +'&page=1';
+		if( url.indexOf('www.jreast.co.jp') > -1 ){
+			location.href = '/kr/sitesearch/index.html'+ searchParam;
+		} else {
+			location.href = 'https://www.jreast.co.jp/kr/sitesearch/index.html'+ searchParam;
+		}
+		return false;
+	});
+
+	/* search button EnterKey */
+	$('#srchInputSp').keypress(function(e){
+		if( e.which == 13 ){
+			var inputKeyword = $(this).val();
+			var refURL = location.protocol +'//'+ location.hostname + location.pathname;
+			var searchParam = '?ie=u&lang=ko&ref='+ refURL +'&kw='+ inputKeyword +'&page=1';
+			if( url.indexOf('www.jreast.co.jp') > -1 ){
+				location.href = '/kr/sitesearch/index.html'+ searchParam;
+			} else {
+				location.href = 'https://www.jreast.co.jp/kr/sitesearch/index.html'+ searchParam;
+			}
+			return false;
+		}
+	});
+});
+

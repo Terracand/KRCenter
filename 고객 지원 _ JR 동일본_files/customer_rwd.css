@@ -1,0 +1,545 @@
+@charset "utf-8";
+
+
+@media screen and (max-width: 640px) {
+
+#contents .titleBox .leadBox, 
+#contents .titleBox01 .leadBox, 
+#contents .titleBox02 .leadBox,
+.haneda #contents .titleBox .leadBox,
+#contents #customerSupport.titleBox .leadBox{
+	width:auto;
+	margin-left:10px;
+	margin-right:10px;
+	padding-bottom:15px;
+}
+
+/*----------------------------------------------------------------------
+    page_navi
+----------------------------------------------------------------------*/
+.station .page_navi{
+	display:none;
+}
+
+/*----------------------------------------------------------------------
+    titleBox
+----------------------------------------------------------------------*/
+.station .titleBox .bk{
+	background:none;
+}
+.station .titleBox .bk .leadBox p.title{
+	padding-top:0;
+} 
+    
+/*----------------------------------------------------------------------
+    double content
+----------------------------------------------------------------------*/
+.dblCont{
+    padding: 3%;
+}
+.dblCont_item_noteTxt{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 90%;
+}
+.dblCont_item_nextMap img{
+    width: 75%!important;
+}
+
+/*----------------------------------------------------------------------
+    boxLeft/boxRight
+----------------------------------------------------------------------*/
+#contents .boxLeft_bg, 
+#contents .boxRight_bg, 
+#contents .boxLeft_bg01, 
+#contents .boxRight_bg02, 
+#contents .boxRight_bg02-2, 
+#contents .boxLeft_bg03, 
+#contents .boxRight_bg04,
+#contents .boxRight_bg,
+#contents .boxRight_bg02,
+#contents .boxRight_bg02-2,
+#contents .boxRight_bg04,
+#customer .supportBox .boxRight_bg, 
+#customer .supportBox .boxRight_bg01, 
+#customer .supportBox .boxRight_bg02, 
+#customer .supportBox .boxRight_bg02-2, 
+#customer .supportBox .boxRight_bg03, 
+#customer .supportBox .boxRight_bg04,
+#contents #customerSupport.titleBox .leadBox .txtBox{
+	float:none;
+	width:auto;
+}
+#customer .supportBox_sgl_wide,
+#customer .supportBox_sgl_wide .supportBoxInner,
+#customer .supportBox_sgl_wide .supportBoxBg{
+	width:auto;
+}
+
+#customer .supportBox_sgl_wide .supportBoxBg img.left{
+	padding-right:10px;
+}
+#customer .businessHours,
+#customer .creditCard{
+	width:auto;
+}
+#customer .businessHours .txtBox,
+#customer .creditCard p.txt{
+	float:none;
+	width:auto;
+}
+#customer .businessHours p.img,
+#contents #customerSupport.titleBox .leadBox p.img,
+#customer .available p.img,
+#customer .infoService p.img,
+#customerSupport .img02,
+#contents #customerSupport.titleBox .leadBox .img02{
+	clear:both;
+	display:block;
+	float:none;
+	text-align:center;
+	width:auto;
+}
+p.img img,
+.img02 img{
+	max-width:100%;
+	height:auto;
+}
+#customer .creditCard p.img{
+	float:none;
+	width:auto;
+	text-align:right;
+	margin-top:15px;
+}
+#customer .supportBox,
+#customer .supportBoxInner,
+#customer .supportBoxBg,
+#customer .supportBox_sgl,
+#customer .supportBox_sgl .supportBoxInner,
+#customer .supportBox_sgl .supportBoxBg,
+#customer .supportBox .boxLeft,
+#customer .supportBox .boxRight{
+	width:auto;
+	background:none;
+}
+#customer .supportBoxBg,
+#customer .supportBox{
+	margin:0;
+	padding-bottom:0;
+}
+#customer .supportBox .boxLeft,
+#customer .supportBox .boxRight,
+#customer .boxLeft_bg01,
+#customer .boxRight_bg02,
+#customer .boxRight_bg02-2,
+#customer .boxLeft_bg03,
+#customer .boxRight_bg04,
+#customer .boxLeft_bg05,
+#customer .boxRight_bg06,
+#customer .supportBox_sgl .supportBoxBg{
+	outline:solid 6px #e8f5d9;
+	background-color:#ffffff;
+	border:1px solid #c1efb1;
+	float:none;
+	margin:0 0 32px 0;
+	clear:both;	
+	padding-bottom:20px;
+}
+#customer .supportBox .boxLeft,
+#customer .supportBox .boxRight{
+	text-align:center;
+}
+#customer .supportBox .boxRight,
+#customer .boxRight_bg02,
+#customer .boxRight_bg02-2,
+#customer .boxRight_bg04,
+#customer .boxRight_bg06{
+	margin-bottom:26px;
+}
+#customer .supportBoxBg{
+	margin:0 0 0px 0;
+	text-align:center;
+}
+#customer .supportBoxBg div,
+#customer .supportBoxBg h3,
+#customer .supportBoxBg p,
+#customer .supportBoxBg ul,
+#customer .supportBoxBg span,
+#customer .supportBoxBg a{
+	text-align:left;
+}
+#customer .supportBox_sgl .supportBoxBg{
+	margin:0 0 10px 0;
+	text-align:center;
+}
+#customer .supportBox_sgl .supportBoxBg .boxLeft_bg{
+	outline:none;
+	border:none;
+	background:none;
+	margin-bottom:0;
+	padding-bottom:0px;
+}
+#customer .supportBox .boxLeft:after,
+#customer .supportBox .boxRight:after,
+#customer .boxLeft_bg01:after,
+#customer .boxRight_bg02:after,
+#customer .boxRight_bg02-2:after,
+#customer .boxLeft_bg03:after,
+#customer .boxRight_bg04:after,
+#customer .boxLeft_bg05:after,
+#customer .boxRight_bg06:after{
+	content:"";
+	display:block;
+	clear:both;
+	visibility:hidden;
+}
+#customer .supportBox_sgl .img_product_box{
+	float:right;
+}
+#customer .supportBox .boxLeft .img_product_box,
+#customer .supportBox .boxRight .img_product_box,
+#customer .boxLeft_bg01 .img_product_box,
+#customer .boxRight_bg02 .img_product_box,
+#customer .boxRight_bg02-2 .img_product_box,
+#customer .boxLeft_bg03 .img_product_box,
+#customer .boxRight_bg04 .img_product_box,
+#customer .boxLeft_bg05 .img_product_box,
+#customer .boxRight_bg06 .img_product_box{
+	max-width:40%;
+	padding-left:10px;
+	padding-right:10px;
+	box-sizing:border-box;
+}
+#customer .supportBox .boxLeft .img_product_box img,
+#customer .supportBox .boxRight .img_product_box img,
+#customer .boxLeft_bg01 .img_product_box img,
+#customer .boxRight_bg02 .img_product_box img,
+#customer .boxRight_bg02-2 .img_product_box img,
+#customer .boxLeft_bg03 .img_product_box img,
+#customer .boxRight_bg04 .img_product_box img,
+#customer .boxLeft_bg05 .img_product_box img,
+#customer .boxRight_bg06 .img_product_box img{
+	max-width:100%;
+	height:auto;
+	margin-left:0;
+	margin-right:0;
+}
+#customer img.center{
+	margin-left:0;
+	margin-right:0;
+	padding-left:10px;
+	padding-right:10px;
+	float:none;
+}
+#customer .supportBox .boxLeft_bg h3,
+#customer .supportBox .boxRight_bg h3,
+#customer .supportBox .boxRight_bg02 h3,
+#customer .supportBox .boxRight_bg02-2 h3{
+	padding-bottom:16px;
+	padding-right:105px;
+	min-height:inherit;
+}
+#customer .supportBox .boxLeft_bg03 h3,
+#customer .supportBox_sgl .boxLeft_bg03 h3,
+#customer .supportBox .boxRight_bg04 h3,
+#customer .supportBox .boxLeft_bg05 h3,
+#customer .supportBox .boxRight_bg06 h3{
+	padding-bottom:16px;
+	padding-right:70px;
+	min-height:inherit;
+	
+}
+#customer .supportBox h3, #customer .supportBox_sgl h3{
+	padding-right:10px;
+}
+#customer .supportBox h3.ttlIcn{
+	padding-left:30px;
+	padding-right:5px;
+}
+#customer .supportBox h3 img.icn{
+	float:none;
+	vertical-align:text-top;
+	margin-left:-25px;
+}
+#customer .supportBox.imgLeft img{
+	float:none;
+}
+#customer .supportBox .support_wide_image img{
+	margin:0;
+	padding:10px 15px 10px 10px;
+}
+#customer .supportBox .detail.newwin,
+#customer .supportBox_sgl .detail.newwin{
+	word-wrap : break-word;
+	overflow-wrap : break-word;
+}
+#customer .supportBox .txtBox_size{
+	width:auto;
+}
+/*----------------------------------------------------------------------
+    monorail_jr
+----------------------------------------------------------------------*/
+#customer .monorail_jr{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#customer .monorail_jr .left,
+#customer .monorail_jr dl.right{
+	float:none;
+	padding:0;
+	width:auto;
+	margin-bottom:10px;
+	background:none;
+	text-align:center;
+}
+#customer .monorail_jr .left:after{
+	content:url(../../customer_support/img/renew/sc_img_haneda07.gif);
+	display:block;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+#customer .monorail_jr dd,
+#customer .monorail_jr dd.last{
+	float:none;
+	display:inline-block;
+	margin-right:0;
+	margin-bottom:10px;
+	padding-left:6px;
+	padding-right:6px;
+}
+#customer .monorail_jr dd.txt{
+	width:100%;
+	margin-top:-5px;
+	padding-left:0;
+	padding-right:0;
+}
+
+/*----------------------------------------------------------------------
+    infoTbl
+----------------------------------------------------------------------*/
+#customer .infoTbl{
+	width:100%;
+	font-size:85%;
+}
+#customer .infoTbl th, #customer .infoTbl td{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/*----------------------------------------------------------------------
+    alphabetList
+----------------------------------------------------------------------*/
+#customer ul.alphabetList{
+	width:auto;
+	margin-right:-7px;
+	margin-left:-7px;
+}
+#customer ul.alphabetList li{
+	text-align:center;
+}
+
+/*----------------------------------------------------------------------
+    listBox
+----------------------------------------------------------------------*/
+#customer .stationMaps,
+#customer .stationMaps .listBox ul{
+	width:auto;
+}
+#customer .stationMaps .listBox{
+	padding-left:0;
+	padding-right:0;
+}
+#customer .stationMaps .listBox ul li{
+	width:25%;
+	padding-right:4px;
+	padding-left:17px;
+	box-sizing:border-box;
+	word-break:break-all;
+	background-position:3px 0.4em;
+}
+
+/*----------------------------------------------------------------------
+    pdfBox
+----------------------------------------------------------------------*/
+#customer .pdfBox{
+	width:auto;
+}
+#customer .pdfBox p{
+	display:block;
+}
+
+/*----------------------------------------------------------------------
+    available,
+----------------------------------------------------------------------*/
+#customer .available,
+#customer .available p.txt{
+	width:auto;
+}
+
+/*----------------------------------------------------------------------
+    txtBox
+----------------------------------------------------------------------*/
+#customer .infoService .txtBox,
+#customer #contents .imageBox .txtBox{
+	float:none;
+	width:auto;
+}
+
+/*----------------------------------------------------------------------
+    pageLink
+----------------------------------------------------------------------*/
+#customer .pageLink{
+	width:auto;
+	margin-left:10px;
+	margin-right:10px;
+}
+#customer .pageLink ul{
+	padding-left:0;
+}
+#customer .pageLink ul li{
+	display:inline-block;
+	background-position:0 0.6em;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+/*----------------------------------------------------------------------
+    pageLink
+----------------------------------------------------------------------*/
+#customer .infolineLink{
+	padding-left:10px;
+	width:auto;
+}
+#customer .infolineLink p{
+	margin-left:5px;
+}
+
+/*----------------------------------------------------------------------
+    Travel Service Center(View Plaza)
+----------------------------------------------------------------------*/
+
+#customer .InboundTravelCounter_left {
+	float:none;
+	width:100%;
+}
+
+#customer .InboundTravelCounter_center {
+	float:none;
+	width:100%;
+	margin-left:0;
+	margin-top:20px;
+}
+
+#customer .InboundTravelCounter_right {
+	float:none;
+	width:100%;
+	margin-left:0;
+	margin-top:20px;
+}
+
+#customer .InboundTravelCounter_center img,
+#customer .InboundTravelCounter_right img {
+	width:100%;
+	height:auto;
+}
+
+/*----------------------------------------------------------------------
+    etc
+----------------------------------------------------------------------*/
+#customer .infoService,
+#contents .linksBox{
+	width:auto;
+}
+#customer #contents .imageBox .imgRight{
+	float:none;
+	width:auto;
+	padding-right:0;
+	padding-top:10px;
+}
+
+/* support -------------------- */
+
+.support_wide_image {
+  overflow: hidden;
+}
+
+/*----------------------------------------------------------------------
+    Customer Support Top JR EAST Travel Service Center(Map)
+----------------------------------------------------------------------*/
+#customer .csPc {display: none;}
+#customer .csSp {display: block;}
+
+#customer .mapBox h3 {
+    border-bottom: 2px solid #009100;
+    font-size: 130%;
+    margin: 1.5rem 0 0;
+    line-height: 1.3;
+}
+
+#customer .tscMapArea {
+	position: block;
+}
+
+#customer .kantoMap {
+	margin-top: 1rem;
+}
+
+#customer .easternJapanMap {
+	margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+
+#customer .kantoMap ul,
+#customer .easternJapanMap ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+#customer .kantoMap ul li,
+#customer .easternJapanMap ul li{
+	margin-top: 10px;
+    width: 48%;
+    border: solid 2px #008d00;
+    display: flex;
+}
+
+
+#customer .kantoMap ul li a,
+#customer .easternJapanMap ul li a{
+	position: relative;
+	text-indent: 0;
+    background: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    line-height: 1.3;
+    text-align: left;
+    font-weight: bold;
+    color: #008e00;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    top: auto !important;
+    left: auto !important;
+}
+
+#customer .kantoMap ul li a::after,
+#customer .easternJapanMap ul li a::after{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 23px;
+    background: url(/multi/common/img/triangle_arrow_white.svg) 0 0 no-repeat;
+    background-size: cover;
+}
+
+}

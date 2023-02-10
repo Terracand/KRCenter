@@ -1,0 +1,22 @@
+function jre_footer(path) {
+	document.write('<div id="footer">');
+	document.write('<div class="rwdInner">');
+	document.write('<ul class="fNavi">');
+	document.write('<li><a href="/e/compliance/index.html" title="컴플라이언스(영문 전용)">컴플라이언스(영문 전용)</a></li>');
+	document.write('<li><a href="/e/policy/index.html" title="개인정보보호 정책(영문 전용)">개인정보보호 정책(영문 전용)</a></li>');
+	document.write('<li><a href="/e/cookiepolicy/index.html" title="쿠키 정책(영문 전용)">쿠키 정책(영문 전용)</a></li>');
+	document.write('<li><a href="/e/termsofuse/index.html" title="약관(영문 전용)">약관(영문 전용)</a></li>');
+	document.write('<li><a href="/kr/sitemap/index.html" title="사이트맵">사이트맵</a></li>');
+	document.write('<li><a href="/kr/downloads/index.html" title="지도 및 가이드">지도 및 가이드</a></li>');
+	document.write('<li><a href="/e/links/index.html" title="링크(영문 전용)">링크(영문 전용)</a></li>');
+	document.write('</ul>');
+	document.write('<p class="copyright">Copyright &copy; East Japan Railway Company All Rights Reserved.</p>');
+	document.write('</div>');
+	document.write('</footer>');
+}
+
+$(function(){
+	$('#closeBtn_').click(function(){
+		$(this).parent('#revisedFares_infoBtn').addClass('disp_none');
+	});
+});

@@ -1,0 +1,58 @@
+$(function(){
+	
+	// メニューの表示
+	$('.sp_title .menu_open').bind('click', function(){
+		$('.sp_menu, .overlay').fadeIn('fast');
+		return false;
+	});
+	
+	// メニューの非表示
+	$('.sp_menu .menu_close, .overlay').bind('click', function(){
+		$('.sp_menu, .overlay').fadeOut('fast');
+		return false;
+	});
+	
+	// 子メニューの開閉
+	$('.sp_menu .close > a').bind('click', function(){
+		var current = $(this);
+		current.next('ul').slideToggle('fast', function(){
+			current.parent('li').attr('class', (($(this).is(':visible'))? 'open': 'close'));
+		});
+		return false;
+	});
+	
+	// スマホサイズではなくなった時はメニューを非表示にする
+	$(window).bind('resize', function(){
+		try{
+			if(!window.matchMedia('(max-width: 640px)').matches){
+				$('.sp_menu, .overlay').fadeOut('fast');
+			}
+		}catch(e){
+			$('.sp_menu, .overlay').fadeOut('fast');
+		}
+	});
+	
+});
+
+
+//スマホ表示時画像を切り替える
+$(function(){
+	var $setElem = $('.spImg'),
+	pcName = '_pc',//PC版のファイル名
+	spName = '_sp',//スマホ版のファイル名
+	replaceWidth = 640;//切り替える画面サイズ
+ 
+	$setElem.each(function(){
+	var $this = $(this);
+	function imgSize(){
+	var windowWidth = parseInt($(window).width());
+	  if(windowWidth >= replaceWidth) {
+		$this.attr('src',$this.attr('src').replace(spName,pcName)).css({visibility:'visible'});
+	  } else if(windowWidth < replaceWidth) {
+		$this.attr('src',$this.attr('src').replace(pcName,spName)).css({visibility:'visible'});
+	  }
+	}
+	$(window).resize(function(){imgSize();});
+	imgSize();
+	});
+});
