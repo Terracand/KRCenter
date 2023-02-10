@@ -1,0 +1,1344 @@
+// Openlayers設定用JS
+
+$(function(){
+
+	var wsize = window.innerWidth;
+	$(window).resize(function(){
+		wsize = window.innerWidth;
+	});
+	if (wsize > 640) {
+
+		//Zoomify を用いてmap表示
+
+		var zoomify_width  = 21294;
+		var zoomify_height = 19534;
+
+		var zoomify_url = "/multi/traininformation/img/mapimage/";
+
+		var map;
+
+		/* Zoomify設定 */
+		var zoomify = new OpenLayers.Layer.Zoomify(
+			"Zoomify",
+			zoomify_url,
+			new OpenLayers.Size( zoomify_width, zoomify_height ),
+			{preload: Infinity}
+		);
+
+		/* mapのオプション指定・表示 */
+		var options = {
+			maxExtent: new OpenLayers.Bounds( 0, 0, zoomify_width, zoomify_height ),
+			maxResolution: Math.pow( 2, zoomify.numberOfTiers-1 ),
+			//numZoomLevels: zoomify.numberOfTiers,
+			units: 'pixels',
+			restrictedExtent: new OpenLayers.Bounds( 0, 0, zoomify_width, zoomify_height ),
+			zoomMethod: null
+		};
+
+		map = new OpenLayers.Map( "map", options );
+		map.addLayer( zoomify );
+
+		map.setBaseLayer( zoomify );
+		map.zoomTo(3);
+
+		map.isValidZoomLevel = function(zoomLevel) {
+			return ( (zoomLevel != null) && (zoomLevel >= 3) && (zoomLevel <= 7) );
+		};
+
+		map.setCenter(new OpenLayers.LonLat(11700,10000));
+
+
+		// Zoomボタン
+		$('.zoomIn').on('click', function(){
+			map.zoomIn();
+			return false;
+		});
+		$('.zoomOut').on('click', function(){
+			map.zoomOut();
+			return false;
+		});
+
+		// 座標確認用function
+		// クリックした箇所の座標がアラート表示されます
+		// 普段はコメントアウト
+		/*
+	function whats_geo(evt) {
+		var lonlat = map.getLonLatFromViewPortPx(evt.xy);
+		var texts = 'X=' + lonlat.lon + ' Y=' + lonlat.lat;
+		alert(texts);
+	}
+	map.events.register('click', this, whats_geo);
+	*/
+
+
+		// global
+		var img_name = '';
+		var overlay;
+		var zoom;
+		var lineName;
+		var point_x;
+		var point_y;
+		var popup;
+
+		var zooms;
+
+	/*----------------------------------------------------------------------
+		リストクリック時のmapアクション(By Line)
+	----------------------------------------------------------------------*/
+		$(document).on('click', '#map #mapMenuLine .menuInner ul li a', function(){
+
+			$('#map #mapMenuLine .menuInner ul li a').removeClass('select');
+			$(this).addClass('select');
+
+
+			// リンク先を変数に格納
+			var link = $(this).attr('href');
+			lineName = $(this).attr('data-linename');
+
+			// リンク先を画像名に
+			var img_src = new Array();
+			var img_src02 = '';
+			if (link.indexOf('/nex/') != -1){
+				img_src02 = 'nex.svg';
+			} else if (link.indexOf('/saphir/') != -1){
+				img_src02 = 'saphir.svg';
+			} else if (link.indexOf('/odoriko/') != -1){
+				img_src02 = 'odoriko.svg';
+			} else if (lineName == 'FUJI EXCURSION'){
+				img_src02 = 'fujiexcursion.svg';
+			} else if (lineName == 'Tokyo Monorail'){
+				img_src02 = 'tokyomonorail.svg';
+			} else if (lineName == 'Sendai Airport Access Line'){
+				img_src02 = 'sendai_airport.svg';
+			} else if (link.indexOf('/joyful/') != -1) {
+				img_src = link.split('/joyful/');
+				img_src02 = img_src[1].replace('.html', '.svg');
+			} else {
+				img_src = link.split('/routemaps/');
+				img_src02 = img_src[1].replace('.html', '.svg');
+			}
+
+			// リンク先と同じ名前の画像を指定
+			img_name = '/multi/traininformation/img/lines/' + img_src02;
+
+			// 路線のポイントを変数に格納
+			point_x = $(this).attr('data-x');
+			point_y = $(this).attr('data-y');
+
+			// 路線画像のズームレベルを変数に格納
+			zoom = $(this).attr('data-level');
+
+
+
+			if (link != undefined){
+
+				// 他のマーカーを全て削除(初期化)
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').remove();
+				$('#Popup').remove();
+
+
+				// 表示位置の指定
+				var poiX;
+				var poiY = parseInt(point_y) - 20;
+				if (zoom == 3){
+					poiX = parseInt(point_x) - 1500;
+				} else if (zoom == 4) {
+					poiX = parseInt(point_x) - 1000;
+				} else {
+					poiX = parseInt(point_x) - 600;
+				}
+
+				if (lineName == 'Joetsu Shinkansen') {
+					poiX = parseInt(point_x) - 2500;
+				} else if (lineName == 'Narita Express') {
+					poiX = parseInt(point_x) - 200;
+				} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+					poiX = parseInt(point_x) - 1300;
+				} else if (lineName == 'Kairi') {
+					poiX = parseInt(point_x) - 500;
+				} else if (lineName == 'Sendai Airport Access Line') {
+					poiX = parseInt(point_x) + 50;
+				}
+				map.panTo(new OpenLayers.LonLat(poiX, poiY));
+
+				// ズームの設定
+				zooms = map.getZoom();
+				setTimeout(function(){
+					if(zooms === parseInt(zoom)) {
+						zoom_line();
+					} else {
+						map.zoomTo(zoom);
+					}
+				}, 100);
+
+
+				// ポップアップの設定
+				var contentStrings;
+				contentStrings = '<p class="name">' + lineName + '</p><p class="btn"><a href="' + link + '" target="_new">詳細へ行く</a></p>';
+
+				var popup_point = new Array();
+				if (zoom == 5) {
+					if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 1900;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari') {
+						popup_point[0] = parseInt(point_x) - 1200;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) + 60;
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'FruiTea Fukushima' || lineName == 'Resort View Furusato') {
+						popup_point[0] = parseInt(point_x) - 1150;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'SL Gunma' || lineName == 'Resort Minori') {
+						popup_point[0] = parseInt(point_x) - 750;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 450;
+						popup_point[1] = parseInt(point_y) + 600;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 1150;
+						popup_point[1] = parseInt(point_y) + 60;
+					} else if (lineName == 'Oykot' || lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 1100;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 1100;
+						popup_point[1] = parseInt(point_y) + 300;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						popup_point[0] = parseInt(point_x) - 1000;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 850;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Resort Yamadori') {
+						popup_point[0] = parseInt(point_x) - 1050;
+						popup_point[1] = parseInt(point_y) + 180;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) + 200;
+						popup_point[1] = parseInt(point_y) - 350;
+					} else {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) + 80;
+					}
+				} else if (zoom == 4) {
+					if (lineName == 'Joetsu Shinkansen' || lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari') {
+						popup_point[0] = parseInt(point_x) - 2200;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 2800;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Hakucho / Tsugaru' || lineName == 'Resort View Furusato' || lineName == 'Oykot' || lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 2000;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 1840;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 2000;
+						popup_point[1] = parseInt(point_y) + 140;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y) + 800;
+					} else if (lineName == 'FruiTea Fukushima') {
+						popup_point[0] = parseInt(point_x) - 2050;
+						popup_point[1] = parseInt(point_y) + 190;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 1960;
+						popup_point[1] = parseInt(point_y) + 370;
+					} else if (lineName == 'IZU CRAILE') {
+						popup_point[0] = parseInt(point_x) - 1800;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else {
+						popup_point[0] = parseInt(point_x) - 1840;
+						popup_point[1] = parseInt(point_y) + 160;
+					}
+				} else if (zoom == 3) {
+					if (lineName == 'Tohoku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3400;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Akita Shinkansen'  || lineName == 'Yamagata Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3400;
+						popup_point[1] = parseInt(point_y) + 650;
+					} else if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 4000;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3680;
+						popup_point[1] = parseInt(point_y) + 200;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 4500;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari' || lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 290;
+					} else if (lineName == 'FruiTea Fukushima') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 400;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 3740;
+						popup_point[1] = parseInt(point_y) + 540;
+					} else if (lineName == 'IZU CRAILE' || lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 3500;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Resort Yamadori') {
+						popup_point[0] = parseInt(point_x) - 4100;
+						popup_point[1] = parseInt(point_y) + 650;
+					} else {
+						popup_point[0] = parseInt(point_x) - 3680;
+						popup_point[1] = parseInt(point_y) + 320;
+					}
+				} else if (zoom == 7) {
+					if (lineName == 'Tokyo Monorail') {
+						//popup_point[0] = parseInt(point_x);
+						//popup_point[1] = parseInt(point_y) + 320;
+						popup_point[0] = parseInt(point_x) - 455;
+						popup_point[1] = parseInt(point_y) - 60;
+					}
+
+				}
+
+				popup = new OpenLayers.Popup(
+					"Popup",
+					new OpenLayers.LonLat(popup_point[0], popup_point[1]),
+					new OpenLayers.Size(217, 'auto'),
+					contentStrings,
+					null,
+					false);
+				popup.backgroundColor = '';
+				map.addPopup(popup);
+				$('#Popup').hide();
+				$('#Popup').delay(1000).fadeIn();
+
+				if (lineName == 'POKÉMON with YOU Train') {
+					$('#Popup p.name').css('font-size', '13px');
+				} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+					$('#Popup p.name').css('font-size', '10px');
+				}
+
+			}
+
+			$('#OpenLayers_Layer_Zoomify_2').next('div').addClass('marker');
+
+			return false;
+
+		});
+
+		// マーカークリック、ズーム時のイベント設定
+		map.events.register('zoomend', this, zoom_popup);
+		map.events.register('zoomend', this, zoom_line);
+
+
+		// ズーム時のハイライト画像の調整
+		function zoom_popup(event) {
+
+			if (popup != undefined) {
+
+				var zoomlv = map.getZoom();
+				var popup_point = new Array();
+
+				if (zoomlv == 7) {
+					if (lineName == 'Tohoku Shinkansen') {
+						popup_point[0] = parseInt(point_x) + 100;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Akita Shinkansen' || lineName == 'Hokuriku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 200;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 600;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Narita Express') {
+						popup_point[0] = parseInt(point_x) - 370;
+						popup_point[1] = parseInt(point_y) + 220;
+					} else if (lineName == 'HITACHI and TOKIWA') {
+						popup_point[0] = parseInt(point_x);
+						popup_point[1] = parseInt(point_y) + 120;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 1150;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Nikko / Kinugawa' || lineName == 'Kirakira Uetsu' || lineName == 'Toreiyu Tsubasa' || lineName == 'Zipangu') {
+						popup_point[0] = parseInt(point_x) - 250;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Odoriko') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y) + 50;
+					} else if (lineName == 'Kusatsu / Minakami' || lineName == 'Resort Yamadori') {
+						popup_point[0] = parseInt(point_x) - 250;
+						popup_point[1] = parseInt(point_y) + 30;
+					} else if (lineName == 'Yamagata Shinkansen' || lineName == 'Hakucho / Tsugaru' || lineName == 'SL Gunma' || lineName == 'FruiTea Fukushima') {
+						popup_point[0] = parseInt(point_x) - 100;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 200;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'SL Ginga') {
+						popup_point[0] = parseInt(point_x) - 400;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 470;
+						popup_point[1] = parseInt(point_y) - 20;
+					} else if (lineName == 'Resort Minori' || lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 60;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'Resort View Furusato') {
+						popup_point[0] = parseInt(point_x) - 450;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Oykot') {
+						popup_point[0] = parseInt(point_x) - 330;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 170;
+						popup_point[1] = parseInt(point_y) + 150;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						popup_point[0] = parseInt(point_x) - 310;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'IZU CRAILE') {
+						popup_point[0] = parseInt(point_x) - 200;
+						popup_point[1] = parseInt(point_y) + 120;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 150;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 300;
+						popup_point[1] = parseInt(point_y) + 200;
+					} else if (lineName == 'Iroha') {
+						popup_point[0] = parseInt(point_x) - 240;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'B.B.BASE') {
+						popup_point[0] = parseInt(point_x) - 680;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'Kairi') {
+						popup_point[0] = parseInt(point_x) - 250;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Tokyo Monorail') {
+						popup_point[0] = parseInt(point_x) - 455;
+						popup_point[1] = parseInt(point_y) - 60;
+					} else if (lineName == 'FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) + 250;
+						popup_point[1] = parseInt(point_y) - 250;
+					} else {
+						popup_point[0] = parseInt(point_x);
+						popup_point[1] = parseInt(point_y);
+					}
+
+					popup.lonlat = new OpenLayers.LonLat(popup_point[0], popup_point[1]);
+				} else if (zoomlv == 6) {
+					if (lineName == 'Tohoku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 200;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Yamagata Shinkansen' || lineName == 'SL Gunma') {
+						popup_point[0] = parseInt(point_x) - 300;
+						popup_point[1] = parseInt(point_y) + 40;
+					}  else if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 900;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Narita Express') {
+						popup_point[0] = parseInt(point_x) - 540;
+						popup_point[1] = parseInt(point_y) + 350;
+					} else if (lineName == 'HITACHI and TOKIWA' || lineName == 'Zipangu') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari' || lineName == 'SL Ginga') {
+						popup_point[0] = parseInt(point_x) - 750;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Odoriko') {
+						popup_point[0] = parseInt(point_x) - 750;
+						popup_point[1] = parseInt(point_y) + 130;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						popup_point[0] = parseInt(point_x) - 460;
+						popup_point[1] = parseInt(point_y) + 20;
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 460;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 680;
+						popup_point[1] = parseInt(point_y) + 10;
+					} else if (lineName == 'Resort Minori') {
+						popup_point[0] = parseInt(point_x) - 300;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Resort View Furusato') {
+						popup_point[0] = parseInt(point_x) - 650;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 220;
+						popup_point[1] = parseInt(point_y) + 200;
+					} else if (lineName == 'Oykot') {
+						popup_point[0] = parseInt(point_x) - 550;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 630;
+						popup_point[1] = parseInt(point_y) + 244;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						popup_point[0] = parseInt(point_x) - 530;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'IZU CRAILE') {
+						popup_point[0] = parseInt(point_x) - 400;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 370;
+						popup_point[1] = parseInt(point_y) + 40;
+					} else if (lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y) + 220;
+					} else if (lineName == 'B.B.BASE') {
+						popup_point[0] = parseInt(point_x) - 950;
+						popup_point[1] = parseInt(point_y) + 200;
+					} else if (lineName == 'Kairi') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Tokyo Monorail') {
+						popup_point[0] = parseInt(point_x) - 400;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 500;
+						popup_point[1] = parseInt(point_y) - 200;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) + 300;
+						popup_point[1] = parseInt(point_y) - 250;
+					} else {
+						popup_point[0] = parseInt(point_x) - 460;
+						popup_point[1] = parseInt(point_y) + 40;
+					}
+					popup.lonlat = new OpenLayers.LonLat(popup_point[0], popup_point[1]);
+				} else if (zoomlv == 5) {
+					if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Narita Express') {
+						popup_point[0] = parseInt(point_x) - 880;
+						popup_point[1] = parseInt(point_y) + 600;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 1900;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari') {
+						popup_point[0] = parseInt(point_x) - 1200;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) + 60;
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'FruiTea Fukushima' || lineName == 'Resort View Furusato') {
+						popup_point[0] = parseInt(point_x) - 1150;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'SL Gunma' || lineName == 'Resort Minori') {
+						popup_point[0] = parseInt(point_x) - 750;
+						popup_point[1] = parseInt(point_y) + 100;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 450;
+						popup_point[1] = parseInt(point_y) + 600;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 1150;
+						popup_point[1] = parseInt(point_y) + 60;
+					} else if (lineName == 'Oykot' || lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 1100;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 1100;
+						popup_point[1] = parseInt(point_y) + 300;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						popup_point[0] = parseInt(point_x) - 1000;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 850;
+						popup_point[1] = parseInt(point_y) + 80;
+					} else if (lineName == 'Resort Yamadori') {
+						popup_point[0] = parseInt(point_x) - 1050;
+						popup_point[1] = parseInt(point_y) + 180;
+					} else if (lineName == 'B.B.BASE') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Kairi') {
+						popup_point[0] = parseInt(point_x) - 1100;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Tokyo Monorail') {
+						popup_point[0] = parseInt(point_x) - 400;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 900;
+						popup_point[1] = parseInt(point_y) - 300;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) + 200;
+						popup_point[1] = parseInt(point_y) - 350;
+					} else {
+						popup_point[0] = parseInt(point_x) - 920;
+						popup_point[1] = parseInt(point_y) + 80;
+					}
+					popup.lonlat = new OpenLayers.LonLat(popup_point[0], popup_point[1]);
+				} else if (zoomlv == 4) {
+					if (lineName == 'Joetsu Shinkansen' || lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari') {
+						popup_point[0] = parseInt(point_x) - 2200;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Narita Express') {
+						popup_point[0] = parseInt(point_x) - 1200;
+						popup_point[1] = parseInt(point_y) + 1000;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 2800;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Hakucho / Tsugaru' || lineName == 'Resort View Furusato' || lineName == 'Oykot' || lineName == 'Resort Asunaro') {
+						popup_point[0] = parseInt(point_x) - 2000;
+						popup_point[1] = parseInt(point_y) + 160;
+					} else if (lineName == 'Inaho') {
+						popup_point[0] = parseInt(point_x) - 1840;
+						popup_point[1] = parseInt(point_y) - 150;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 2000;
+						popup_point[1] = parseInt(point_y) + 140;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 1400;
+						popup_point[1] = parseInt(point_y) + 800;
+					} else if (lineName == 'FruiTea Fukushima') {
+						popup_point[0] = parseInt(point_x) - 2050;
+						popup_point[1] = parseInt(point_y) + 190;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 1960;
+						popup_point[1] = parseInt(point_y) + 370;
+					} else if (lineName == 'IZU CRAILE') {
+						popup_point[0] = parseInt(point_x) - 1800;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'B.B.BASE') {
+						popup_point[0] = parseInt(point_x) - 2300;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Kairi') {
+						popup_point[0] = parseInt(point_x) - 1900;
+						popup_point[1] = parseInt(point_y) + 300;
+					} else if (lineName == 'Tokyo Monorail') {
+						popup_point[0] = parseInt(point_x) - 200;
+						popup_point[1] = parseInt(point_y) + 300;
+					} else if (lineName == 'FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 900;
+						popup_point[1] = parseInt(point_y) - 300;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) + 200;
+						popup_point[1] = parseInt(point_y) - 500;
+					} else {
+						popup_point[0] = parseInt(point_x) - 1840;
+						popup_point[1] = parseInt(point_y) + 160;
+					}
+					popup.lonlat = new OpenLayers.LonLat(popup_point[0], popup_point[1]);
+				} else if (zoomlv == 3) {
+					if (lineName == 'Tohoku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3400;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Akita Shinkansen'  || lineName == 'Yamagata Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3400;
+						popup_point[1] = parseInt(point_y) + 650;
+					} else if (lineName == 'Joetsu Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 4000;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						popup_point[0] = parseInt(point_x) - 3680;
+						popup_point[1] = parseInt(point_y) + 200;
+					} else if (lineName == 'Narita Express') {
+						popup_point[0] = parseInt(point_x) - 2200;
+						popup_point[1] = parseInt(point_y) + 2000;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 4500;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'SAPHIR ODORIKO' || lineName == 'Odoriko' || lineName == 'Sazanami / Wakashio' || lineName == 'Resort Shirakami' || lineName == 'SL Banetsu Monogatari' || lineName == 'Koshino Shu*Kura') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 290;
+					} else if (lineName == 'FruiTea Fukushima') {
+						popup_point[0] = parseInt(point_x) - 3800;
+						popup_point[1] = parseInt(point_y) + 400;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						popup_point[0] = parseInt(point_x) - 3740;
+						popup_point[1] = parseInt(point_y) + 540;
+					} else if (lineName == 'IZU CRAILE' || lineName == 'HIGH RAIL 1375') {
+						popup_point[0] = parseInt(point_x) - 3500;
+						popup_point[1] = parseInt(point_y) + 320;
+					} else if (lineName == 'Resort Yamadori') {
+						popup_point[0] = parseInt(point_x) - 4100;
+						popup_point[1] = parseInt(point_y) + 650;
+					} else if (lineName == 'B.B.BASE') {
+						popup_point[0] = parseInt(point_x) - 4000;
+						popup_point[1] = parseInt(point_y);
+					} else if (lineName == 'Kairi') {
+						popup_point[0] = parseInt(point_x) - 3500;
+						popup_point[1] = parseInt(point_y) + 1500;
+					} else if (lineName == 'Tokyo Monorail') {
+						popup_point[0] = parseInt(point_x) + 100;
+						popup_point[1] = parseInt(point_y) + 500;
+					} else if (lineName == 'FUJI EXCURSION') {
+						popup_point[0] = parseInt(point_x) - 1900;
+						popup_point[1] = parseInt(point_y) - 500;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						popup_point[0] = parseInt(point_x) - 100;
+						popup_point[1] = parseInt(point_y) - 800;
+					} else {
+						popup_point[0] = parseInt(point_x) - 3680;
+						popup_point[1] = parseInt(point_y) + 320;
+					}
+					popup.lonlat = new OpenLayers.LonLat(popup_point[0], popup_point[1]);
+				}
+
+				popup.draw();
+				if (lineName == 'POKÉMON with YOU Train') {
+					$('#Popup p.name').css('font-size', '13px');
+				} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+					$('#Popup p.name').css('font-size', '10px');
+				}
+
+			}
+
+		}
+
+
+		function zoom_line(event) {
+
+			var zoomlv = map.getZoom();
+			zooms = zoomlv;
+
+			if ($('#OpenLayers_Map_4_OpenLayers_Container svg').length) {
+				if (zoomlv >= 6) {
+					$('#OpenLayers_Map_4_OpenLayers_Container svg').remove();
+					var img_name3 = img_name.replace('.svg', '_lv3.svg');
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name3,
+					}).done(function(returnData) {
+						var svg_lv3 = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg_lv3);
+						svg_scale(svg_lv3);
+						svg_point(svg_lv3);
+					});
+				} else if (zoomlv >= 4 && zoomlv <= 5) {
+					$('#OpenLayers_Map_4_OpenLayers_Container svg').remove();
+					var img_name4 = img_name.replace('.svg', '_lv2.svg');
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name4,
+					}).done(function(returnData) {
+						var svg_lv2 = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg_lv2);
+						svg_scale(svg_lv2);
+						svg_point(svg_lv2);
+					});
+				} else if (zoomlv == 3) {
+					$('#OpenLayers_Map_4_OpenLayers_Container svg').remove();
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name,
+					}).done(function(returnData) {
+						var svg = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg);
+						svg_scale(svg);
+						svg_point(svg);
+					});
+				}
+			} else {
+				if (zoomlv >= 6) {
+					$('#OpenLayers_Map_4_OpenLayers_Container svg').remove();
+					var img_name3 = img_name.replace('.svg', '_lv3.svg');
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name3,
+					}).done(function(returnData) {
+						var svg_lv3 = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg_lv3);
+						svg_scale(svg_lv3);
+						svg_point(svg_lv3);
+					});
+				} else if (zoomlv == 4 || zoomlv == 5) {
+					var img_name4 = img_name.replace('.svg', '_lv2.svg');
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name4,
+					}).done(function(returnData) {
+						var svg_lv2 = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg_lv2);
+						svg_scale(svg_lv2);
+						svg_point(svg_lv2);
+					});
+				} else if (zoomlv == 3) {
+					$.ajax({
+						type: 'get',
+						cache: false,
+						url: img_name,
+					}).done(function(returnData) {
+						var svg = $(returnData).find('svg');
+
+						$('#OpenLayers_Map_4_OpenLayers_Container').delay(700).append(svg);
+						svg_scale(svg);
+						svg_point(svg);
+					});
+				}
+			}
+
+		}
+
+
+		function svg_scale(svgData){
+
+			var svg_wid = $(svgData).width();
+			var svg_hei = $(svgData).height();
+
+			var zoomlv = map.getZoom();
+
+			if(zoomlv > zoom) {
+				var mag = zoomlv - zoom;
+				var pow = Math.pow(2, mag);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').width(svg_wid * pow);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').height(svg_hei * pow);
+			} else if(zoomlv < zoom) {
+				var mag2 = zoom - zoomlv;
+				var pow2 = Math.pow(2, mag2);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').width(svg_wid / pow2);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').height(svg_hei / pow2);
+			} else if(zoomlv == zoom) {
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').width(svg_wid);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').height(svg_hei);
+			}
+
+		}
+
+		function svg_point(svgData) {
+			var zoomlv = map.getZoom();
+
+			var pixels2 = map.getViewPortPxFromLonLat(new OpenLayers.LonLat(point_x, point_y));
+			var wid2 = 0;
+			var hei2 = 0;
+
+			if (zoomlv == zooms) {
+
+				var container_left = $('#OpenLayers_Map_4_OpenLayers_Container').css('left');
+				var container_top = $('#OpenLayers_Map_4_OpenLayers_Container').css('top');
+
+				var left = container_left.split('px');
+				var top = container_top.split('px');
+
+				if (parseInt(left[0]) != 0) {
+					pixels2.x -= parseInt(left[0]);
+				}
+				if (parseInt(top[0]) != 0) {
+					pixels2.y -= parseInt(top[0]);
+				}
+				if (zoomlv == 6 && lineName == 'Tokyo Monorail') {
+						wid2 = 253;
+						hei2 = 49;
+				}
+				else if (zoomlv == 4 && lineName == 'Tokyo Monorail') {
+						wid2 = 66;
+						hei2 = 10;
+				}
+				else if (zoomlv == 5 && lineName == 'HITACHI and TOKIWA') {
+						wid2 = 170;
+						hei2 = 628.5;
+				}
+				else if (zoomlv == 4 && lineName == 'HITACHI and TOKIWA') {
+						wid2 = 85;
+						hei2 = 314.5;
+				}
+				else if (zoomlv == 7 && lineName == 'Sendai Airport Access Line') {
+						wid2 = -256;
+						hei2 = 17.5;
+				}
+				else if (zoomlv == 6 && lineName == 'Sendai Airport Access Line') {
+						wid2 = -128;
+						hei2 = 8;
+				}
+				else if (zoomlv == 5 && lineName == 'Sendai Airport Access Line') {
+						wid2 = -46.5;
+						hei2 = 15.5;
+				}
+				else if (zoomlv == 4 && lineName == 'Sendai Airport Access Line') {
+						wid2 = -23.3;
+						hei2 = 7.3;
+				}
+
+				else if (zoomlv >= 6 && zoomlv <= 7) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 1.985;
+						hei2 = $(svgData).height() / 1.975;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Yamagata Shinkansen') {
+						wid2 = $(svgData).width() / 3.39;
+						hei2 = $(svgData).height() / 4.09;
+					} else if (lineName == 'Joetsu Shinkansen') {
+						wid2 = $(svgData).width() / 1.95;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 1.89;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 2.09;
+						hei2 = $(svgData).height() / 2.64;
+					} else if (lineName == 'HITACHI and TOKIWA') {
+						wid2 = $(svgData).width() / 2.0622;
+						hei2 = $(svgData).height() / 1.409385;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						wid2 = $(svgData).width() / 1.965;
+						hei2 = $(svgData).height() / 1.955;
+					} else if (lineName == 'Nikko / Kinugawa') {
+						wid2 = $(svgData).width() / 2.45;
+						hei2 = $(svgData).height() / 2.02;
+					} else if (lineName == 'SAPHIR ODORIKO') {
+						wid2 = $(svgData).width() / 2.03;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Odoriko') {
+						wid2 = $(svgData).width() / 1.90;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Sazanami / Wakashio') {
+						wid2 = $(svgData).width() / 2.066;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Hakucho / Tsugaru') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.035;
+					} else if (lineName == 'Inaho') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 2.006;
+					} else if (lineName == 'Resort Shirakami') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.05;
+					} else if (lineName == 'SL Banetsu Monogatari') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.93;
+					} else if (lineName == 'Kirakira Uetsu') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 2.04;
+					} else if (lineName == 'Toreiyu Tsubasa') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.985;
+					} else if (lineName == 'SL Ginga') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.15;
+					} else if (lineName == 'SL Gunma') {
+						wid2 = $(svgData).width() / 1.935;
+						hei2 = $(svgData).height() / 2.035;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						wid2 = $(svgData).width() / 1.85;
+						hei2 = $(svgData).height() / 1.945;
+					} else if (lineName == 'Resort Minori') {
+						wid2 = $(svgData).width() / 2.055;
+						hei2 = $(svgData).height() / 2.065;
+					} else if (lineName == 'Resort View Furusato') {
+						wid2 = $(svgData).width() / 1.965;
+						hei2 = $(svgData).height() / 1.935;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						wid2 = $(svgData).width() / 2.065;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'FruiTea Fukushima') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.78;
+					} else if (lineName == 'Oykot') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						wid2 = $(svgData).width() / 2.055;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'IZU CRAILE') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						wid2 = $(svgData).width() / 2.3;
+						hei2 = $(svgData).height() / 1.99;
+					} else if (lineName == 'Resort Asunaro') {
+						wid2 = $(svgData).width() / 1.85;
+						hei2 = $(svgData).height() / 2.04;
+					} else if (lineName == 'Resort Yamadori') {
+						wid2 = $(svgData).width() / 2.065;
+						hei2 = $(svgData).height() / 1.94;
+					} else if (lineName == 'Zipangu') {
+						wid2 = $(svgData).width() / 1.34;
+						hei2 = $(svgData).height() / 1.98;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 2.1;
+						hei2 = $(svgData).height() / 1.7;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.885;
+						hei2 = $(svgData).height() / 2.02;
+					} else if (lineName == 'Kairi') {
+						wid2 = $(svgData).width() / 2.05;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Tokyo Monorail') {
+						wid2 = 507;
+						hei2 = 98;
+					} else if (lineName == 'FUJI EXCURSION') {
+						wid2 = $(svgData).width() / 2.01;
+						hei2 = $(svgData).height() / 1.64;
+					} else {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					}
+				}
+				else if (zoomlv >= 4 && zoomlv <= 5) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.99;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 2.02;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Hakucho / Tsugaru') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.95;
+						hei2 = $(svgData).height() / 2.05;
+					} else if (lineName == 'Tokyo Monorail') {
+						wid2 = 132;
+						hei2 = 10;
+					} else {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 2;
+					}
+				} else if (zoomlv == 3) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Yamagata Shinkansen') {
+						wid2 = $(svgData).width() / 2.1;
+						hei2 = $(svgData).height() / 2.15;
+					} else if (lineName == 'Joetsu Shinkansen' || lineName == 'GENBI SHINKANSEN') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'Nikko / Kinugawa') {
+						wid2 = $(svgData).width() / 2.18;
+						hei2 = $(svgData).height() / 2.2;
+					} else if (lineName == 'Kirakira Uetsu' || lineName == 'Resort Yamadori') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.2;
+					} else if (lineName == 'Toreiyu Tsubasa' || lineName == 'Resort Asunaro') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'Resort Minori') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Resort View Furusato') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Oykot' || lineName == 'IZU CRAILE') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Tokyo Monorail') {
+						wid2 = 35;
+						hei2 = 0;
+					} else if (lineName == 'FUJI EXCURSION') {
+						wid2 = 34;
+						hei2 = 15;
+					} else if (lineName == 'HITACHI and TOKIWA') {
+						wid2 = 44.3;
+						hei2 = 159.5;
+					} else if (lineName == 'Sendai Airport Access Line') {
+						wid2 = -7.3;
+						hei2 = 5.5;
+					} else {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					}
+				}
+
+				pixels2.x -= wid2;
+				pixels2.y -= hei2;
+
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').css('left', pixels2.x);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').css('top', pixels2.y);
+
+			} else {
+
+				if (zoomlv >= 6 && zoomlv <= 7) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 1.985;
+						hei2 = $(svgData).height() / 1.975;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Yamagata Shinkansen') {
+						wid2 = $(svgData).width() / 3.39;
+						hei2 = $(svgData).height() / 4.09;
+					} else if (lineName == 'Joetsu Shinkansen') {
+						wid2 = $(svgData).width() / 1.95;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 1.89;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 1.39;
+					} else if (lineName == 'HITACHI and TOKIWA') {
+						wid2 = $(svgData).width() / 1.975;
+						hei2 = $(svgData).height() / 1.99;
+					} else if (lineName == 'Azusa / Kaiji / FUJI EXCURSION') {
+						wid2 = $(svgData).width() / 1.965;
+						hei2 = $(svgData).height() / 1.955;
+					} else if (lineName == 'Nikko / Kinugawa') {
+						wid2 = $(svgData).width() / 2.45;
+						hei2 = $(svgData).height() / 2.02;
+					} else if (lineName == 'SAPHIR ODORIKO') {
+						wid2 = $(svgData).width() / 2.03;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Odoriko') {
+						wid2 = $(svgData).width() / 1.90;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Sazanami / Wakashio') {
+						wid2 = $(svgData).width() / 2.066;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 1.97;
+					} else if (lineName == 'Hakucho / Tsugaru') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.035;
+					} else if (lineName == 'Inaho') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 2.006;
+					} else if (lineName == 'Resort Shirakami') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.05;
+					} else if (lineName == 'SL Banetsu Monogatari') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.93;
+					} else if (lineName == 'Kirakira Uetsu') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 2.04;
+					} else if (lineName == 'Toreiyu Tsubasa') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.985;
+					} else if (lineName == 'SL Ginga') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2.15;
+					} else if (lineName == 'SL Gunma') {
+						wid2 = $(svgData).width() / 1.935;
+						hei2 = $(svgData).height() / 2.035;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						wid2 = $(svgData).width() / 1.85;
+						hei2 = $(svgData).height() / 1.945;
+					} else if (lineName == 'Resort Minori') {
+						wid2 = $(svgData).width() / 2.055;
+						hei2 = $(svgData).height() / 2.065;
+					} else if (lineName == 'Resort View Furusato') {
+						wid2 = $(svgData).width() / 1.965;
+						hei2 = $(svgData).height() / 1.935;
+					} else if (lineName == 'Koshino Shu*Kura') {
+						wid2 = $(svgData).width() / 2.065;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'FruiTea Fukushima') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.78;
+					} else if (lineName == 'Oykot') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						wid2 = $(svgData).width() / 2.028;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'GENBI SHINKANSEN') {
+						wid2 = $(svgData).width() / 2.055;
+						hei2 = $(svgData).height() / 1.925;
+					} else if (lineName == 'IZU CRAILE') {
+						wid2 = $(svgData).width() / 2.02;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'HIGH RAIL 1375') {
+						wid2 = $(svgData).width() / 2.3;
+						hei2 = $(svgData).height() / 1.99;
+					} else if (lineName == 'Resort Asunaro') {
+						wid2 = $(svgData).width() / 1.85;
+						hei2 = $(svgData).height() / 2.04;
+					} else if (lineName == 'Resort Yamadori') {
+						wid2 = $(svgData).width() / 2.065;
+						hei2 = $(svgData).height() / 1.94;
+					} else if (lineName == 'Zipangu') {
+						wid2 = $(svgData).width() / 1.34;
+						hei2 = $(svgData).height() / 1.98;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 2.1;
+						hei2 = $(svgData).height() / 1.7;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.885;
+						hei2 = $(svgData).height() / 2.04;
+					} else if (lineName == 'FUJI EXCURSION') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 1.75;
+					} else {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					}
+				}
+				else if (zoomlv >= 4 && zoomlv <= 5) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 1.99;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 2.02;
+					} else if (lineName == 'Kusatsu / Minakami') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Hakucho / Tsugaru') {
+						wid2 = $(svgData).width() / 1.96;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 1.97;
+						hei2 = $(svgData).height() / 1.95;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.95;
+						hei2 = $(svgData).height() / 2.05;
+					} else {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 2;
+					}
+				} else if (zoomlv == 3) {
+					if (lineName == 'Tohoku Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Akita Shinkansen') {
+						wid2 = $(svgData).width() / 1.99;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Yamagata Shinkansen') {
+						wid2 = $(svgData).width() / 2.1;
+						hei2 = $(svgData).height() / 2.15;
+					} else if (lineName == 'Joetsu Shinkansen' || lineName == 'GENBI SHINKANSEN') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Hokuriku Shinkansen') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.01;
+					} else if (lineName == 'Narita Express') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 1.9;
+					} else if (lineName == 'Nikko / Kinugawa') {
+						wid2 = $(svgData).width() / 2.18;
+						hei2 = $(svgData).height() / 2.2;
+					} else if (lineName == 'Kirakira Uetsu' || lineName == 'Resort Yamadori') {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2.2;
+					} else if (lineName == 'Toreiyu Tsubasa' || lineName == 'Resort Asunaro') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'POKÉMON with YOU Train') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'Resort Minori') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Resort View Furusato') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'Oykot' || lineName == 'IZU CRAILE') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'TOHOKU EMOTION' || lineName == 'Resort Umineko') {
+						wid2 = $(svgData).width() / 1.9;
+						hei2 = $(svgData).height() / 2.1;
+					} else if (lineName == 'Iroha') {
+						wid2 = $(svgData).width() / 2.2;
+						hei2 = $(svgData).height() / 2;
+					} else if (lineName == 'B.B.BASE') {
+						wid2 = $(svgData).width() / 1.98;
+						hei2 = $(svgData).height() / 2.05;
+					} else {
+						wid2 = $(svgData).width() / 2;
+						hei2 = $(svgData).height() / 2;
+					}
+				}
+
+				pixels2.x -= wid2;
+				pixels2.y -= hei2;
+
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').css('left', pixels2.x);
+				$('#OpenLayers_Map_4_OpenLayers_Container svg').css('top', pixels2.y);
+
+			}
+
+		}
+
+
+		var mousewheelevent = 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll';
+		$('#OpenLayers_Map_4_OpenLayers_ViewPort #OpenLayers_Map_4_OpenLayers_Container').on(mousewheelevent,function(e){
+			e.preventDefault();
+			var delta = e.originalEvent.deltaY ? -(e.originalEvent.deltaY) : e.originalEvent.wheelDelta ? e.originalEvent.wheelDelta : -(e.originalEvent.detail);
+			var zoomlv = map.getZoom();
+			if (delta < 0){
+				setTimeout(function(){
+					map.zoomOut();
+				}, 250);
+			} else {
+				setTimeout(function(){
+					if (zoomlv != 7){
+						map.zoomIn();
+					}
+				}, 250);
+			}
+		});
+
+	}
+
+});
+

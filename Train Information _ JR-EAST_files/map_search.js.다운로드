@@ -1,0 +1,114 @@
+"use strict";
+
+window.addEventListener('DOMContentLoaded', function () {// DOM構築完了後に実行
+
+	// 検索ボタンの要素を取得
+	const elm_searchSubmit = document.getElementById('pass_searchSubmit');//検索ボタン取得
+	const notFoundBox = document.getElementsByClassName('notFound_text');//見つかりません要素取得
+	for(let n = 0; n < notFoundBox.length; n++) {
+		notFoundBox[n].classList.add('displayNone');//見つかりません要素を非表示に
+	}
+
+	// 検索ボタンをクリックしたら
+	elm_searchSubmit.addEventListener('click', function(e) {
+		e.preventDefault();//ページ遷移を止める
+
+		const train = document.pass_search.train.value;// 選択されている列車のvalue値を取得
+		const area = document.pass_search.area.value;// 選択されているエリアのvalue値を取得
+		const railPass = document.pass_search.railPass.value;// 選択されているレールパスのvalue値を取得
+		const elm_mapList = document.getElementsByClassName('js_mapFound_trg');// 各リストの要素を取得
+		for(let n = 0; n < notFoundBox.length; n++) {
+			notFoundBox[n].classList.add('displayNone');//見つかりません要素を非表示に
+		}
+		console.log(train,area,railPass);
+
+		var listCheck_array = [train,area,railPass];
+
+		for (let j = 0; j < elm_mapList.length; j++) {
+			elm_mapList[j].classList.remove('displayNone');
+		}
+
+		for (let i = 0; i < listCheck_array.length; i++) {
+			if( listCheck_array[i] !== 'noneSelect') {//何かしら選択されていれば
+				for (let j = 0; j < elm_mapList.length; j++) {
+				
+					if(elm_mapList[j].dataset.pass_search.indexOf(listCheck_array[i]) == -1) {
+						elm_mapList[j].classList.add('displayNone');//列車から選ぶの表示を反映
+					}
+
+
+				//	if(elm_mapList[i].dataset.pass_search.indexOf(train) > -1 && elm_mapList[i].dataset.pass_search.indexOf(area) > -1 && elm_mapList[i].dataset.pass_search.indexOf(railPass) > -1) {
+				//		elm_mapList[i].classList.remove('displayNone');
+				//	}
+
+			}
+		}
+
+			//「見つかりません」を表示（新幹線）
+			let notFound_list_s = 0;
+			const elm_shinkansenList = document.getElementsByClassName('shinkansenList');
+			const elm_shinkansenList_li = elm_shinkansenList[0].children;
+			const elm_shinkansenList01 = elm_shinkansenList[0].childElementCount;
+			for (let j = 0; j < elm_shinkansenList01; j++) {
+				if(elm_shinkansenList_li[j].classList.contains('displayNone') == true) {
+					notFound_list_s++;
+				}
+			}
+			if(elm_shinkansenList01 == notFound_list_s) {
+				for(let n = 0; n < elm_shinkansenList.length; n++) {
+					elm_shinkansenList[n].previousElementSibling.classList.remove('displayNone');
+				}
+			}
+			//「見つかりません」を表示（特急列車）
+			let notFound_list_t = 0;
+			const elm_expressList = document.getElementsByClassName('expressList');
+			const elm_expressList_li = elm_expressList[0].children;
+			const elm_expressList01 = elm_expressList[0].childElementCount;
+			for (let j = 0; j < elm_expressList01; j++) {
+				if(elm_expressList_li[j].classList.contains('displayNone') == true) {
+					notFound_list_t++;
+				}
+			}
+			if(elm_expressList01 == notFound_list_t) {
+				for(let n = 0; n < elm_expressList.length; n++) {
+					elm_expressList[n].previousElementSibling.classList.remove('displayNone');
+				}
+			}
+			//「見つかりません」を表示（のってたのしい列車）
+			let notFound_list_n = 0;
+			const elm_resortList = document.getElementsByClassName('resortList');
+			const elm_resortList_li = elm_resortList[0].children;
+			const elm_resortList01 = elm_resortList[0].childElementCount;
+			for (let j = 0; j < elm_resortList01; j++) {
+				if(elm_resortList_li[j].classList.contains('displayNone') == true) {
+					notFound_list_n++;
+				}
+			}
+			if(elm_resortList01 == notFound_list_n) {
+				for(let n = 0; n < elm_resortList.length; n++) {
+					elm_resortList[n].previousElementSibling.classList.remove('displayNone');
+				}
+			}
+
+		}
+		
+		if( train == 'noneSelect' &&  area == 'noneSelect' && railPass == 'noneSelect') {//何も選択されていない場合
+			for(let i = 0; i < elm_mapList.length; i++) {
+				elm_mapList[i].classList.remove('displayNone');//リストを全て表示
+			}
+			for(let n = 0; n < notFoundBox.length; n++) {
+				notFoundBox[n].classList.add('displayNone');//見つかりませんを非表示
+			}
+		}
+
+		$('.listItem').show();
+	});
+});
+
+//各リストのタイトルをクリックするとアコーディオンで閉じる
+$(function(){
+	$('.listTit').on('click' , function(){
+		$(this).next('.listItem').slideToggle();
+		$(this).toggleClass('on');
+	});
+});

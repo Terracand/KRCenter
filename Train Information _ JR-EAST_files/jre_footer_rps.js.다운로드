@@ -1,0 +1,23 @@
+function jre_footer(path) {
+  document.write('<div id="footer">');
+  document.write('<div class="rwdInner">');
+  document.write('<ul class="fNavi">');
+  document.write('<li><a href="/e/compliance/index.html" title="コンプライアンス">コンプライアンス</a></li>');
+  document.write('<li><a href="/e/policy/index.html" title="プライバシーポリシー">プライバシーポリシー</a></li>');
+  document.write('<li><a href="/e/cookiepolicy/index.html" title="クッキーポリシー">クッキーポリシー</a></li>');
+  document.write('<li><a href="/e/termsofuse/index.html" title="利用規約">利用規約</a></li>');
+  document.write('<li><a href="/e/sitemap/index.html" title="サイトマップ">サイトマップ</a></li>');
+  document.write('<li><a href="/e/downloads/index.html" title="案内と情報">案内と情報</a></li>');
+  document.write('<li><a href="/e/links/index.html" title="リンク集">リンク集</a></li>');
+  document.write('</ul>');
+  document.write('<p class="copyright">Copyright &copy; East Japan Railway Company All Rights Reserved.</p>');
+  document.write('</div>');
+  document.write('</footer>');
+}
+
+
+$(function () {
+  $('#closeBtn_').click(function () {
+    $(this).parent('#revisedFares_infoBtn').addClass('disp_none');
+  });
+});

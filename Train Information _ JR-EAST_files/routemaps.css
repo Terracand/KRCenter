@@ -1,0 +1,1056 @@
+/* -----------------------------------------
+	Base Item
+----------------------------------------- */
+#contents * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#contents {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 970px;
+  margin: 0 auto;
+  padding: 40px 10px 50px;
+}
+
+.wovn-languages > li[data-value="th"], .wovn-languages > li[data-value="id"], .wovn-languages > li[data-value="fr"], .wovn-languages > li[data-value="de"], .wovn-languages > li[data-value="es"] {
+  display: none;
+}
+
+#OpenLayers_Map_4_OpenLayers_ViewPort svg {
+  cursor: auto;
+}
+
+/*------------
+pagelink
+-------------*/
+.bottom_link {
+  width: 100%;
+}
+
+.link_home,
+.link_pagetop {
+  position: relative;
+  margin-left: 13px;
+}
+
+.link_home {
+  float: left;
+}
+
+.link_pagetop {
+  float: right;
+}
+
+.link_home a::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: url("/multi/pass/img/icon_arw06.png") no-repeat;
+  background-size: contain;
+  position: absolute;
+  margin-top: 3px;
+  left: -13px;
+}
+
+.link_pagetop a::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: url("/multi/pass/img/icon_pagetop.png") no-repeat;
+  background-size: contain;
+  position: absolute;
+  margin-top: 3px;
+  left: -13px;
+}
+
+/*------------
+TopPageScroll
+-------------*/
+#fixedPagetop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: auto;
+  height: auto;
+  background: #0b8d0d;
+  border-radius: 2px;
+  box-shadow: 0px 1px 2px 0px #606060;
+}
+
+#fixedPagetop a {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  width: 100%;
+  min-height: 60px;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  padding: 40px 5px 0;
+  font-size: 0.7em;
+}
+
+#fixedPagetop a::before {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  top: 16px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 640px) {
+  #fixedPagetop a {
+    min-width: 46px;
+    min-height: 46px;
+    padding: 28px 5px 0;
+  }
+
+  #fixedPagetop a::before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    top: 13px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    transform: rotate(-45deg);
+  }
+}
+/*------------
+Mainview
+-------------*/
+#main {
+  background: #000;
+  opacity: 2;
+}
+
+.main_img_scroll {
+  width: 100%;
+  min-height: 300px;
+  background: url("/multi/traininformation/img/main_back.jpg") repeat-x;
+  background-position: 0 0;
+  background-size: 1350px 300px;
+}
+
+.main_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.main_view_inner {
+  text-align: center;
+}
+.main_view_inner .main_title {
+  font-size: 3.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  line-height: 120%;
+}
+
+.sub_title {
+  display: inline-block;
+  font-size: 2.7rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 200%;
+}
+
+@media screen and (max-width: 640px) {
+  .main_img_scroll {
+    position: relative;
+    min-height: calc(100vh - 100px);
+    background-size: cover;
+  }
+
+  .main_img {
+    min-height: calc(100vh - 100px);
+    background-size: cover;
+  }
+
+  h1.main_title {
+    font-size: 3.2rem;
+  }
+
+  p.sub_title {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%);
+    /* -webkit- transform: translateX(-50%); */
+    margin: auto;
+    font-size: 1.6rem;
+  }
+
+  .sub_title span {
+    font-size: 2.6rem;
+  }
+
+  .scroll {
+    display: block;
+    position: absolute;
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: #fff;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .scroll::after {
+    content: "";
+    position: absolute;
+    bottom: -1.5em;
+    left: calc( 50% - 12px);
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    box-shadow: 2px 2px 0 0 #fff;
+    transform: rotate(45deg);
+  }
+}
+#search_area {
+  margin: 20px 0;
+}
+#search_area .wrap {
+  padding: 0;
+  background: #dbdbdb;
+  border: 1px #999 solid;
+}
+
+/***** form *****/
+#search_area .wrap {
+  max-width: 950px;
+  padding: 0;
+  background: #dbdbdb;
+  border: 1px #999 solid;
+}
+
+#pass_search_inner {
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pass_search_train,
+.pass_search_area,
+.pass_search_railPass {
+  position: relative;
+  font-size: 1.4rem;
+  width: 444px;
+  margin: 0 2.1% 0 0;
+  background: #fff;
+  border-radius: 6px;
+}
+.pass_search_train::after,
+.pass_search_area::after,
+.pass_search_railPass::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 0px;
+  border-bottom: 1px #333 solid;
+  border-right: 1px #333 solid;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -8px;
+}
+.pass_search_train select,
+.pass_search_area select,
+.pass_search_railPass select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  position: relative;
+  padding: 10px 40px 10px 10px;
+  border-radius: 2px;
+  border: 2px #999 solid;
+}
+.pass_search_train select::-ms-expand,
+.pass_search_area select::-ms-expand,
+.pass_search_railPass select::-ms-expand {
+  display: none;
+}
+
+.pass_search_btn input {
+  width: 142px;
+  font-size: 1.4rem;
+  padding: 10px;
+  background: #363636;
+  border: 1px #363636 solid;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+.pass_search_btn input:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 640px) {
+  #search_area .wrap {
+    margin: 0;
+    width: 100%;
+  }
+
+  #pass_search_inner {
+    border-width: 1px 0;
+    padding: 10px;
+    display: block;
+  }
+
+  .pass_search_train,
+  .pass_search_area,
+  .pass_search_railPass {
+    width: 100%;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .pass_search_btn {
+    text-align: center;
+  }
+
+  .pass_search_btn input {
+    font-size: 1.4rem;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px 5%;
+  }
+}
+/***** map *****/
+#map {
+  width: 940px;
+  height: 740px;
+  margin: 0 auto;
+  border: solid 2px #018307;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#map .olTileImage {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+}
+
+#map #OpenLayers_Map_4_OpenLayers_ViewPort {
+  z-index: 0;
+}
+
+#map #OpenLayers_Map_4_OpenLayers_ViewPort #OpenLayers_Map_4_OpenLayers_Container > div {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+}
+
+#map #OpenLayers_Control_Zoom_7 {
+  display: none;
+}
+
+#map #OpenLayers_Map_4_OpenLayers_ViewPort svg g:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  cursor: pointer;
+}
+
+/***** map popup *****/
+#map #Popup {
+  background: #6dc16d;
+  border: 2px solid #ffffff !important;
+  border-radius: 5px;
+}
+
+#map #Popup_contentDiv {
+  width: 217px;
+  padding: 12px 5px;
+  box-sizing: border-box;
+}
+
+#map #Popup_contentDiv p {
+  color: #ffffff;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#map #Popup_contentDiv p.btn {
+  margin-top: 5px;
+}
+#map #Popup_contentDiv p.btn > a {
+  background: #fff;
+  border-radius: 5px;
+  display: block;
+  padding: 3px;
+  width: 85%;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #008d00;
+}
+#map #Popup_contentDiv p.btn > a::before {
+  content: "";
+  display: inline-block;
+  background: url(/multi/traininformation/img/icon_blank.png) no-repeat;
+  width: 11px;
+  height: 11px;
+  margin-right: 5px;
+}
+
+/* #map #Popup_contentDiv p.btn a {
+    display: inline-block;
+} */
+#map #Popup_contentDiv p.btn a:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+/***** controlBox *****/
+#map #mapControlBox {
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  z-index: 1;
+  border: solid 1px #ffffff;
+  border-radius: 4px;
+  background-color: #6dc16d;
+}
+
+#map #mapControlBox .controlInner {
+  background-color: #efefef;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 180px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#map #mapControlBox .controlInner a.zoomIn,
+#map #mapControlBox .controlInner a.zoomOut,
+#map #mapControlBox .controlInner a.controlPdf01,
+#map #mapControlBox .controlInner img.mapIcons {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+#map #mapControlBox .controlInner a.zoomIn,
+#map #mapControlBox .controlInner a.zoomOut {
+  background: #9b9b9b;
+  padding: 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  position: relative;
+  text-align: center;
+  width: 30px;
+}
+
+#map #mapControlBox .controlInner a.zoomIn::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+#map #mapControlBox .controlInner a.zoomIn::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#map #mapControlBox .controlInner a.zoomOut::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#map #mapControlBox .controlInner a.controlPdf02 {
+  display: block;
+}
+
+#map #mapControlBox .controlInner a:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+#icon_map_sinkansen::before {
+  content: "";
+  display: block;
+  background: url("/multi/traininformation/img/icon_map_sinkansen.png") no-repeat;
+  width: 23px;
+  height: 13px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+}
+
+#icon_map_conventional::before {
+  content: "";
+  display: block;
+  background: url("/multi/traininformation/img/icon_map_conventional.png") no-repeat;
+  width: 23px;
+  height: 13px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+}
+
+#icon_map_other::before {
+  content: "";
+  display: block;
+  background: url("/multi/traininformation/img/icon_map_other.png") no-repeat;
+  width: 23px;
+  height: 13px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+}
+
+#icon_map_station::before {
+  content: "";
+  display: block;
+  background: url("/multi/traininformation/img/icon_map_station.png") no-repeat;
+  width: 23px;
+  height: 13px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+}
+
+#controlInner_icon {
+  background: #fff;
+  padding: 10px;
+  width: 100%;
+}
+#controlInner_icon > li {
+  font-size: 1.4rem;
+  margin-bottom: 3px;
+  color: #147524;
+  position: relative;
+  padding-left: 35px;
+}
+
+/***** mapMenu *****/
+#map #mapMenuLine {
+  box-sizing: border-box;
+  width: 268px;
+  height: 736px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border: solid 1px #ffffff;
+  background-color: #efefef;
+}
+
+.menuTit .menuTit_routMap {
+  background: #03830a;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+.menuTit .menuTit_byline {
+  background: #5bb85d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px 10px 45px;
+  font-size: 2.0rem;
+  position: relative;
+}
+.menuTit .menuTit_byline::before {
+  content: "";
+  display: block;
+  background: url(/multi/traininformation/img/menu_byline_subtitle.png) no-repeat;
+  width: 25px;
+  height: 33px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 10px;
+}
+.menuTit .menuTxt {
+  margin: 15px 10px;
+  text-align: right;
+}
+
+.displayNone {
+  display: none;
+}
+
+#map #mapMenuLine .menuInner {
+  margin: 0 10px 10px;
+  background-color: #ffffff;
+  height: 580px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 10px 5px 10px 10px;
+}
+#map #mapMenuLine .menuInner .listTit {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 120%;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#map #mapMenuLine .menuInner .listTit::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -6px;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+}
+#map #mapMenuLine .menuInner .listTit.on::after {
+  top: 6px;
+}
+#map #mapMenuLine .menuInner .listTit#shinkansenTitle {
+  background: #C5E7C6;
+  color: #02840A;
+}
+#map #mapMenuLine .menuInner .listTit#shinkansenTitle::after {
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid #02840A;
+}
+#map #mapMenuLine .menuInner .listTit#shinkansenTitle.on::after {
+  border-top: 7px solid #02840A;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+#map #mapMenuLine .menuInner .listTit#expressTitle {
+  background: #c5dae7;
+  color: #036f83;
+}
+#map #mapMenuLine .menuInner .listTit#expressTitle::after {
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid #036f83;
+}
+#map #mapMenuLine .menuInner .listTit#expressTitle.on::after {
+  border-top: 7px solid #036f83;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+#map #mapMenuLine .menuInner .listTit#resortTitle {
+  background: #f4d6d6;
+  color: #830303;
+}
+#map #mapMenuLine .menuInner .listTit#resortTitle::after {
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid #830303;
+}
+#map #mapMenuLine .menuInner .listTit#resortTitle.on::after {
+  border-top: 7px solid #830303;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.notFound_text {
+  text-align: center;
+  margin: 10px;
+}
+
+#map #mapMenuLine .menuInner ul li {
+  border-bottom: dotted 1px #000000;
+  list-style: none;
+  margin: 1px 0;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+#map #mapMenuLine .menuInner ul li a {
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 9px 0 9px 10px;
+  background: url(/multi/traininformation/img/icon_list_arrow.png) no-repeat left center;
+}
+#map #mapMenuLine .menuInner ul li a img {
+  width: 75px;
+  margin-right: 10px;
+}
+#map #mapMenuLine .menuInner ul li a span {
+  width: calc(100% - 85px);
+}
+@media screen and (max-width: 640px) {
+  #map #mapMenuLine .menuInner ul li a {
+    font-size: 1.5rem;
+  }
+  #map #mapMenuLine .menuInner ul li a span {
+    width: 60%;
+  }
+  #map #mapMenuLine .menuInner ul li a img {
+    width: 35%;
+    margin-right: 5%;
+  }
+}
+
+#map #mapMenuLine .menuInner ul li a:hover {
+  background: url(/multi/traininformation/img/icon_list_arrow.png) no-repeat left center, #ffe7ab;
+}
+
+#map #mapMenuLine .menuInner ul li a.select {
+  color: #ff0000;
+  background: url(/multi/traininformation/img/icon_list_arrow.png) no-repeat left center, #ffe7ab;
+}
+
+#map #mapMenuLine .menuInner ul.shinkansenList,
+#map #mapMenuLine .menuInner ul.expressList {
+  margin-bottom: 10px;
+}
+
+#map #mapMenuLine .menuBottom {
+  width: 266px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  background-color: #d2d2d2;
+}
+
+#map #mapMenuLine .menuBottom a {
+  display: block;
+  padding: 15px;
+}
+
+#map #mapMenuLine .menuBottom a:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+@media screen and (max-width: 640px) {
+  #map {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    border: none;
+    border-radius: 0;
+  }
+  #map::before {
+    background: url(/multi/traininformation/img/sp/sp_bg_map.jpg) no-repeat left top;
+    background-size: 100% auto;
+    display: block;
+    position: fixed;
+    top: 5%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 108px;
+    content: "";
+    z-index: -1;
+  }
+
+  #map #mapMenuLine {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    position: static;
+    top: auto;
+    left: auto;
+    z-index: 1;
+    border: solid 1px #ffffff;
+    background: none;
+  }
+
+  #map #mapMenuLine .menuSubTit,
+  #map #mapMenuLine .menuTxt,
+  #map #mapControlBox,
+  #map .menuTit,
+  #map #mapMenuLine .menuBottom {
+    display: none;
+  }
+
+  #map #mapMenuLine .menuInner {
+    margin: 0;
+    background: none;
+    height: auto;
+    box-sizing: border-box;
+    overflow-y: visible;
+    overflow-x: visible;
+    padding: 10px;
+  }
+  #map #mapMenuLine .menuInner .listTit {
+    background: #C5E7C6;
+    color: #02840A;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 120%;
+  }
+}
+.btn_linkList {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 970px;
+  margin: 30px auto 0;
+}
+@media screen and (max-width: 640px) {
+  .btn_linkList {
+    display: block;
+    padding: 0 10px;
+  }
+}
+.btn_linkList > .btn_linkList_li {
+  width: 355px;
+  margin: 0 10px;
+}
+@media screen and (max-width: 640px) {
+  .btn_linkList > .btn_linkList_li {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+}
+.btn_linkList > .btn_linkList_li a {
+  display: flex;
+  background: #fff;
+  align-items: center;
+  height: 100%;
+  border: 3px solid #008d00;
+  padding: 10px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #008d00;
+  position: relative;
+}
+@media screen and (max-width: 640px) {
+  .btn_linkList > .btn_linkList_li a {
+    display: block;
+    padding: 5% 3%;
+    font-size: 6vw;
+  }
+}
+.btn_linkList > .btn_linkList_li a:hover {
+  opacity: 0.7;
+}
+.btn_linkList > .btn_linkList_li a#btn_linkList_Fares {
+  padding-left: 95px;
+}
+.btn_linkList > .btn_linkList_li a#btn_linkList_Fares::before {
+  content: "";
+  display: block;
+  background: url(/multi/traininformation/img/ico_fares_passes.png) no-repeat;
+  background-size: contain;
+  width: 58px;
+  height: 54px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 20px;
+}
+@media screen and (max-width: 640px) {
+  .btn_linkList > .btn_linkList_li a#btn_linkList_Fares {
+    padding-left: 25vw;
+  }
+  .btn_linkList > .btn_linkList_li a#btn_linkList_Fares::before {
+    width: 13vw;
+    height: 13vw;
+    left: 5%;
+  }
+}
+.btn_linkList > .btn_linkList_li a#btn_linkList_JRtr {
+  padding-left: 105px;
+  line-height: 1.2;
+}
+.btn_linkList > .btn_linkList_li a#btn_linkList_JRtr::before {
+  content: "";
+  display: block;
+  background: url(/multi/traininformation/img/ico_trainreservation.png) no-repeat;
+  background-size: contain;
+  width: 68px;
+  height: 36px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 20px;
+}
+.btn_linkList > .btn_linkList_li a#btn_linkList_JRtr::after {
+  content: "";
+  display: block;
+  background: url(/multi/traininformation/img/ico_window.png) no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+@media screen and (max-width: 640px) {
+  .btn_linkList > .btn_linkList_li a#btn_linkList_JRtr {
+    padding-left: 25vw;
+  }
+  .btn_linkList > .btn_linkList_li a#btn_linkList_JRtr::before {
+    width: 16vw;
+    height: 9vw;
+    left: 3%;
+  }
+
+.btn_linkList > .btn_linkList_li a#btn_linkList_JRtr::after {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: 3%;
+}
+}
+
+/***** bottomArea *****/
+#spContents .bottomArea {
+  background-color: #efefef;
+  padding: 10px;
+}
+
+#spContents .bottomArea a.btnPdf {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#spContents .bottomArea a.btnTime {
+  display: block;
+  width: 100%;
+}
+
+#spContents .bottomArea a img {
+  width: 100%;
+}
+
+#spContents .bottomArea a.btnGoback {
+  display: block;
+  width: 100%;
+}
+
+/***** window size 950px~ *****/
+@media screen and (min-width: 951px) {
+  #spContents {
+    display: none;
+  }
+}
+/***** window size 640px~950px *****/
+@media screen and (min-width: 641px) and (max-width: 950px) {
+  body {
+    margin: 0;
+    width: 100%;
+  }
+
+  #map {
+    width: 100%;
+  }
+
+  #spContents {
+    display: none;
+  }
+}
+/***** window size ~640px *****/
+@media screen and (max-width: 640px) {
+  body {
+    width: 100% !important;
+    min-width: 100% !important;
+    font-size: 16px;
+  }
+
+  #spContents {
+    width: auto;
+  }
+}

@@ -1,0 +1,407 @@
+//SmoothScroll
+$(function () {
+  $('a[href^="#"]').click(function () {
+    var speed = 500;
+    var href = $(this).attr("href");
+    var target = $(href == "#" || href == "" ? 'html' : href);
+    var position = target.offset().top;
+    $("html, body").animate({
+      scrollTop: position
+    }, speed, "swing");
+    return false;
+  });
+});
+
+
+//2019trenewal main panel scroll
+$(function () {
+
+  //背景を置く要素の高さ取得
+  var h = $('#main').height();
+  //アニメーションスピード
+  var scrollSpeed = 1.2;
+  //画像サイズ
+  var imgWidth = h / 1000 * 4500;
+  //画像の初期位置
+  var posX = 0;
+
+  function loop() {
+    requestAnimFrame(loop);
+    //scrollSpeed分移動
+    posX += scrollSpeed;
+    $('.main_img_scroll').css('background-position', posX + 'px 0px');
+    //画像のサイズまで移動したら0に戻る。
+    if (posX >= imgWidth) posX = 0;
+  }
+
+  window.requestAnimFrame = (function () {
+    return window.requestAnimationFrame
+      || window.webkitRequestAnimationFrame
+      || window.mozRequestAnimationFrame
+      || window.oRequestAnimationFrame
+      || window.msRequestAnimationFrame
+      || function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
+
+  loop();
+
+});
+
+//2019trenewal toggle title
+var windowWidth = $(window).width();
+var windowSm = 640;
+if (windowWidth <= windowSm) {
+  //横幅640px以下のとき（スマホ時）
+  $(function () {
+    $('.toggle_title, .toggle_title_w').off('click');
+    $('.toggle_title, .toggle_title_w').on('click', function () {
+      //クリックでコンテンツを開閉
+      $(this).next().slideToggle(200);
+      //矢印の向きを変更
+      $(this).toggleClass('open');
+    });
+
+    $('.toggle_pass_box_close').off('click');
+    $('.toggle_pass_box_close').on('click', function () {
+      //クリックされた.toggle_pass_box_closeの親要素を閉じる。
+      $(this).parent('.toggle_pass_box').slideUp(200);
+      //矢印の向きを変更
+      $(this).closest('.pass_box').find('.toggle_title').removeClass('open');
+    });
+  });
+}
+
+$(function () {
+  $('.toggle_pc.toggle_title, .toggle_pc.toggle_title_w').off('click');
+  $('.toggle_pc.toggle_title, .toggle_pc.toggle_title_w').on('click', function () {
+    //クリックでコンテンツを開閉
+    $(this).next().slideToggle(200);
+    //矢印の向きを変更
+    $(this).toggleClass('open');
+  });
+
+  $('.toggle_pass_box_close').off('click');
+  $('.toggle_pass_box_close').on('click', function () {
+    //クリックされた.toggle_pass_box_closeの親要素を閉じる。
+    $(this).parent('.toggle_pass_box').slideUp(200);
+    //矢印の向きを変更
+    $(this).closest('.pass_box').find('.toggle_title').removeClass('open');
+  });
+});
+
+
+//2019renewal overlay
+$(function () {
+  var $window = $(window),
+    $html = $('html'),
+    $body = $('body'),
+    $overlay = $('.modal_overlay'),
+    scrollbar_width = window.innerWidth - document.body.scrollWidth,
+    touch_start_y;
+  // タッチしたとき開始位置を保存しておく(iOS)
+  $window.on('touchstart', function (event) {
+    touch_start_y = event.originalEvent.changedTouches[0].screenY;
+  });
+  // 該当ボタン(detail)クリック
+  $('.detail').off('click');
+  $('.detail').on('click', function () {
+    // スワイプしているとき
+    $window.on('touchmove.noscroll', function (event) {
+      var overlay = $overlay[0],
+        current_y = event.originalEvent.changedTouches[0].screenY,
+        height = $overlay.outerHeight(),
+        is_top = touch_start_y <= current_y && overlay.scrollTop === 0,
+        is_bottom = touch_start_y >= current_y && overlay.scrollHeight - overlay.scrollTop === height;
+      // スクロール対応モーダルの上端または下端のとき
+      if (is_top || is_bottom) {
+        // スクロール禁止
+        event.preventDefault();
+      }
+    });
+    // スクロール禁止
+    $('html, body').css('overflow', 'hidden');
+
+    if (scrollbar_width) {
+      $html.css('padding-right', scrollbar_width);
+    }
+    // モーダルをフェードイン
+    let modalContets = $(this).parent().next('.modal').clone();
+    $('.modal_inner').append(modalContets);
+    $overlay.fadeIn(300);
+
+    // モーダルを閉じる処理
+    var closeModal = function () {
+      $body.removeAttr('style');
+      $window.off('touchmove.noscroll');
+      // モーダルをフェードアウト
+      $overlay.animate({
+        opacity: 0
+      }, 300, function () {
+        // モーダルを一番上にスクロールしておく
+        $overlay.scrollTop(0).hide().removeAttr('style');
+        $html.removeAttr('style');
+      });
+      $('.modal_inner').empty()
+    };
+    // オーバーレイをクリック
+    $overlay.off('click');
+    $overlay.on('click', function (event) {
+      // モーダルの領域外をクリックで閉じる
+      if (!$(event.target).closest('.modal').length) {
+        closeModal();
+      }
+    });
+    // 閉じるボタンクリックでモーダルを閉じる
+    $('.modal_close').on('click', function () {
+      closeModal();
+    });
+  });
+
+
+  // クリックで約5%オフ！のふきだし表示
+  (function () {
+    let passPriceBoxBtn_elm = document.getElementsByClassName('js_pass_price_box_btn');
+    for (let i = 0; i < passPriceBoxBtn_elm.length; i++) {
+      passPriceBoxBtn_elm[i].addEventListener('click', function () {
+        this.nextElementSibling.classList.toggle('active');
+      });
+    }
+  })();
+
+});
+
+
+////////// 要素の高さ合わせの関数 //////////////////////////////////////////////////////////////////////
+function adjustHeight(className) {
+  const elm_adjustHiehgt = document.getElementsByClassName(className); //クラス名から要素を取得
+
+  // 各要素の高さを取得して配列h_listに代入
+  let h_list = [];
+  for (var h_n = 0; h_n < elm_adjustHiehgt.length; h_n++) {
+    h_list[h_n] = elm_adjustHiehgt[h_n].clientHeight;
+  }
+
+  // 配列の最大値を取得
+  h_list = Math.max.apply(null, h_list);
+
+  // 各要素に最大値の高さを代入
+  for (var h_i = 0; h_i < elm_adjustHiehgt.length; h_i++) {
+    elm_adjustHiehgt[h_i].style.height = h_list + 'px';
+  }
+}
+
+// 実行
+window.addEventListener('DOMContentLoaded', function () {
+  if (!matchMedia('(max-width: 640px)').matches) { //PCの時だけ実行
+    adjustHeight('js_price_heightadjust');
+  }
+});
+
+
+////////// 旧common_renuw.jsの記述 //////////////////////////////////////////////////////////////////////
+//スマホグローバルナビ プルダウン
+$(function () {
+  //オーバーレイ作成
+  $('#wrap').prepend('<div class="overlay"></div>');
+  //ナビをクリックしたら
+  $('.hmenu').click(function () {
+    $(this).toggleClass('close');
+    $('.pulldown').toggle();
+    $('.overlay').toggle();
+    if ($('.pulldown').css('display') == 'block') {
+      $('html').css('height', '100%');
+      $('body').css('height', '100%');
+      $('#wrap').css('height', '100%');
+    } else {
+      $('html').css('height', 'auto');
+      $('body').css('height', 'auto');
+      $('#wrap').css('height', 'auto');
+    }
+  });
+  //サブメニューをクリックしたら
+  $('.pulldown .navi').click(function () {
+    $(this).toggleClass("active").next().slideToggle(500);
+  });
+  //オーバーレイをクリックしたら
+  $('.overlay').click(function () {
+    $('.pulldown').hide();
+    $(this).hide();
+    $('.hmenu').removeClass('close');
+    $('html').css('height', 'auto');
+    $('body').css('height', 'auto');
+    $('#wrap').css('height', 'auto');
+  });
+  //プルダウンメニュー内閉じるボタンをクリックしたら
+  $('.close').click(function () {
+    //$('.pulldown').slideUp();
+    $('.pulldown').hide();
+    $('.overlay').hide();
+    $('.hmenu').removeClass('close');
+    $('html').css('height', 'auto');
+    $('body').css('height', 'auto');
+    $('#wrap').css('height', '100%');
+  });
+  //言語切り替えボタンをクリックしたら
+  $('.js-langBtn').click(function () {
+    $('.pulldown').hide();
+    $('.overlay').hide();
+    $('.hmenu').removeClass('close');
+    $('html').css('height', 'auto');
+    $('body').css('height', 'auto');
+    $('#wrap').css('height', '100%');
+  });
+  //言語切り替えボタン内閉じるボタンをクリックしたら
+  $('.langPulldown .close').click(function () {
+    $('#wrap').css('height', '100%');
+  });
+  // スマホサイズではなくなった時はメニューを非表示にする
+  $(window).bind('resize', function () {
+    try {
+      if (!window.matchMedia('(max-width: 640px)').matches) {
+        $('.pulldown, .overlay, .langPulldown').hide();
+      }
+    } catch (e) {
+      $('.pulldown, .overlay, .langPulldown').hide();
+    }
+  });
+  $(window).bind('resize', function () {
+    try {
+      if (!window.matchMedia('(min-width: 641px)').matches) {
+        $('.hmenu').removeClass('close');
+      }
+    } catch (e) {
+      $('.hmenu').removeClass('close');
+    }
+  });
+});
+
+
+//スマホ言語切り替え
+$(function () {
+  //ナビをクリックしたら
+  $('.js-langBtn').on('click', function () {
+    if ($(this).hasClass('close')) {
+      $(this).removeClass('close');
+      $('.langPulldown').slideDown(500, 'swing');
+    } else {
+      $(this).addClass('close');
+      $('.langPulldown').slideUp(500, 'swing');
+    }
+  });
+  //リンクをクリックしたら
+  $('.langPulldown li').on('click', function () {
+    $('.js-langBtn').addClass('close');
+    $('.langPulldown').slideUp(500, 'swing');
+  });
+  //閉じるボタンをクリックしたら
+  $('.langPulldown .close').on('click', function () {
+    $('.js-langBtn').addClass('close');
+    $('.langPulldown').slideUp(500, 'swing');
+  });
+  //グロナビをクリックしたら
+  $('.hmenu').on('click', function () {
+    $('.js-langBtn').addClass('close');
+    $('.langPulldown').hide();
+  });
+});
+
+//パネル
+$(function () {
+  //panelBox01
+  $('#menu li#menuPass a').click(function () {
+    $('.panelArea .panelBoxFP').show();
+    $('.panelArea .panelBoxRM').hide();
+    $('.panelArea .panelBoxCS').hide();
+    $('.panelArea .panelBoxFD').hide();
+    $('.panelArea .panelBoxIR').hide();
+    $('.panelArea .panelBoxAU').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxFP .close').click(function () {
+      $('.panelArea .panelBoxFP').hide();
+      $('#menu li#menuPass').removeClass('active');
+    });
+  });
+
+  //panelBox02
+  $('#menu li#menuRoute a').click(function () {
+    $('.panelArea .panelBoxRM').show();
+    $('.panelArea .panelBoxFP').hide();
+    $('.panelArea .panelBoxCS').hide();
+    $('.panelArea .panelBoxFD').hide();
+    $('.panelArea .panelBoxIR').hide();
+    $('.panelArea .panelBoxAU').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxRM .close').click(function () {
+      $('.panelArea .panelBoxRM').hide();
+      $('#menu li#menuRoute').removeClass('active');
+    });
+  });
+
+  //panelBox03
+  $('#menu li#menuCustomer a').click(function () {
+    $('.panelArea .panelBoxCS').show();
+    $('.panelArea .panelBoxFP').hide();
+    $('.panelArea .panelBoxRM').hide();
+    $('.panelArea .panelBoxFD').hide();
+    $('.panelArea .panelBoxIR').hide();
+    $('.panelArea .panelBoxAU').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxCS .close').click(function () {
+      $('.panelArea .panelBoxCS').hide();
+      $('#menu li#menuCustomer').removeClass('active');
+    });
+  });
+
+  //panelBox04
+  $('#menu li#menuDestinations a').click(function () {
+    $('.panelArea .panelBoxFD').show();
+    $('.panelArea .panelBoxFP').hide();
+    $('.panelArea .panelBoxRM').hide();
+    $('.panelArea .panelBoxCS').hide();
+    $('.panelArea .panelBoxIR').hide();
+    $('.panelArea .panelBoxAU').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxFD .close').click(function () {
+      $('.panelArea .panelBoxFD').hide();
+      $('#menu li#menuDestinations').removeClass('active');
+    });
+  });
+
+  //panelBox05
+  $('#menu li#menuInvestor a').click(function () {
+    $('.panelArea .panelBoxIR').show();
+    $('.panelArea .panelBoxFP').hide();
+    $('.panelArea .panelBoxRM').hide();
+    $('.panelArea .panelBoxCS').hide();
+    $('.panelArea .panelBoxFD').hide();
+    $('.panelArea .panelBoxAU').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxIR .close').click(function () {
+      $('.panelArea .panelBoxIR').hide();
+      $('#menu li#menuInvestor').removeClass('active');
+    });
+  });
+
+  //panelBox06
+  $('#menu li#menuAboutus a').click(function () {
+    $('.panelArea .panelBoxAU').show();
+    $('.panelArea .panelBoxFP').hide();
+    $('.panelArea .panelBoxRM').hide();
+    $('.panelArea .panelBoxCS').hide();
+    $('.panelArea .panelBoxFD').hide();
+    $('.panelArea .panelBoxIR').hide();
+    $('#menu li').removeClass('active');
+    $('.panelArea .panelBoxAU .close').click(function () {
+      $('.panelArea .panelBoxAU').hide();
+      $('#menu li#menuAboutus').removeClass('active');
+    });
+  });
+
+
+  $('#menu li').click(function () {
+    $(this).toggleClass('active');
+  });
+
+});
