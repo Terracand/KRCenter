@@ -1,0 +1,17 @@
+//accordion
+$(function(){
+	$('.js-accordion dt').click(function(){
+		$(this).next('dd').slideToggle('200');
+		$(this).toggleClass('acc-active');
+	});
+
+
+	//スマホの時だけ用
+	if (window.matchMedia( '(max-width:750px)' ).matches) {
+		$('.mc-box .js-acc-item-sp').hide();
+		$('.js-accordion-sp').click(function(){
+			$(this).next('.mc-box').children('.js-acc-item-sp').slideToggle('200');
+			$(this).toggleClass('acc-active');
+		});
+	}
+});

@@ -1,0 +1,94 @@
+//多言語トップページの上から2つ目の緊急告知枠
+
+
+window.addEventListener('wovnLangChanged', function(evt) {
+
+const emrgency2List = document.querySelectorAll('#emergency2');
+for (let i = 0; i < emrgency2List.length; i++) {
+	while(emrgency2List[i].lastChild) {
+		emrgency2List[i].removeChild(emrgency2List[i].lastChild);
+	}
+}
+
+let emergencyList = document.getElementById('emergency2');
+
+//アコーディオンを使用するには？
+//1.dlに「js-accordion」クラスを設定する
+//2.dl内のddの上に<dt>Important Notices</dt>を設置。※dt内のテキストは任意
+
+
+/* 日本語 multi */
+const emergencyHTMLja = (function () {/*
+		<div class="emg-inner">
+			<dl class="emg-item">
+				<dd>
+					<p>ただいま、「えきねっと」の一部サービスがご利用いただけない、もしくはつながりにくい状況となっております。<br>お客さまにはご迷惑をおかけいたしまして誠に申し訳ございません。</p>
+				</dd>
+			</dl>
+		</div>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+/* 英語 en */
+const emergencyHTMLen = (function () {/*
+		<div class="emg-inner" wovn-ignore>
+			<dl class="emg-item">
+				<dd>
+					<p>Some of the JR-EAST Train Reservation services are currently unavailable or difficult to access.<br>We apologize for the inconvenience and thank you for your understanding.</p>
+				</dd>
+			</dl>
+		</div>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+/* 繁体字 tc(zh-Hant) */
+const emergencyHTMLtc = (function () {/*
+		<div class="emg-inner" wovn-ignore>
+			<dl class="emg-item">
+				<dd>
+					<p>目前「JR-EAST Train Reservation」的部分服務無法使用或有連接困難的情形。<br>造成各位乘客的困擾，我們深表歉意。</p>
+				</dd>
+			</dl>
+		</div>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+/* 簡体字 sc(zh-Hans) */
+const emergencyHTMLsc = (function () {/*
+		<div class="emg-inner" wovn-ignore>
+			<dl class="emg-item">
+				<dd>
+					<p>目前，“JR-EAST Train Reservation”出现部分服务无法使用、或难以访问的情况。<br>给各位乘客造成不便，我们深表歉意。</p>
+				</dd>
+			</dl>
+		</div>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+/* 韓国語 kr(ko) */
+const emergencyHTMLkr = (function () {/*
+		<div class="emg-inner" wovn-ignore>
+			<dl class="emg-item">
+				<dd>
+					<p>현재 'JR-EAST Train Reservation'의 일부 서비스를 이용하실 수 없거나 사이트 접속이 되지 않고 있습니다. <br>이용자 여러분에게 불편을 끼쳐드려 죄송합니다.</p>
+				</dd>
+			</dl>
+		</div>
+*/}).toString().split('\n').slice(1, -1).join('\n');
+
+
+
+/* 下記のソースをコメントアウトでエマージェンシー枠を使用停止 */
+//if(document.documentElement.lang == 'en'){
+//	emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLen);
+//} else if(document.documentElement.lang == 'zh-Hant') {
+//	emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLtc);
+//} else if(document.documentElement.lang == 'zh-Hans'){
+//	emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLsc);
+//} else if(document.documentElement.lang == 'ko'){
+//	emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLkr);
+//} else {
+//	emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLen);
+//}
+
+/* 日本語でWovn翻訳する場合 */
+//emergencyList.insertAdjacentHTML('afterbegin', emergencyHTMLja);
+
+
+});

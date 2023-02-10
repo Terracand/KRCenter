@@ -1,0 +1,20 @@
+function getWovnCookie(){
+  var array = new Array();
+  if(document.cookie == '') return null;
+
+  var cookies = document.cookie.split('; ');
+  for (let i = 0; i < cookies.length; ++i) {
+    var cookie = cookies[i];
+    var cookieName = cookie.split('=');
+
+    if(cookieName[0] == 'wovn_selected_lang' && cookieName[1] != 'ja') return cookie;
+    
+  }
+  return null;
+}
+
+window.addEventListener('wovnApiReady', function(evt){
+  if( !getWovnCookie() ){
+    WOVN.io.changeLang('en');
+  }
+});

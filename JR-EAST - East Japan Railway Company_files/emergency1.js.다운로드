@@ -1,0 +1,37 @@
+window.addEventListener('DOMContentLoaded' , function(){
+
+	let out_html_item = '';
+	let out_html = '';
+	const xmlhr = new XMLHttpRequest();
+	xmlhr.open('GET', '/e/multi_emergency.html/', true);
+	xmlhr.responseType = 'text';
+	xmlhr.send(null);
+
+
+	xmlhr.onreadystatechange = function(){
+		if (xmlhr.readyState == 4 && xmlhr.status == 200) {
+			function em_parseHTML(em_html) {
+				let tempBody = document.implementation.createHTMLDocument('').body;
+				tempBody.innerHTML = em_html;
+				return tempBody.childNodes;
+			}
+			out_html = em_parseHTML(xmlhr.responseText);
+
+			for (let i = 0; i < out_html.length; i++) {
+				out_html_item = out_html[i].parentNode.getElementsByClassName('emg-item');
+				if(out_html_item.length) {
+					const emgInnner = document.getElementsByClassName('emg-inner')[0];
+					emgInnner.insertAdjacentElement('beforeend', out_html_item[0]);
+				}
+			}
+			$('#emergency1 .js-accordion dt').click(function(){
+				$(this).next('dd').slideToggle('200');
+				$(this).toggleClass('acc-active');
+			});
+		} else if(xmlhr.status == 404) {
+			console.log('error');
+		}
+	}
+
+});
+
