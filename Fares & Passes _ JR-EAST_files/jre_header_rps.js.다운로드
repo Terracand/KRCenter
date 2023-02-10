@@ -1,0 +1,226 @@
+//------------------------------------------------------------------------------
+var ActivePath = '';
+var ActiveIndex = -1;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// add meta viewport
+//------------------------------------------------------------------------------
+
+/*$(function(){
+	$('<meta>').attr('name', 'viewport').attr('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0').appendTo('head');
+});*/
+
+
+//------------------------------------------------------------------------------
+// add GDPR
+//------------------------------------------------------------------------------
+//外部ファイルを読み込む関数
+function appendExternal(url, callback) {
+  document.addEventListener('DOMContentLoaded', function () {
+    var fileName = url.match('.+/(.+?)([\?#;].*)?$')[1];
+    var extension = fileName.split('.');
+
+    //jsを読み込む場合
+    if (extension[extension.length - 1].toLowerCase() === 'js') {
+      var element = document.createElement('script');
+      element.src = url;
+      var added = document.body;
+    }
+
+    //cssを読み込む場合
+    else if (extension[extension.length - 1].toLowerCase() === 'css') {
+      var element = document.createElement('link');
+      element.href = url;
+      element.rel = 'stylesheet';
+      element.type = 'text/css';
+      var added = document.head;
+    }
+
+    //コールバック
+    element.onload = function () {
+      callback();
+    }
+
+    //js or cssを追加
+    added.appendChild(element);
+  }, false);
+}
+
+//GDPR用jsを読み込み
+appendExternal('/material/js/gdpr.js', function () {
+  //'/material/js/gdpr.js'内の関数を実行
+  gdpr();
+});
+
+//GDPR用cssを読み込み
+appendExternal('/multi/pass/css/gdpr.css', function () {
+  ;
+});
+
+
+//------------------------------------------------------------------------------
+// under renewal code
+//------------------------------------------------------------------------------
+function check_new_old() {
+  var menuList = new Array();
+  var self_url = window.location.href;
+  //[--MenuList--BEGIN]
+  //Top
+  menuList.push('/e/');
+  menuList.push('/e/index.html');
+  //Timetalbes
+  menuList.push('/e/timetables/index.html');
+  //Fares&Pages
+  menuList.push('/e/pass/index.html');
+  menuList.push('/e/eastpass_sp/index.html');
+  menuList.push('/e/eastpass/index.html');
+  menuList.push('/e/suica-nex/index.html');
+  menuList.push('/e/pass/tokunai_pass.html');
+  menuList.push('/e/pass/tokyo_free.html');
+  menuList.push('/e/pass/yokohama_minatomirai.html');
+  menuList.push('/e/pass/kamakura_enoshima.html');
+  menuList.push('/e/pass/nikko_kinugawa.html');
+  menuList.push('/e/pass/holiday_pass.html');
+  menuList.push('/e/pass/weekend_pass.html');
+  menuList.push('/e/pass/twoday_pass.html');
+  menuList.push('/e/pass/seishun18.html');
+  menuList.push('/e/pass/suica.html');
+  menuList.push('/e/ticket/index.html');
+  menuList.push('/e/ticket/types.html');
+  menuList.push('/e/ticket/purchase.html');
+  menuList.push('/e/ticket/changes');
+  menuList.push('/e/ticket/accidents.html');
+  menuList.push('/e/ticket/examining.html');
+  menuList.push('/e/charge/index.asp');
+  //Route & Maps
+  menuList.push('/e/routemaps/index.html');
+  menuList.push('/e/nex/index.html');
+  menuList.push('/e/nex/tickets.html');
+  menuList.push('/e/nex/suica_nex.html');
+  menuList.push('/e/nex/seating.html');
+  menuList.push('/e/nex/facilities.html');
+  menuList.push('/e/nex/narita.html');
+  menuList.push('/e/nex/service_center.html');
+  menuList.push('/e/routemaps/tohokushinkansen.html');
+  menuList.push('/e/routemaps/akitashinkansen.html');
+  menuList.push('/e/routemaps/yamagatashinkansen.html');
+  menuList.push('/e/routemaps/joetsushinkansen.html');
+  menuList.push('/e/routemaps/naganoshinkansen.html');
+  menuList.push('/e/routemaps/cassiopeia_hokutosei.html');
+  menuList.push('/e/routemaps/hitachi.html');
+  menuList.push('/e/routemaps/azusa_kaiji.html');
+  menuList.push('/e/routemaps/nikko_kinugawa.html');
+  menuList.push('/e/routemaps/superviewodoriko.html');
+  menuList.push('/e/routemaps/sazanami_wakashio.html');
+  menuList.push('/e/routemaps/kusatsu_minakami.html');
+  menuList.push('/e/routemaps/hakucho_tsugaru.html');
+  menuList.push('/e/routemaps/inaho_kamoshika.html');
+  menuList.push('/e/routemaps/resortshirakami.html');
+  menuList.push('/e/routemaps/slbanetsumonogatari.html');
+  menuList.push('/e/routemaps/kirakirauetsu.html');
+  //Featured Destinations
+  menuList.push('/e/destinations/index.html');
+  menuList.push('/e/destinations/nikko_kinugawa.html');
+  menuList.push('/e/destinations/fuji.html');
+  menuList.push('/e/destinations/sendai_matsushima.html');
+  menuList.push('/e/destinations/aizu.html');
+  menuList.push('/e/destinations/hiraizumi.html');
+  menuList.push('/e/destinations/kusatsu_minakami.html');
+  menuList.push('/e/destinations/karuizawa.html');
+  menuList.push('/e/destinations/izu.html');
+  menuList.push('/e/destinations/yokohama.html');
+  menuList.push('/e/destinations/shirakamisanchi.html');
+  menuList.push('/e/destinations/niigata_sado.html');
+  menuList.push('/e/destinations/gala.html');
+  //Customer Support
+  menuList.push('/e/customer_support/index.html');
+  menuList.push('/e/customer_support/service_center.html');
+  menuList.push('/e/customer_support/information_center.html');
+  menuList.push('/e/customer_support/infoline.html');
+  menuList.push('/e/stations/index.html');
+  menuList.push('/e/customer_support/accesibility.html');
+  //Investor Relations
+  menuList.push('/e/investor/index.html');
+  //About Us
+  menuList.push('/e/aboutus/index.html');
+  //[--MenuList--END]
+  for (n = 0; n < menuList.length; n++) {
+    if (self_url.match(menuList[n] + '$')) return true;
+  }
+  return false;
+}
+
+//function jre_header_renew(path, key_index) {
+function jre_header(path, key_index) {
+
+  var href = location.pathname;
+  href = href.replace('/e', '');
+
+  //ヘッダ
+  document.write('<p class="skipLink"><a href="#contents">Skip navigation</a></p>');
+  document.write('<!-- PC Header -->');
+  document.write('<div id="header" class="headerArea">');
+  document.write('<div class="rwdInner clearfix">');
+  document.write('<div class="logo"><a href="/e/index.html"><picture><source media="(max-width: 640px)" srcset="/e/img/renew/common/logo_sp.png"><img src="/e/img/renew/common/logo.gif" alt="EAST JAPAN RAILWAY COMPANY"/></picture></a></div>');
+  document.write('<p class="hmenu">MENU</p>');
+  document.write('<p class="js-langBtn langBtn close"><span class="langBtn_inner"><span class="langBtn_txt">Language</span></span></p>');
+  //言語切り替え
+  document.write('<!-- langPulldown -->');
+  document.write('<div class="langPulldown">');
+  document.write('<ul class="wovn-languages">');
+
+  //document.write('<li><a href="'+ href +'">日本語</a></li>');
+  document.write('<li class="wovn-switch selected" data-value="en">English</li>');
+  document.write('<li class="wovn-switch selected" data-value="zh-CHT">繁體中文</li>');
+  document.write('<li class="wovn-switch selected" data-value="zh-CHS">簡体中文</li>');
+  document.write('<li class="wovn-switch selected" data-value="ko">한국어</li>');
+  document.write('<li class="wovn-switch selected" data-value="th">ภาษาไทย</li>');
+  document.write('<li class="wovn-switch selected" data-value="id">Bahasa Indonesia</li>');
+  document.write('<li class="wovn-switch selected" data-value="fr">Français</li>');
+  document.write('<li class="wovn-switch selected" data-value="de">Deutsch</li>');
+  document.write('<li class="wovn-switch selected" data-value="es">Espa&ntilde;ol</li>');
+  document.write('<li class="close"></li>');
+  document.write('</ul>');
+  document.write('</div>');
+  document.write('<!-- /langPulldown -->');
+  document.write('</div><!-- /rwdInner -->');
+  document.write('</div><!-- /header -->');
+  document.write('<!-- Header -->');
+  
+  document.writeln('<script src="/multi/pass/js/gnavi_rps.js" type="text/javascript" language="javascript"></script>');
+  document.write('<script src="/js/multi/rollover.js" type="text/javascript" language="javascript"></script>');
+
+
+  ActivePath = path;
+  if (key_index == undefined) {
+    ActiveIndex = -1;
+    return;
+  }
+
+  switch (key_index.toLowerCase()) {
+    case 'pass':
+    case 'using':
+      ActiveIndex = 1;
+      break;
+    case 'routemaps':
+      ActiveIndex = 2;
+      break;
+    case 'customer_support':
+      ActiveIndex = 3;
+      break;
+    case 'destinations':
+      ActiveIndex = 4;
+      break;
+    case 'investor':
+      ActiveIndex = 5;
+      break;
+    case 'aboutus':
+      ActiveIndex = 6;
+      break;
+    default:
+      ActiveIndex = -1;
+      break;
+  }
+
+}

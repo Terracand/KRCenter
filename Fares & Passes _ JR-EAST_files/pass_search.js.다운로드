@@ -1,0 +1,97 @@
+// エリアまたは利用期間から絞り込むパネルの動作
+
+"use strict";
+
+window.addEventListener('DOMContentLoaded', function () {// DOM構築完了後に実行
+
+	// 検索ボタンの要素を取得
+	const elm_searchSubmit = document.getElementById('searchSubmit');
+
+	// 検索ボタンをクリックしたら
+	elm_searchSubmit.addEventListener('click', function(e) {
+		
+		const place = document.pass_search.place.value;// 選択されているエリアのvalue値を取得
+		const time = document.pass_search.time.value;// 選択されている有効期限のvalue値を取得
+		const elm_passbox = document.getElementsByClassName('js_passsearch_trg');// 各パスの要素を取得
+		const elm_passnotfound = document.getElementsByClassName('js_passnotfound_trg');// カテゴリごとの<ul>要素を取得
+		
+		if(place !== '' && time !== '') {// 何か選択されていれば
+			
+			e.preventDefault();//ページ遷移を止める
+		
+			if (place !== 'none' && time !== 'none') {// エリア指定なし以外＆利用期間指定なし以外の場合
+			
+				for (let i = 0; i < elm_passbox.length; i++) {
+					(elm_passbox[i].dataset.place.indexOf(place) > -1 && elm_passbox[i].dataset.time.indexOf(time) > -1) ? elm_passbox[i].classList.remove('displaynone') : elm_passbox[i].classList.add('displaynone');
+				}
+				
+			} else if(place == 'none' && time !== 'none') {// エリア指定なし＆利用期間指定なし以外の場合
+				
+				for (let i = 0; i < elm_passbox.length; i++) {
+					(elm_passbox[i].dataset.time.indexOf(time) > -1) ? elm_passbox[i].classList.remove('displaynone') : elm_passbox[i].classList.add('displaynone');
+				}
+				
+			} else if(place !== 'none' && time == 'none') {// エリア指定なし以外＆利用期間指定なしの場合
+				
+				for (let i = 0; i < elm_passbox.length; i++) {
+					(elm_passbox[i].dataset.place.indexOf(place) > -1) ? elm_passbox[i].classList.remove('displaynone') : elm_passbox[i].classList.add('displaynone');
+				}
+				
+			} else if(place == 'none' && time == 'none') {// エリア指定なし＆利用期間指定なしの場合（全件表示する場合）
+				
+				for (let i = 0; i < elm_passbox.length; i++) {
+					elm_passbox[i].classList.remove('displaynone');
+				}
+				
+			}
+			
+			// カテゴリ内が全件非表示の場合、見つかりません表示を出す
+			for (let i = 0; i < elm_passnotfound.length; i++) {
+				let displaynone_count = 0;
+				
+				let elm_passnotfound_child = elm_passnotfound[i].children;
+				let passnotfound_child_count = elm_passnotfound[i].childElementCount - 1;
+				
+				for (let j = 0; j < elm_passnotfound_child.length; j++) {
+					if( elm_passnotfound_child[j].classList.contains('displaynone') == true ) {
+						displaynone_count++;
+					}
+				}
+				
+				//全件非表示の場合「見つかりません」を表示
+				(passnotfound_child_count == displaynone_count) ? elm_passnotfound_child[0].classList.add('displayshow') : elm_passnotfound_child[0].classList.remove('displayshow');
+			}
+			
+			
+			// 最後にページ内スクロール実行（期間限定 おすすめパス へ移動）
+			const target = document.getElementById('Limited-time-osusume_area');// スクロール位置の要素を取得
+			let positionTmp = target.getBoundingClientRect();
+			let position = positionTmp.top + window.pageYOffset;// ページ上部からのY位置を取得
+			$('html, body').animate({scrollTop:position}, 500, 'swing');// スクロール実行
+			
+		}
+	});
+	
+	// ページ上部のページ内リンクボタン押下時
+	(function(){
+		const elm_search_reset = document.getElementsByClassName('search_reset');// ページ上部のページ内リンクボタンをクリックしたら
+		for (let i = 0; i < elm_search_reset.length; i++) {
+			elm_search_reset[i].addEventListener('click',function(){
+				document.pass_search.place.options[0].selected = true;// 選択されているエリアを初期値に戻す
+				document.pass_search.time.options[0].selected = true;// 選択されている有効期限を初期値に戻す
+				
+				const elm_passbox = document.getElementsByClassName('js_passsearch_trg');// 各パスの要素を取得
+				for (let i = 0; i < elm_passbox.length; i++) {
+					elm_passbox[i].classList.remove('displaynone');// パスを全件表示にする
+				}
+				
+				const elm_passnotfound = document.getElementsByClassName('js_passnotfound_trg');// カテゴリごとの<ul>要素を取得
+				for (let i = 0; i < elm_passnotfound.length; i++) {
+					let elm_passnotfound_child = elm_passnotfound[i].children;
+					elm_passnotfound_child[0].classList.remove('displayshow');// 「見つかりません」を非表示
+				}
+			});
+		}
+	})();
+
+});
